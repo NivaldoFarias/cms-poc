@@ -3,10 +3,10 @@ import './globals.scss'
 
 const poppins = Poppins({
   weight: "700",
-  style: ["normal", "italic"],
+  style: [ "normal", "italic" ],
   preload: true,
-  subsets: ["devanagari", "latin-ext", "latin"],
-  fallback: ["ubuntu", "sans-serif"],
+  subsets: [ "devanagari", "latin-ext", "latin" ],
+  fallback: [ "ubuntu", "sans-serif" ],
 });
 
 export default function RootLayout({
