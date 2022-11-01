@@ -1,4 +1,207 @@
-.container {  
-  padding: 0 2rem;
-  font-size: 4rem;
+@import "./../styles/index.scss";
+
+.home {
+  @include flexbox(initial, center, center, initial);
+  height: 100vh;
+  width: 100vw;
+}
+
+.container {
+  @include flexbox(row, space-evenly, center, 150px);
+
+  min-height: 515px;
+  min-width: 1042px;
+
+  height: 100%;
+
+  .figure {
+    @include flexbox(column, center, flex-start, 30px);
+
+    height: 100%;
+    max-width: 500px;
+
+    font-size: 4rem;
+  }
+
+  .forms_container {
+    @include flexbox(column, center, center, 40px);
+
+    max-height: 515px;
+
+    width: 640px;
+    height: 100%;
+
+    border-radius: 8px;
+    background-color: $alt-secondary;
+
+    .input_wrapper {
+      @include flexbox(column, space-between, center, 20px);
+      padding: 80px 60px;
+      width: 100%;
+
+      .input_field {
+        @include flexbox(row, flex-start, center, 10px);
+        padding: 20px 15px;
+
+        height: 80px;
+        min-width: 500px;
+
+        font-size: 1.7rem;
+        font-weight: 400;
+
+        border: 4px solid $primary;
+        border-radius: 5px;
+        background-color: $secondary;
+      }
+
+      .svg_icon {
+        height: 36px;
+        width: 36px;
+
+        svg {
+          fill: $primary;
+        }
+      }
+    }
+  }
+}
+
+.form-group {
+  @include flexbox(column, center, center, 45px);
+  position: relative;
+
+  padding-top: 40px;
+  height: fit-content;
+  width: 100%;
+
+  .input-section {
+    position: relative;
+    font-size: 1.4rem;
+
+    .input-field {
+      display: block;
+      padding: 10px 10px 6px 5px;
+      width: 285px;
+
+      color: $secondary;
+      font-size: 1.2rem;
+      text-overflow: ellipsis;
+      text-shadow: $font-shadow;
+
+      border: none;
+      background-color: transparent;
+
+      &:disabled {
+        border-left: 2px solid $alert;
+      }
+
+      &:hover {
+        cursor: text;
+      }
+
+      &--active {
+        outline: none;
+
+        /* active state */
+        ~.bar:before,
+        ~.bar:after {
+          width: 50%;
+        }
+
+        ~.highlight {
+          animation: input-highlighter 0.3s ease;
+        }
+      }
+
+      /* active state */
+      &--active~.label-text,
+      &:valid~.label-text,
+      &:autofill~.label-text,
+      &:-webkit-autofill~.label-text {
+        top: -18px;
+        color: $primary;
+      }
+
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus,
+      &:-webkit-autofill:active,
+      &:-webkit-autofill:first-line {
+        transition: background-color 50000s ease-in-out 0s;
+        -webkit-text-fill-color: $secondary !important;
+      }
+
+      #placeholder {
+        transition: background-color 50000s ease-in-out 0s;
+        -webkit-text-fill-color: $secondary !important;
+      }
+    }
+
+    .label-text {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+
+      color: $high-contrast;
+      font-weight: 400;
+      text-shadow: $font-shadow;
+
+      pointer-events: none;
+      transition: 0.2s ease all;
+
+      span {
+        font-weight: bold;
+      }
+    }
+
+    .bar {
+      position: relative;
+      display: block;
+      width: 285px;
+      border-top: 1px solid $high-contrast;
+
+      &:before,
+      &:after {
+        position: absolute;
+        bottom: 1px;
+
+        height: 2px;
+        width: 0;
+
+        content: "";
+        background: $primary;
+      }
+
+      &:before {
+        left: 50%;
+      }
+
+      &:after {
+        right: 50%;
+      }
+    }
+
+    .highlight {
+      position: absolute;
+      top: 25%;
+      left: 0;
+
+      height: 60%;
+      width: 100px;
+
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    @keyframes input-highlighter {
+      from {
+        background: $primary;
+      }
+
+      to {
+        width: 0;
+        background: transparent;
+      }
+    }
+  }
 }
