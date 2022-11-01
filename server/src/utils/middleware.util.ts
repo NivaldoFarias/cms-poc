@@ -84,8 +84,9 @@ export default function useMiddleware({
     const [ user_id, result ] = (await Promise.all([
       __tokenIsRequired(),
       __parameterIsRequired(),
-      __validateModel(),
     ])) as MiddlewarePromises;
+
+    await __validateModel();
 
     res.locals.user_id = user_id;
     res.locals.result = result;
@@ -96,7 +97,7 @@ export default function useMiddleware({
       return (middlewares?.param || middlewares?.search) && globals.id
         ? validateParameters(
           globals.id as string,
-          (globals.param as APIModelsKeys) ?? "Unit",
+          (globals.param as APIModelsKeys) ?? "",
         )
         : __resolve();
     }
@@ -112,6 +113,7 @@ export default function useMiddleware({
         ? validateModel(
           globals.model as APIModelsKeys,
           globals.body as Record<string, unknown>,
+          user_id
         )
         : __resolve();
     }

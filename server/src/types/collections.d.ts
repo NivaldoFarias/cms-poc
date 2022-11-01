@@ -15,11 +15,16 @@ export type CookType = {
   cir: string;
 }
 
+export type CreateCook = Omit<CookType, "_id">
+
 export type SupplierType = {
   _id?: Types.ObjectId;
   user: Types.ObjectId;
+  name: string;
   cnpj: string;
 }
+
+export type CreateSupplier = Omit<SupplierType, "_id">
 
 export enum EnumProvisions {
   "Feijão",
@@ -29,9 +34,12 @@ export enum EnumProvisions {
 
 export type ProvisionType = {
   _id?: Types.ObjectId;
-  name: string;
+  user: Types.ObjectId;
   type: EnumProvisions;
 };
+
+export type CreateProvision = Omit<ProvisionType, "_id">
+
 
 export type SessionType = {
   _id?: Types.ObjectId;
@@ -90,18 +98,22 @@ export interface UpdateResponse {
   detail?: Partial<UpdateWriteOpResult>;
 }
 
-interface FindByField {
+export interface FindByField {
   field: string;
   value: string;
   model: APIModelsKeys;
 }
 
-interface FindById {
+export interface FindById {
   id: string;
   model: APIModelsKeys;
 }
 
-interface SearchAll {
+export interface SearchAll {
   queries: QueryParameters;
   model: APIModelsKeys;
+}
+
+export interface DeleteOne {
+  id: string;
 }

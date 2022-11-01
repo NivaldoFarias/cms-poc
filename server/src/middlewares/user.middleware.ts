@@ -1,26 +1,17 @@
 import type { UserDocument } from "../types/collections";
 import type { Request, Response, NextFunction } from "express";
-import type { UpdateOne } from "../types/user";
 
 import * as error from "./helpers/errors.middleware";
 
-
 export async function updateOrDeleteOneValidations(
-  req: Request,
+  _req: Request,
   res: Response,
   next: NextFunction,
 ) {
-  const fieldsToUpdate: UpdateOne = {
-    full_name: req.body.full_name,
-    username: req.body.username,
-    company: req.body.company,
-  };
   const user_id = res.locals.user_id;
   const user = res.locals.result;
 
   providedTokenMatchesUser(user_id, user);
-
-  res.locals.body = fieldsToUpdate;
 
   return next();
 }

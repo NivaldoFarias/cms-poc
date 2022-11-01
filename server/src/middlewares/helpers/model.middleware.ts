@@ -8,6 +8,7 @@ import AppLog from "../../events/AppLog";
 export async function validateModel(
   model: APIModelsKeys,
   body: Record<string, unknown>,
+  user_id?: string,
 ) {
   let document = undefined;
 
@@ -16,13 +17,13 @@ export async function validateModel(
       document = new User(body);
       break;
     case "Cook":
-      document = new Cook(body);
+      document = new Cook({ user: user_id, ...body });
       break;
     case "Supplier":
-      document = new Supplier(body);
+      document = new Supplier({ user: user_id, ...body });
       break;
     case "Provision":
-      document = new Provision(body);
+      document = new Provision({ user: user_id, ...body });
       break;
     case "Session":
       document = new Session(body);

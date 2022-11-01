@@ -12,7 +12,7 @@ export async function requireToken(token: string) {
     const payload: JwtPayload = jwt.verify(token, env.JWT_SECRET) as JwtPayload;
     const { sub } = payload;
 
-    id = payload[sub ?? env.JWT_SUBJECT];
+    id = payload[ sub ?? env.JWT_SUBJECT ];
   } catch (error) {
     throw new AppError({
       statusCode: 403,

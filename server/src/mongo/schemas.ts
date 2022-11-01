@@ -27,7 +27,7 @@ export const suppliersSchema = new Schema({
 
 export const cooksSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: "User", required: true },
-  cir: { type: String, required: true, match: regex.CIR },
+  cir: { type: String, required: true, unique: true, match: regex.CIR },
 });
 
 export const provisionsSchema = new Schema({
