@@ -1,0 +1,150 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[3].oneOf[4].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[3].oneOf[4].use[3]!./app/page.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************/
+.page_container___c__5 {
+  padding: 0 2rem;
+}
+
+.page_main__WunS6 {
+  min-height: 100vh;
+  padding: 4rem 0;
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page_footer__EPLjz {
+  display: flex;
+  flex: 1 1;
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+}
+
+.page_footer__EPLjz a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.page_title__jaD8y {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 4rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.page_title__jaD8y a {
+  text-decoration: none;
+  color: #0070f3;
+}
+
+.page_title__jaD8y a:hover,
+.page_title__jaD8y a:focus,
+.page_title__jaD8y a:active {
+  text-decoration: underline;
+}
+
+.page_title__jaD8y,
+.page_description__ihOGI {
+  text-align: center;
+}
+
+.page_description__ihOGI {
+  margin: 4rem 0;
+  line-height: 1.5;
+  font-size: 1.5rem;
+}
+
+.page_code__6jdGX {
+  background: #fafafa;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+.page_grid__8s97H {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+}
+
+.page_card__iAZT9 {
+  margin: 1rem;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  max-width: 300px;
+}
+
+.page_card__iAZT9:hover,
+.page_card__iAZT9:focus,
+.page_card__iAZT9:active {
+  color: #0070f3;
+  border-color: #0070f3;
+}
+
+.page_card__iAZT9 h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.page_card__iAZT9 p {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.page_logo__DgL_7 {
+  height: 1em;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .page_grid__8s97H {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .page_title__jaD8y {
+    background: linear-gradient(180deg, #ffffff 0%, #aaaaaa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+  .page_title__jaD8y a {
+    background: linear-gradient(180deg, #0070f3 0%, #0153af 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+  .page_card__iAZT9,
+  .page_footer__EPLjz {
+    border-color: #222;
+  }
+  .page_code__6jdGX {
+    background: #111;
+  }
+  .page_logo__DgL_7 img {
+    filter: invert(1);
+  }
+}
+
