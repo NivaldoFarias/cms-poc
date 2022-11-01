@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "Customer Management System - Server Side",
+  "description": "Customer Relationship Management System - Server Side",
   "private": true,
   "main": "dist/server.js",
   "type": "commonjs",
