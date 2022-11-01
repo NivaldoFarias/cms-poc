@@ -7,9 +7,10 @@
     <img src="assets/img/customer-management-logo.png" alt="Logo" width="130">
   </a>
 
-  <h3 align="center">Customer Management System PoC</h3>
+  <h3 align="center">Customer Management System</h3>
   <div align="center">
-    Full Stack Development Project 
+    <h6>WIP</h6>
+    Customer Relationship Management System - Full Stack PoC 
     <br />
     <a href="https://github.com/NivaldoFarias/customer-management/tree/main/server"><strong>Browse Back End code»</strong></a>
     -
