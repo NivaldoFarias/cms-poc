@@ -1,0 +1,26 @@
+{
+  "name": "customer-management-poc",
+  "version": "1.0.0",
+  "description": "Customer Management System PoC",
+  "main": "package.json",
+  "scripts": {
+    "start": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
+    "build": "concurrently \"cd server && npm run build\" \"cd client && npm run build\"",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm start\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NivaldoFarias/customer-management-poc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NivaldoFarias/customer-management-poc/issues"
+  },
+  "homepage": "https://github.com/NivaldoFarias/customer-management-poc#readme",
+  "dependencies": {
+    "concurrently": "^7.4.0"
+  }
+}
