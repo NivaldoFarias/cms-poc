@@ -31,7 +31,7 @@
 <br />
 
 <div align="center">
-  <a href="https://github.com/NivaldoFarias/customer-management/tree/main/server/releases/tag/v2.0.0" alt="Current template version badge">
+  <a href="https://github.com/NivaldoFarias/customer-management" alt="MIT license badge">
     <img src="https://img.shields.io/badge/license-MIT-%23A8D1FF?style=flat-square" />
   </a>
 </div>
@@ -40,8 +40,9 @@
 
 # Table of Contents
 
-- [Deployed Instances](#deployed-instances)
+- [Table of Contents](#table-of-contents)
 - [Installation and Usage](#installation-and-usage)
+  - [Pre-requisites](#pre-requisites-nodejs-18120-lts)
 - [Error Handling and Logging](#error-handling-and-logging)
   - [AppError](#--apperror)
   - [AppLog](#--applog)
@@ -49,22 +50,14 @@
 - [API Reference](#api-reference)
   - [Models](#models)
   - [Routes](#routes)
+- [Database Entities](#database-entities)
   - [Authentication](#authentication)
   - [Users](#users)
-  - [Companies](#companies)
-  - [Units](#units)
-  - [Assets](#assets)
+  - [Cooks](#cooks)
+  - [Suppliers](#suppliers)
+  - [Provisions](#provisions)
 
-<!-- Deployed Instances -->
-
-## Deployed Instances
-
-- [Server](https://tractian-poc.herokuapp.com/) `https://tractian-poc.herokuapp.com/`
-- [Client](https://tractian-poc.vercel.app/) `https://tractian-poc.vercel.app/`
-
-<!-- Installation and Usage -->
-
-## Installation and Usage
+# Installation and Usage
 
 ###### Pre-requisites: Node.js `^16.14.0`, TypeScript `^4.7.4`
 
@@ -88,7 +81,7 @@ npm run dev
 
 <!-- Error Handling and Logging -->
 
-## Error Handling and Logging
+# Error Handling and Logging
 
 While dealing with errors in a _Layered Structure_ Project enviroment, you may notice that the project's debugging complexity scales beyond common `console.log()` usage. The `AppLog` Object and `AppError` Object structures were set to counter that exact issue, by trying to keep the Development process as clean and concise as possible. Both are frequently referenced in the code, but do have a specific usage.
 
@@ -160,7 +153,7 @@ An `AppLog` Object is used to handle logs in the application. It takes two param
 
 <!-- Middlewares -->
 
-## Middlewares
+# Middlewares
 
 While aiming to provide a reusable, modular and extensible architecture, the middlewares are generally the first structures to be refactored into self-contained modules. The `validateSchema()`, `processHeader()` and `requireToken()` middlewares were set in order to achieve that goal. The following section describes **`useMiddleware()`**, which incorporates the forementioned functions as _key–value_ pairs in an Object, along with their structure and usage.
 
@@ -213,49 +206,33 @@ In this section, you will find the example API's endpoints and their respective 
 ### User model _`User`_
 
 - `_id`: A unique identifier for each user. `ObjectId`
-- `full_name`: The user's full name. `String` `required` `max(100)`
-- `username`: The user's username. `String` `required` `unique` `max(25)`
-- `password`: The user's password. `String` `required` `max(50)`
-- `last_update`: The date and time when the user was last updated. `Date`
+- `name`: The user's full name. `String` `required` `max(100)`
+- `email`: The user's registered email. `String` `required` `unique`
+- `password`: The user's password. `String` `required` `max(100)`
 - `created_at`: The date and time when the user was created. `Date`
 
-### Company model _`Company`_
+### Cook model _`Cook`_
 
-- `_id`: A unique identifier for each company. `ObjectId`
-- `name`: The companys's name. `String` `required` `unique` `max(100)`
-- `units`: An array containing the company's units. `Unit[]`
-- `users`: An array containing the company's users. `User[]`
-- `x-api-key`: The company's API key. `String` `required`
-- `last_update`: The date and time when the company was last updated. `Date`
-- `created_at`: The date and time when the company was created. `Date`
+- `_id`: A unique identifier for each cook. `ObjectId`
+- `user`: A Object Id referencing the relative user. `User ObjectId`
+- `cir`: The cook's unique registry number **_(Número da caderneta de inscrição e Registro)_** `String` `required` `unique` `max(7)`
+- `created_at`: The date and time when the cook was created. `Date`
 
-### Unit model _`Unit`_
+### Supplier model _`Supplier`_
 
-- `_id`: A unique identifier for each unit. `ObjectId`
-- `name`: The units's name. `String` `required` `unique` `max(50)`
-- `street`: The unit's street. `String` `max(100)`
-- `number`: The unit's number. `String` `max(10)`
-- `city`: The unit's city. `String` `required` `max(50)`
-- `state`: The unit's state. `String` `required` `max(50)`
-- `postal_code`: The unit's postal code. `String` `max(20)`
-- `assets`: An array containing the unit's assets. `Asset[]`
-- `opens_at`: The date and time when the unit opens. `String` `required` `length(5)`
-- `closes_at`: The date and time when the unit closes. `String` `required` `length(5)`
-- `last_update`: The date and time when the unit was last updated. `Date`
-- `created_at`: The date and time when the unit was created. `Date`
+- `_id`: A unique identifier for each supplier. `ObjectId`
+- `user`: A Object Id referencing the relative user. `User ObjectId`
+- `name`: The supplier's company name. `String` `required` `max(100)`
+- `cnpj`: The supplier's unique registry number **_(CNPJ)_** `String` `required` `unique` `max(14)`
+- `created_at`: The date and time when the supplier was created. `Date`
 
-### Asset model _`Asset`_
 
-- `_id`: A unique identifier for each asset. `ObjectId`
-- `name`: The assets's name. `String` `required` `max(50)`
-- `description`: The assets's description. `String`
-- `model`: The assets's model. `String` `required` `max(100)`
-- `owner`: The assets owner's user. `User` `required`
-- `image`: The assets's image URL. `String`
-- `status`: The assets's status. `String` `required` `enum('RUNNING', 'ALERTING', 'STOPPED')`
-- `health`: The assets's healthscore. `Number` `required` `min(0)` `max(100)`
-- `last_update`: The date and time when the asset was last updated. `Date`
-- `created_at`: The date and time when the asset was created. `Date`
+### Provision model _`Provision`_
+
+- `_id`: A unique identifier for each provision. `ObjectId`
+- `user`: A Object Id referencing the relative user. `User ObjectId`
+- `type`: The provision's type. `enum { 'Feijão' | 'Arroz' | 'Macarrão' }` `required`
+- `created_at`: The date and time when the provision was created. `Date`
 
 ## Routes
 
@@ -266,36 +243,36 @@ In this section, you will find the example API's endpoints and their respective 
 
 ### [Users](#users) _`/users`_
 
-- [Create](#---create-an-user) `x-api-key`
+- [Create](#---create-an-user) 
 - [Search All Users](#---search-all-users) `token`
 - [Search by Id](#---search-user-by-id) `token`
-- [Update](#---update-an-user) `token` `x-api-key`
-- [Delete](#---delete-an-user) `token` `x-api-key`
+- [Delete](#---delete-an-user) `token` 
 
-### [Companies](#companies) _`/companies`_
+### [Cooks](#cooks) _`/cooks`_
 
-- [Create](#---create-a-company) `x-api-key`
-- [Search All Companies](#---search-all-companies) `token`
-- [Search by Id](#---search-companies-by-id) `token`
-- [Update](#---update-a-company) `token` `x-api-key`
-- [Delete](#---delete-a-company) `token` `x-api-key`
+- [Create](#---create-an-cook) `token` 
+- [Search All Cooks](#---search-all-cooks) `token`
+- [Search by Id](#---search-cook-by-id) `token`
+- [Delete](#---delete-an-cook) `token` 
 
-### [Units](#units) _`/units`_
+### [Suppliers](#suppliers) _`/suppliers`_
 
-- [Create](#---create-an-unit) `token` `x-api-key`
-- [Search All Units](#---search-all-units) `token`
-- [Search by Id](#---search-unit-by-id) `token`
-- [Update](#---update-an-unit) `token` `x-api-key`
-- [Delete](#---delete-an-unit) `token` `x-api-key`
+- [Create](#---create-a-supplier) 
+- [Search All Suppliers](#---search-all-suppliers) `token`
+- [Search by Id](#---search-suppliers-by-id) `token`
+- [Delete](#---delete-a-supplier) `token` 
 
-### [Assets](#assets) _`/assets`_
 
-- [Create](#---create-an-asset) `token` `x-api-key`
-- [Search All Assets](#---search-all-assets) `token`
-- [Search by Id](#---search-asset-by-id) `token`
-- [Update](#---update-an-asset) `token` `x-api-key`
-- [Delete](#---delete-an-asset) `token` `x-api-key`
+### [Provisions](#provisions) _`/provisions`_
 
+- [Create](#---create-an-provision) `token` 
+- [Search All Provisions](#---search-all-provisions) `token`
+- [Search by Id](#---search-provision-by-id) `token`
+- [Delete](#---delete-an-provision) `token` 
+
+<!-- Database Entities -->
+
+# Database Entities
 ## Authentication
 
 ### &nbsp; ‣ &nbsp; Sign in
@@ -308,7 +285,7 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "username": "JohnDoe",
+  "email": "johndoe@gmail.com",
   "password": "123456789"
 }
 ```
@@ -328,7 +305,7 @@ In this section, you will find the example API's endpoints and their respective 
 |   **200**   |           OK            |      `data: { token }`       |
 |   **400**   |     Invalid Syntax      | `error: { message, detail }` |
 |   **404**   |     User not Found      | `error: { message, detail }` |
-|   **409**   | User has Active Session | `error: { message, detail }` |
+|   **409**   | User has active Session | `error: { message, detail }` |
 |   **422**   |  Invalid Request Input  | `error: { message, detail }` |
 |   **500**   |  Internal Server Error  | `error: { message, detail }` |
 
@@ -343,7 +320,7 @@ In this section, you will find the example API's endpoints and their respective 
 ```json
 {
   "Content-Type": "application/json",
-  "token": "server-generated-token"
+  "Authorization": "Bearer <token>"
 }
 ```
 
@@ -368,10 +345,9 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "full_name": "John Doe Junior the Third",
-  "username": "JohnDoe",
-  "password": "123456789",
-  "company": "5f9f1b9f9d1b9d1b9f1b9d1b"
+  "name": "John Doe Junior the Third",
+  "email": "johndoe@gmail.com",
+  "password": "123456789"
 }
 ```
 
@@ -379,21 +355,19 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "Content-Type": "application/json",
-  "x-api-key": "extremely-secure-hash-key"
+  "Content-Type": "application/json"
 }
 ```
 
 #### &nbsp; ☰ &nbsp; Responses
 
-| Status Code |         Description         |          Properties          |
-| :---------: | :-------------------------: | :--------------------------: |
-|   **201**   |           Created           |         `data: null`         |
-|   **400**   |       Invalid Syntax        | `error: { message, detail }` |
-|   **403**   |     Forbidden x-api-key     | `error: { message, detail }` |
-|   **409**   | Username Already Registered | `error: { message, detail }` |
-|   **422**   |    Invalid Request Input    | `error: { message, detail }` |
-|   **500**   |    Internal Server Error    | `error: { message, detail }` |
+| Status Code |       Description        |          Properties          |
+| :---------: | :----------------------: | :--------------------------: |
+|   **201**   |         Created          |         `data: null`         |
+|   **400**   |      Invalid Syntax      | `error: { message, detail }` |
+|   **409**   | Email Already Registered | `error: { message, detail }` |
+|   **422**   |  Invalid Request Input   | `error: { message, detail }` |
+|   **500**   |  Internal Server Error   | `error: { message, detail }` |
 
 ### &nbsp; ‣ &nbsp; Search all Users
 
@@ -425,7 +399,7 @@ In this section, you will find the example API's endpoints and their respective 
 |   **400**   |    Invalid Syntax     | `error: { message, detail }` |
 |   **401**   |     Missing Token     | `error: { message, detail }` |
 |   **403**   |    Forbidden Token    | `error: { message, detail }` |
-|   **404**   |   Session not Found   | `error: { message, detail }` |
+|   **404**   |    User not Found     | `error: { message, detail }` |
 |   **422**   | Invalid Request Input | `error: { message, detail }` |
 |   **500**   | Internal Server Error | `error: { message, detail }` |
 
@@ -456,42 +430,6 @@ In this section, you will find the example API's endpoints and their respective 
 |   **422**   | Invalid Request Input | `error: { message, detail }` |
 |   **500**   | Internal Server Error | `error: { message, detail }` |
 
-### &nbsp; ‣ &nbsp; Update an User
-
-###### &nbsp; &nbsp; PUT _`/users/:id/update`_
-
-#### &nbsp; ☰ &nbsp; Request
-
-##### Body
-
-```json
-{
-  "full_name": "John Doe Junior the Second",
-  "username": "JohnDoe"
-}
-```
-
-##### Headers
-
-```json
-{
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>",
-  "x-api-key": "extremely-secure-hash-key"
-}
-```
-
-#### &nbsp; ☰ &nbsp; Responses
-
-| Status Code |      Description      |          Properties          |
-| :---------: | :-------------------: | :--------------------------: |
-|   **200**   |          OK           |         `data: null`         |
-|   **400**   |    Invalid Syntax     | `error: { message, detail }` |
-|   **401**   |     Missing Token     | `error: { message, detail }` |
-|   **403**   |    Forbidden Token    | `error: { message, detail }` |
-|   **404**   |    User not Found     | `error: { message, detail }` |
-|   **422**   | Invalid Request Input | `error: { message, detail }` |
-|   **500**   | Internal Server Error | `error: { message, detail }` |
 
 ### &nbsp; ‣ &nbsp; Delete an User
 
@@ -504,8 +442,7 @@ In this section, you will find the example API's endpoints and their respective 
 ```json
 {
   "Content-Type": "application/json",
-  "Authorization": "Bearer <token>".
-  "x-api-key": "extremely-secure-hash-key"
+  "Authorization": "Bearer <token>"
 }
 ```
 
@@ -521,11 +458,11 @@ In this section, you will find the example API's endpoints and their respective 
 |   **422**   | Invalid Request Input | `error: { message, detail }` |
 |   **500**   | Internal Server Error | `error: { message, detail }` |
 
-## Companies
+## Cooks
 
-### &nbsp; ‣ &nbsp; Create a Company
+### &nbsp; ‣ &nbsp; Create a Cook
 
-###### &nbsp; &nbsp; POST _`/companies/create`_
+###### &nbsp; &nbsp; POST _`/cooks/create`_
 
 #### &nbsp; ☰ &nbsp; Request
 
@@ -533,7 +470,7 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "name": "Acme Inc."
+  "cir": "9999999",
 }
 ```
 
@@ -542,25 +479,25 @@ In this section, you will find the example API's endpoints and their respective 
 ```json
 {
   "Content-Type": "application/json",
-  "x-api-key": "extremely-secure-hash-key"
+  "Authorization": "Bearer <token>"
 }
 ```
 
 #### &nbsp; ☰ &nbsp; Responses
 
-| Status Code |        Description         |          Properties          |
-| :---------: | :------------------------: | :--------------------------: |
-|   **201**   |          Created           |         `data: null`         |
-|   **400**   |       Invalid Syntax       | `error: { message, detail }` |
-|   **401**   |     Missing x-api-key      | `error: { message, detail }` |
-|   **403**   |    Forbidden x-api-key     | `error: { message, detail }` |
-|   **409**   | Company Already Registered | `error: { message, detail }` |
-|   **422**   |   Invalid Request Input    | `error: { message, detail }` |
-|   **500**   |   Internal Server Error    | `error: { message, detail }` |
+| Status Code |      Description       |          Properties          |
+| :---------: | :--------------------: | :--------------------------: |
+|   **201**   |        Created         |         `data: null`         |
+|   **400**   |     Invalid Syntax     | `error: { message, detail }` |
+|   **401**   |     Missing Token      | `error: { message, detail }` |
+|   **403**   |    Forbidden Token     | `error: { message, detail }` |
+|   **409**   | CIR Already Registered | `error: { message, detail }` |
+|   **422**   | Invalid Request Input  | `error: { message, detail }` |
+|   **500**   | Internal Server Error  | `error: { message, detail }` |
 
-### &nbsp; ‣ &nbsp; Search all Companies
+### &nbsp; ‣ &nbsp; Search all Cooks
 
-###### &nbsp; &nbsp; GET _`/companies/all`_
+###### &nbsp; &nbsp; GET _`/cooks/all`_
 
 #### &nbsp; ☰ &nbsp; Request
 
@@ -584,17 +521,17 @@ In this section, you will find the example API's endpoints and their respective 
 
 | Status Code |      Description      |          Properties          |
 | :---------: | :-------------------: | :--------------------------: |
-|   **200**   |          OK           | `data: { Company[] \| null}` |
+|   **200**   |          OK           |  `data: { Cook[] \| null}`   |
 |   **400**   |    Invalid Syntax     | `error: { message, detail }` |
 |   **401**   |     Missing Token     | `error: { message, detail }` |
 |   **403**   |    Forbidden Token    | `error: { message, detail }` |
-|   **404**   |   Session not Found   | `error: { message, detail }` |
+|   **404**   |    Cook not Found     | `error: { message, detail }` |
 |   **422**   | Invalid Request Input | `error: { message, detail }` |
 |   **500**   | Internal Server Error | `error: { message, detail }` |
 
-### &nbsp; ‣ &nbsp; Search Company by id
+### &nbsp; ‣ &nbsp; Search Cook by id
 
-###### &nbsp; &nbsp; GET _`/companies/:id`_
+###### &nbsp; &nbsp; GET _`/cooks/:id`_
 
 #### &nbsp; ☰ &nbsp; Request
 
@@ -611,35 +548,27 @@ In this section, you will find the example API's endpoints and their respective 
 
 | Status Code |      Description      |          Properties          |
 | :---------: | :-------------------: | :--------------------------: |
-|   **200**   |          OK           |       `data: Company`        |
+|   **200**   |          OK           |         `data: Cook`         |
 |   **400**   |    Invalid Syntax     | `error: { message, detail }` |
 |   **401**   |     Missing Token     | `error: { message, detail }` |
 |   **403**   |    Forbidden Token    | `error: { message, detail }` |
-|   **404**   |   Company not Found   | `error: { message, detail }` |
+|   **404**   |    Cook not Found     | `error: { message, detail }` |
 |   **422**   | Invalid Request Input | `error: { message, detail }` |
 |   **500**   | Internal Server Error | `error: { message, detail }` |
 
-### &nbsp; ‣ &nbsp; Update a Company
 
-###### &nbsp; &nbsp; PUT _`/companies/:id/update`_
+### &nbsp; ‣ &nbsp; Delete a Cook
+
+###### &nbsp; &nbsp; DELETE _`/cooks/:id/delete`_
 
 #### &nbsp; ☰ &nbsp; Request
-
-##### Body
-
-```json
-{
-  "name": "Acme Inc. 2"
-}
-```
 
 ##### Headers
 
 ```json
 {
   "Content-Type": "application/json",
-  "Authorization": "Bearer <token>",
-  "x-api-key": "extremely-secure-hash-key"
+  "Authorization": "Bearer <token>"
 }
 ```
 
@@ -651,43 +580,15 @@ In this section, you will find the example API's endpoints and their respective 
 |   **400**   |    Invalid Syntax     | `error: { message, detail }` |
 |   **401**   |     Missing Token     | `error: { message, detail }` |
 |   **403**   |    Forbidden Token    | `error: { message, detail }` |
-|   **404**   |   Company not Found   | `error: { message, detail }` |
+|   **404**   |    Cook not Found     | `error: { message, detail }` |
 |   **422**   | Invalid Request Input | `error: { message, detail }` |
 |   **500**   | Internal Server Error | `error: { message, detail }` |
 
-### &nbsp; ‣ &nbsp; Delete a Company
+## Suppliers
 
-###### &nbsp; &nbsp; DELETE _`/companies/:id/delete`_
+### &nbsp; ‣ &nbsp; Create a Supplier
 
-#### &nbsp; ☰ &nbsp; Request
-
-##### Headers
-
-```json
-{
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>",
-  "x-api-key": "extremely-secure-hash-key"
-}
-```
-
-#### &nbsp; ☰ &nbsp; Responses
-
-| Status Code |      Description      |          Properties          |
-| :---------: | :-------------------: | :--------------------------: |
-|   **200**   |          OK           |         `data: null`         |
-|   **400**   |    Invalid Syntax     | `error: { message, detail }` |
-|   **401**   |     Missing Token     | `error: { message, detail }` |
-|   **403**   |    Forbidden Token    | `error: { message, detail }` |
-|   **404**   |   Company not Found   | `error: { message, detail }` |
-|   **422**   | Invalid Request Input | `error: { message, detail }` |
-|   **500**   | Internal Server Error | `error: { message, detail }` |
-
-## Units
-
-### &nbsp; ‣ &nbsp; Create an Unit
-
-###### &nbsp; &nbsp; POST _`/units/create`_
+###### &nbsp; &nbsp; POST _`/suppliers/create`_
 
 #### &nbsp; ☰ &nbsp; Request
 
@@ -695,13 +596,8 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "name": "Acme Inc. - Unit 1",
-  "description": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.",
-  "city": "New York",
-  "state": "NY",
-  "opens_at": "08:00",
-  "closes_at": "18:00",
-  "company": "5f9f1b9f9d1b9d1b9f1b9d1b"
+  "name": "Semantix",
+  "cnpj": "44681667000172",
 }
 ```
 
@@ -710,8 +606,7 @@ In this section, you will find the example API's endpoints and their respective 
 ```json
 {
   "Content-Type": "application/json",
-  "Authorization": "Bearer <token>",
-  "x-api-key": "extremely-secure-hash-key"
+  "Authorization": "Bearer <token>"
 }
 ```
 
@@ -723,13 +618,13 @@ In this section, you will find the example API's endpoints and their respective 
 |   **400**   |     Invalid Syntax      | `error: { message, detail }` |
 |   **401**   |      Missing Token      | `error: { message, detail }` |
 |   **403**   |     Forbidden Token     | `error: { message, detail }` |
-|   **409**   | Unit Already Registered | `error: { message, detail }` |
+|   **409**   | CNPJ Already Registered | `error: { message, detail }` |
 |   **422**   |  Invalid Request Input  | `error: { message, detail }` |
 |   **500**   |  Internal Server Error  | `error: { message, detail }` |
 
-### &nbsp; ‣ &nbsp; Search all Units
+### &nbsp; ‣ &nbsp; Search all Suppliers
 
-###### &nbsp; &nbsp; GET _`/units/all`_
+###### &nbsp; &nbsp; GET _`/suppliers/all`_
 
 #### &nbsp; ☰ &nbsp; Request
 
@@ -751,19 +646,19 @@ In this section, you will find the example API's endpoints and their respective 
 
 #### &nbsp; ☰ &nbsp; Responses
 
-| Status Code |      Description      |          Properties          |
-| :---------: | :-------------------: | :--------------------------: |
-|   **200**   |          OK           |  `data: { Unit[] \| null}`   |
-|   **400**   |    Invalid Syntax     | `error: { message, detail }` |
-|   **401**   |     Missing Token     | `error: { message, detail }` |
-|   **403**   |    Forbidden Token    | `error: { message, detail }` |
-|   **404**   |   Session not Found   | `error: { message, detail }` |
-|   **422**   | Invalid Request Input | `error: { message, detail }` |
-|   **500**   | Internal Server Error | `error: { message, detail }` |
+| Status Code |      Description      |          Properties           |
+| :---------: | :-------------------: | :---------------------------: |
+|   **200**   |          OK           | `data: { Supplier[] \| null}` |
+|   **400**   |    Invalid Syntax     | `error: { message, detail }`  |
+|   **401**   |     Missing Token     | `error: { message, detail }`  |
+|   **403**   |    Forbidden Token    | `error: { message, detail }`  |
+|   **404**   |  Supplier not Found   | `error: { message, detail }`  |
+|   **422**   | Invalid Request Input | `error: { message, detail }`  |
+|   **500**   | Internal Server Error | `error: { message, detail }`  |
 
-### &nbsp; ‣ &nbsp; Search Unit by id
+### &nbsp; ‣ &nbsp; Search Supplier by id
 
-###### &nbsp; &nbsp; GET _`/units/:id`_
+###### &nbsp; &nbsp; GET _`/suppliers/:id`_
 
 #### &nbsp; ☰ &nbsp; Request
 
@@ -780,43 +675,27 @@ In this section, you will find the example API's endpoints and their respective 
 
 | Status Code |      Description      |          Properties          |
 | :---------: | :-------------------: | :--------------------------: |
-|   **200**   |          OK           |         `data: Unit`         |
+|   **200**   |          OK           |       `data: Supplier`       |
 |   **400**   |    Invalid Syntax     | `error: { message, detail }` |
 |   **401**   |     Missing Token     | `error: { message, detail }` |
 |   **403**   |    Forbidden Token    | `error: { message, detail }` |
-|   **404**   |    Unit not Found     | `error: { message, detail }` |
+|   **404**   |  Supplier not Found   | `error: { message, detail }` |
 |   **422**   | Invalid Request Input | `error: { message, detail }` |
 |   **500**   | Internal Server Error | `error: { message, detail }` |
 
-### &nbsp; ‣ &nbsp; Update an Unit
 
-###### &nbsp; &nbsp; PUT _`/units/:id/update`_
+### &nbsp; ‣ &nbsp; Delete a Supplier
+
+###### &nbsp; &nbsp; DELETE _`/suppliers/:id/delete`_
 
 #### &nbsp; ☰ &nbsp; Request
-
-##### Body
-
-```json
-{
-  "name": "Acme Inc. - Unit 1",
-  "description": "Now at a new location!",
-  "address": "Main Street",
-  "number": "123",
-  "city": "New York",
-  "state": "NY",
-  "postal_code": "12345",
-  "opens_at": "08:00",
-  "closes_at": "18:00"
-}
-```
 
 ##### Headers
 
 ```json
 {
   "Content-Type": "application/json",
-  "Authorization": "Bearer <token>",
-  "x-api-key": "extremely-secure-hash-key"
+  "Authorization": "Bearer <token>"
 }
 ```
 
@@ -828,43 +707,16 @@ In this section, you will find the example API's endpoints and their respective 
 |   **400**   |    Invalid Syntax     | `error: { message, detail }` |
 |   **401**   |     Missing Token     | `error: { message, detail }` |
 |   **403**   |    Forbidden Token    | `error: { message, detail }` |
-|   **404**   |    Unit not Found     | `error: { message, detail }` |
+|   **404**   |  Supplier not Found   | `error: { message, detail }` |
 |   **422**   | Invalid Request Input | `error: { message, detail }` |
 |   **500**   | Internal Server Error | `error: { message, detail }` |
 
-### &nbsp; ‣ &nbsp; Delete an Unit
 
-###### &nbsp; &nbsp; DELETE _`/units/:id/delete`_
+## Provisions
 
-#### &nbsp; ☰ &nbsp; Request
+### &nbsp; ‣ &nbsp; Create a Provision
 
-##### Headers
-
-```json
-{
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>",
-  "x-api-key": "extremely-secure-hash-key"
-}
-```
-
-#### &nbsp; ☰ &nbsp; Responses
-
-| Status Code |      Description      |          Properties          |
-| :---------: | :-------------------: | :--------------------------: |
-|   **200**   |          OK           |         `data: null`         |
-|   **400**   |    Invalid Syntax     | `error: { message, detail }` |
-|   **401**   |     Missing Token     | `error: { message, detail }` |
-|   **403**   |    Forbidden Token    | `error: { message, detail }` |
-|   **404**   |    Unit not Found     | `error: { message, detail }` |
-|   **422**   | Invalid Request Input | `error: { message, detail }` |
-|   **500**   | Internal Server Error | `error: { message, detail }` |
-
-## Assets
-
-### &nbsp; ‣ &nbsp; Create an Asset
-
-###### &nbsp; &nbsp; POST _`/assets/create`_
+###### &nbsp; &nbsp; POST _`/provisions/create`_
 
 #### &nbsp; ☰ &nbsp; Request
 
@@ -872,13 +724,7 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "name": "Assembly Machine",
-  "description": "This is a machine for assembly",
-  "model": "AM-123",
-  "owner": "7f9f1b9f9d1b9d1b9f1b9342",
-  "image": "https://www.example.com/image.jpg",
-  "status": "STOPPED",
-  "health": 94
+  "type": "Macarrão",
 }
 ```
 
@@ -887,26 +733,24 @@ In this section, you will find the example API's endpoints and their respective 
 ```json
 {
   "Content-Type": "application/json",
-  "Authorization": "Bearer <token>",
-  "x-api-key": "extremely-secure-hash-key"
+  "Authorization": "Bearer <token>"
 }
 ```
 
 #### &nbsp; ☰ &nbsp; Responses
 
-| Status Code |       Description        |          Properties          |
-| :---------: | :----------------------: | :--------------------------: |
-|   **201**   |         Created          |         `data: null`         |
-|   **400**   |      Invalid Syntax      | `error: { message, detail }` |
-|   **401**   |      Missing Token       | `error: { message, detail }` |
-|   **403**   |     Forbidden Token      | `error: { message, detail }` |
-|   **409**   | Asset Already Registered | `error: { message, detail }` |
-|   **422**   |  Invalid Request Input   | `error: { message, detail }` |
-|   **500**   |  Internal Server Error   | `error: { message, detail }` |
+| Status Code |      Description      |          Properties          |
+| :---------: | :-------------------: | :--------------------------: |
+|   **201**   |        Created        |         `data: null`         |
+|   **400**   |    Invalid Syntax     | `error: { message, detail }` |
+|   **401**   |     Missing Token     | `error: { message, detail }` |
+|   **403**   |    Forbidden Token    | `error: { message, detail }` |
+|   **422**   | Invalid Request Input | `error: { message, detail }` |
+|   **500**   | Internal Server Error | `error: { message, detail }` |
 
-### &nbsp; ‣ &nbsp; Search all Assets
+### &nbsp; ‣ &nbsp; Search all Provisions
 
-###### &nbsp; &nbsp; GET _`/assets/all`_
+###### &nbsp; &nbsp; GET _`/provisions/all`_
 
 #### &nbsp; ☰ &nbsp; Request
 
@@ -925,25 +769,25 @@ In this section, you will find the example API's endpoints and their respective 
 | :------: | :------: | :--------------------------------------: | :-------: |
 | per_page | `Number` | The number of results per page (max 100) |    10     |
 |   page   | `Number` |   Page number of the results to fetch    |     1     |
-|  owner   | `String` |    Username of the owner of the asset    |     -     |
-|  status  | `String` |           Status of the asset            |     -     |
-|  model   | `String` |            Model of the asset            |     -     |
+|  owner   | `String` |  Username of the owner of the provision  |     -     |
+|  status  | `String` |         Status of the provision          |     -     |
+|  model   | `String` |          Model of the provision          |     -     |
 
 #### &nbsp; ☰ &nbsp; Responses
 
-| Status Code |      Description      |          Properties          |
-| :---------: | :-------------------: | :--------------------------: |
-|   **200**   |          OK           |  `data: { Asset[] \| null}`  |
-|   **400**   |    Invalid Syntax     | `error: { message, detail }` |
-|   **401**   |     Missing Token     | `error: { message, detail }` |
-|   **403**   |    Forbidden Token    | `error: { message, detail }` |
-|   **404**   |   Session not Found   | `error: { message, detail }` |
-|   **422**   | Invalid Request Input | `error: { message, detail }` |
-|   **500**   | Internal Server Error | `error: { message, detail }` |
+| Status Code |      Description      |           Properties           |
+| :---------: | :-------------------: | :----------------------------: |
+|   **200**   |          OK           | `data: { Provision[] \| null}` |
+|   **400**   |    Invalid Syntax     |  `error: { message, detail }`  |
+|   **401**   |     Missing Token     |  `error: { message, detail }`  |
+|   **403**   |    Forbidden Token    |  `error: { message, detail }`  |
+|   **404**   |  Provision not Found  |  `error: { message, detail }`  |
+|   **422**   | Invalid Request Input |  `error: { message, detail }`  |
+|   **500**   | Internal Server Error |  `error: { message, detail }`  |
 
-### &nbsp; ‣ &nbsp; Search Asset by id
+### &nbsp; ‣ &nbsp; Search Provision by id
 
-###### &nbsp; &nbsp; GET _`/assets/:id`_
+###### &nbsp; &nbsp; GET _`/provisions/:id`_
 
 #### &nbsp; ☰ &nbsp; Request
 
@@ -960,39 +804,27 @@ In this section, you will find the example API's endpoints and their respective 
 
 | Status Code |      Description      |          Properties          |
 | :---------: | :-------------------: | :--------------------------: |
-|   **200**   |          OK           |        `data: Asset`         |
+|   **200**   |          OK           |      `data: Provision`       |
 |   **400**   |    Invalid Syntax     | `error: { message, detail }` |
 |   **401**   |     Missing Token     | `error: { message, detail }` |
 |   **403**   |    Forbidden Token    | `error: { message, detail }` |
-|   **404**   |    Asset not Found    | `error: { message, detail }` |
+|   **404**   |  Provision not Found  | `error: { message, detail }` |
 |   **422**   | Invalid Request Input | `error: { message, detail }` |
 |   **500**   | Internal Server Error | `error: { message, detail }` |
 
-### &nbsp; ‣ &nbsp; Update an Asset
 
-###### &nbsp; &nbsp; PUT _`/assets/:id/update`_
+### &nbsp; ‣ &nbsp; Delete a Provision
+
+###### &nbsp; &nbsp; DELETE _`/provisions/:id/delete`_
 
 #### &nbsp; ☰ &nbsp; Request
-
-##### Body
-
-```json
-{
-  "name": "Assembly Machine - Now with more assembly",
-  "description": "This is a machine for assembly, but now we use the Assembly programming language",
-  "model": "AM-123",
-  "status": "RUNNING",
-  "health": 81
-}
-```
 
 ##### Headers
 
 ```json
 {
   "Content-Type": "application/json",
-  "Authorization": "Bearer <token>",
-  "x-api-key": "extremely-secure-hash-key"
+  "Authorization": "Bearer <token>"
 }
 ```
 
@@ -1004,35 +836,7 @@ In this section, you will find the example API's endpoints and their respective 
 |   **400**   |    Invalid Syntax     | `error: { message, detail }` |
 |   **401**   |     Missing Token     | `error: { message, detail }` |
 |   **403**   |    Forbidden Token    | `error: { message, detail }` |
-|   **404**   |    Asset not Found    | `error: { message, detail }` |
-|   **422**   | Invalid Request Input | `error: { message, detail }` |
-|   **500**   | Internal Server Error | `error: { message, detail }` |
-
-### &nbsp; ‣ &nbsp; Delete an Asset
-
-###### &nbsp; &nbsp; DELETE _`/assets/:id/delete`_
-
-#### &nbsp; ☰ &nbsp; Request
-
-##### Headers
-
-```json
-{
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>",
-  "x-api-key": "extremely-secure-hash-key"
-}
-```
-
-#### &nbsp; ☰ &nbsp; Responses
-
-| Status Code |      Description      |          Properties          |
-| :---------: | :-------------------: | :--------------------------: |
-|   **200**   |          OK           |         `data: null`         |
-|   **400**   |    Invalid Syntax     | `error: { message, detail }` |
-|   **401**   |     Missing Token     | `error: { message, detail }` |
-|   **403**   |    Forbidden Token    | `error: { message, detail }` |
-|   **404**   |    Asset not Found    | `error: { message, detail }` |
+|   **404**   |  Provision not Found  | `error: { message, detail }` |
 |   **422**   | Invalid Request Input | `error: { message, detail }` |
 |   **500**   | Internal Server Error | `error: { message, detail }` |
 
