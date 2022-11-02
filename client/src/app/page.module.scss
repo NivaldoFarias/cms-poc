@@ -19,7 +19,7 @@
   }
 
   .form_group {
-    @include flexbox(column, center, center, 45px);
+    @include flexbox(column, center, center, 75px);
     position: relative;
 
     padding-top: 40px;
