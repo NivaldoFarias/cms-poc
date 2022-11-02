@@ -1,4 +1,4 @@
-@import "./../styles/index.scss";
+@import "./../../styles/index.scss";
 
 .input-group {
   @include flexbox(column, initial, center, 55px);

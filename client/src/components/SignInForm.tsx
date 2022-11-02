@@ -1,4 +1,4 @@
-import "./../app/page.scss";
+import "./../app/styles/page.scss";
 
 import { HiMail } from "react-icons/hi";
 import { RiLockPasswordFill } from "react-icons/ri";

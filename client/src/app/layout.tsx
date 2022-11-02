@@ -1,12 +1,12 @@
 import { Poppins } from "@next/font/google";
-import "./globals.scss";
+import "./styles/globals.scss";
 
 const poppins = Poppins({
   weight: "700",
-  style: ["normal", "italic"],
+  style: [ "normal", "italic" ],
   preload: true,
-  subsets: ["devanagari", "latin-ext", "latin"],
-  fallback: ["ubuntu", "sans-serif"],
+  subsets: [ "devanagari", "latin-ext", "latin" ],
+  fallback: [ "ubuntu", "sans-serif" ],
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

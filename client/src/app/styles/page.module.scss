@@ -1,4 +1,10 @@
-@import "./../styles/index.scss";
+@import "./../../styles/index.scss";
+
+.wrapper {
+  @include flexbox(column, center, center, initial);
+  height: 100vh;
+  width: 100vw;
+}
 
 .container {
   @include flexbox(row, space-evenly, center, 150px);
