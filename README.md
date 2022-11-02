@@ -4,7 +4,7 @@
 
 <div align="center">
   <a href="https://github.com/NivaldoFarias/customer-management/tree/main/server">
-    <img src="assets/logo.png" alt="Logo" width="90">
+    <img src="assets/logo.png" alt="Logo" width="100">
   </a>
 
   <h3 align="center">Customer Management System</h3>
