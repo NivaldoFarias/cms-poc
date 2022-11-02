@@ -1,7 +1,10 @@
+import styles from "./styles/page.module.scss";
+
 export default function Page() {
   return (
-    <div>
-      <p>this is a page</p>
+    <div className={styles.page}>
+      <p className={styles.title_card}>Cadastro de Usuário - <span>Padrão</span></p>
+      <div className={styles.form_group}></div>
     </div>
   );
 }

@@ -1,23 +1,20 @@
 @import "./../../../styles/index.scss";
 
 .wrapper {
-  @include flexbox(row, center, center, 30px);
+  @include flexbox(row, center, center, 55px);
   height: 100vh;
   width: 100vw;
 }
 
 .sidebar {
-  @include flexbox(column, center, flex-start, 30px);
+  @include flexbox(column, initial, flex-start, 40px);
 
   max-height: 550px;
-  height: 100%;
-  width: 100%;
-  max-width: 680px;
+  height: fit-content;
+  width: 680px;
 
   .description {
-    @include flexbox(column, center, flex-start, 20px);
-    height: 100%;
-    width: 100%;
+    @include flexbox(column, initial, flex-start, 20px);
 
     .navlink {
       font-size: 1.4rem;
@@ -41,7 +38,21 @@
       @include flexbox(row, initial, center, 15px);
       font-size: 1rem;
       font-weight: 400;
-      color: $primary;
+
+      .svg_icon {
+        width: 20px;
+        height: 20px;
+
+        fill: $primary;
+      }
+
+      >* {
+        color: $primary;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
   }
 }

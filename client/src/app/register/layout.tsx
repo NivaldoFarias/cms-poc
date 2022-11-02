@@ -1,7 +1,10 @@
-import styles from "./styles/layout.module.scss";
 import Image from "next/image";
+import Link from "next/link";
+
+import { HiArrowLeft } from "react-icons/hi";
 
 import logo from "./../../assets/img/semantix-logo_white.png";
+import styles from "./styles/layout.module.scss";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -21,7 +24,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             Join the data revolution and accelerate the digital transformation of your business with
             Big Data, Artificial Intelligence, Machine Learning, and more.
           </p>
-          <div className={styles.return_navigation}>{"<-"} Voltar para o Login</div>
+          <Link
+            href="/"
+            className={styles.return_navigation}
+          >
+            <HiArrowLeft className={styles.svg_icon} />
+            <p>Voltar para o Login</p>
+          </Link>
         </article>
       </aside>
     </main>
