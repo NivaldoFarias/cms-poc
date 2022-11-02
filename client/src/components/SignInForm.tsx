@@ -16,7 +16,7 @@ interface Props {
 }
 
 export default function SignInForm({ form_group }: Props) {
-  const [ form, setForm ] = useState({
+  const [form, setForm] = useState({
     email: "",
     password: "",
   });
@@ -28,7 +28,14 @@ export default function SignInForm({ form_group }: Props) {
 
   const signInForm = buildSignInForm();
 
-  return <form className={form_group} onSubmit={handleSubmit}>{signInForm}</form>;
+  return (
+    <form
+      className={form_group}
+      onSubmit={handleSubmit}
+    >
+      {signInForm}
+    </form>
+  );
 
   function buildSignInForm() {
     return (
@@ -41,7 +48,9 @@ export default function SignInForm({ form_group }: Props) {
                 type="email"
                 name="email"
                 value={form.email}
-                className={`input-field spacedout-field ${form.email.length > 0 ? "input-field--active" : ""}`}
+                className={`input-field spacedout-field ${
+                  form.email.length > 0 ? "input-field--active" : ""
+                }`}
                 ref={(element) => (inputRef.current.email = element)}
                 onChange={handleInputChange}
                 onFocus={handleInputFocus}
@@ -60,11 +69,12 @@ export default function SignInForm({ form_group }: Props) {
                 type="password"
                 name="password"
                 value={form.password}
-                className={`input-field input-spacedout-field ${form.password.length > 0 ||
+                className={`input-field input-spacedout-field ${
+                  form.password.length > 0 ||
                   inputRef.current.password?.classList.contains("input-field--active")
-                  ? "input-field--active"
-                  : ""
-                  }`}
+                    ? "input-field--active"
+                    : ""
+                }`}
                 ref={(element) => (inputRef.current.password = element)}
                 onChange={handleInputChange}
                 onFocus={handleInputFocus}
@@ -78,7 +88,12 @@ export default function SignInForm({ form_group }: Props) {
           </section>
         </div>
         <section className="footer-section">
-          <button className="submit-btn" type='submit'>Entrar</button>
+          <button
+            className="submit-btn"
+            type="submit"
+          >
+            Entrar
+          </button>
           <Link
             className="navigate-link"
             href="/register"
@@ -92,7 +107,7 @@ export default function SignInForm({ form_group }: Props) {
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
       const { name, value } = event.target;
 
-      setForm({ ...form, [ name ]: value });
+      setForm({ ...form, [name]: value });
     }
 
     function handleInputFocus(event: FocusEvent<HTMLInputElement>) {
@@ -100,7 +115,7 @@ export default function SignInForm({ form_group }: Props) {
 
       const { name } = event.target;
 
-      return inputRef.current[ name as keyof InputRef ]?.classList.add("input-field--active");
+      return inputRef.current[name as keyof InputRef]?.classList.add("input-field--active");
     }
 
     function handleInputBlur(event: FocusEvent<HTMLInputElement>) {
@@ -108,7 +123,7 @@ export default function SignInForm({ form_group }: Props) {
 
       const { name } = event.target;
 
-      return inputRef.current[ name as keyof InputRef ]?.classList.remove("input-field--active");
+      return inputRef.current[name as keyof InputRef]?.classList.remove("input-field--active");
     }
   }
 
