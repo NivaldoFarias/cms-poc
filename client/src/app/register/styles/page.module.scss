@@ -19,12 +19,12 @@
   }
 
   .form_group {
-    @include flexbox(column, center, center, 45px);
+    @include flexbox(column, center, center, 30px);
     position: relative;
 
-    padding: 45px 60px;
+    padding: 30px 60px 45px;
 
-    max-height: 690px;
+    max-height: 790px;
     height: fit-content;
     width: 580px;
 

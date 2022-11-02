@@ -1,0 +1,128 @@
+@import "./../../styles/index.scss";
+
+.input-field {
+  display: block;
+  padding: 10px 10px 6px 5px;
+  width: 375px;
+
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  text-shadow: $font-shadow;
+
+  border: none;
+  background-color: transparent;
+
+  &:disabled {
+    border-left: 2px solid $alert;
+  }
+
+  &:hover {
+    cursor: text;
+  }
+
+  &.input-field--active {
+    outline: none;
+
+    /* active state */
+    ~.bar:before,
+    ~.bar:after {
+      width: 50%;
+    }
+
+    ~.highlight {
+      animation: input-highlighter 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+  }
+
+  /* active state */
+  &.input-field--active~.label-text,
+  &:valid~.label-text {
+    top: -37px;
+    left: 3px;
+    font-size: 1.4rem;
+    color: $primary;
+  }
+
+  #placeholder,
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active,
+  &:-webkit-autofill:first-line {
+    transition: background-color 50000s ease-in-out 0s;
+    -webkit-text-fill-color: white !important;
+  }
+}
+
+.label-text {
+  position: absolute;
+  top: 7px;
+  left: 10px;
+
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-shadow: $font-shadow;
+
+  pointer-events: none;
+}
+
+.bar {
+  position: relative;
+  display: block;
+  width: 375px;
+  border-top: 1px solid $primary;
+
+  &:before,
+  &:after {
+    position: absolute;
+    bottom: 1px;
+
+    height: 2px;
+    width: 0;
+
+    content: "";
+    background: $primary;
+  }
+
+  &:before {
+    left: 50%;
+  }
+
+  &:after {
+    right: 50%;
+  }
+}
+
+.highlight {
+  position: absolute;
+  top: 20%;
+  left: 0;
+
+  height: 60%;
+  width: 50%;
+
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+@keyframes input-highlighter {
+  from {
+    background: $primary;
+  }
+
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+
+.input-spacedout-field {
+  letter-spacing: 8px;
+}
+
+.spacedout-field {
+  letter-spacing: 3px;
+}
