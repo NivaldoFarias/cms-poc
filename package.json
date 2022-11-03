@@ -14,8 +14,8 @@
     "url": "git+https://github.com/NivaldoFarias/customer-management-poc.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Nivaldo Farias",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/NivaldoFarias/customer-management-poc/issues"
   },

@@ -9,7 +9,7 @@ export default function Page() {
       <p className={styles.title_card}>
         Cadastro de Usuário - <span>Padrão</span>
       </p>
-      <RegisterForm form_group={styles.form_group} />
+      <RegisterForm />
     </div>
   );
 }

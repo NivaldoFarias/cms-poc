@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier --write 'src/**/*.{js,jsx,ts,tsx,scss}'"
+    "format": "prettier --write \"src/**/*.{ts,tsx,md,scss}\""
   },
   "dependencies": {
     "@next/font": "^13.0.1",

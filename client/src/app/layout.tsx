@@ -1,5 +1,5 @@
 import { Poppins } from "@next/font/google";
-import "./globals.scss";
+import "./styles/globals.scss";
 
 const poppins = Poppins({
   weight: "700",
