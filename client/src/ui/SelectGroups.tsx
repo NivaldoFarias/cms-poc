@@ -69,47 +69,43 @@ export default function SelectGroups({ groups, setForm }: Props) {
     const { action } = actionMeta;
 
     switch (action) {
-      case "select-option":
-        {
-          const newGroups = (newValue as Group[]).map((group: Group) => {
-            return {
-              label: group.label,
-              value: group.value,
-            };
-          });
+      case "select-option": {
+        const newGroups = (newValue as Group[]).map((group: Group) => {
+          return {
+            label: group.label,
+            value: group.value,
+          };
+        });
 
-          setForm((prev) => ({ ...prev, groups: newGroups }));
-          break;
-        }
-      case "remove-value":
-        {
-          const newGroups = (newValue as Group[]).map((group: Group) => {
-            return {
-              label: group.label,
-              value: group.value,
-            };
-          });
+        setForm((prev) => ({ ...prev, groups: newGroups }));
+        break;
+      }
+      case "remove-value": {
+        const newGroups = (newValue as Group[]).map((group: Group) => {
+          return {
+            label: group.label,
+            value: group.value,
+          };
+        });
 
-          setForm((prev) => ({ ...prev, groups: newGroups }));
-          break;
-        }
-      case "clear":
-        {
-          setForm((prev) => ({ ...prev, groups: [] }));
-          break;
-        }
-      case "pop-value":
-        {
-          const newGroups = (newValue as Group[]).map((group: Group) => {
-            return {
-              label: group.label,
-              value: group.value,
-            };
-          });
+        setForm((prev) => ({ ...prev, groups: newGroups }));
+        break;
+      }
+      case "clear": {
+        setForm((prev) => ({ ...prev, groups: [] }));
+        break;
+      }
+      case "pop-value": {
+        const newGroups = (newValue as Group[]).map((group: Group) => {
+          return {
+            label: group.label,
+            value: group.value,
+          };
+        });
 
-          setForm((prev) => ({ ...prev, groups: newGroups }));
-          break;
-        }
+        setForm((prev) => ({ ...prev, groups: newGroups }));
+        break;
+      }
       default:
         throw new TypeError("Unsuported action");
     }

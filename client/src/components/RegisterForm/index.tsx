@@ -151,9 +151,19 @@ export default function RegisterForm() {
 
     function handleNavigate(event: MouseEvent<HTMLButtonElement>) {
       event.preventDefault();
-      router.push("/register/" + form.groups);
+      const params = __generateParams();
+
+      return router.push("/register/" + params);
+
+      function __generateParams() {
+        return form.groups.length > 1
+          ? form.groups[ 0 ].value +
+          "?groups_left=" +
+          (form.groups[ 1 ]?.value
+            ? form.groups[ 1 ].value + (form.groups[ 2 ]?.value ? "&" + form.groups[ 2 ].value : "")
+            : "")
+          : form.groups[ 0 ].value;
+      }
     }
   }
-
-
 }

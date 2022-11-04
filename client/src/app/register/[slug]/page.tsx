@@ -4,14 +4,19 @@ interface Params {
   params: {
     slug: "supplier" | "provisions" | "cook";
   };
+  searchParams: {
+    groups_left: string;
+  };
 }
 
-export default function Page({ params: { slug } }: Params) {
+export default function Page({ params: { slug }, searchParams: { groups_left } }: Params) {
   const groups = {
     provisions: "Suprimentos",
     supplier: "Fornecedor",
     cook: "Cozinheiro",
   };
+
+  console.log(groups_left);
 
   return (
     <>
