@@ -1,4 +1,6 @@
 import type { ChangeEvent, FocusEvent, MouseEvent } from "react";
+import type { Group } from "../../ui/SelectGroups";
+
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
@@ -12,18 +14,26 @@ import InputSection from "../../ui/InputSection";
 import styles from "./styles.module.scss";
 import "./styles.scss";
 
-type InputRef = Record<
-  "email" | "password" | "name" | "confirm_password" | "group",
+export type InputRef = Record<
+  "email" | "password" | "name" | "confirm_password" | "groups",
   HTMLInputElement | null
 >;
 
+export type Forms = {
+  email: string;
+  password: string;
+  name: string;
+  confirm_password: string;
+  groups: Group[];
+};
+
 export default function RegisterForm() {
-  const [form, setForm] = useState<Record<string, string>>({
+  const [ form, setForm ] = useState<Forms>({
     email: "",
     name: "",
     password: "",
     confirm_password: "",
-    group: "",
+    groups: [],
   });
 
   const inputRef = useRef<InputRef>({
@@ -31,7 +41,7 @@ export default function RegisterForm() {
     name: null,
     password: null,
     confirm_password: null,
-    group: null,
+    groups: null,
   });
 
   const router = useRouter();
@@ -45,6 +55,11 @@ export default function RegisterForm() {
       {registerForm}
     </form>
   );
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    console.log(form);
+  }
 
   function buildRegisterForm() {
     return (
@@ -95,7 +110,10 @@ export default function RegisterForm() {
             handleInputFocus={handleInputFocus}
             handleInputBlur={handleInputBlur}
           />
-          <SelectGroups />
+          <SelectGroups
+            groups={form.groups}
+            setForm={setForm}
+          />
         </div>
         <section className={styles.footer_section}>
           <button
@@ -112,7 +130,7 @@ export default function RegisterForm() {
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
       const { name, value } = event.target;
 
-      setForm({ ...form, [name]: value });
+      setForm({ ...form, [ name ]: value });
     }
 
     function handleInputFocus(event: FocusEvent<HTMLInputElement>) {
@@ -120,7 +138,7 @@ export default function RegisterForm() {
 
       const { name } = event.target;
 
-      return inputRef.current[name as keyof InputRef]?.classList.add("input-field--active");
+      return inputRef.current[ name as keyof InputRef ]?.classList.add("input-field--active");
     }
 
     function handleInputBlur(event: FocusEvent<HTMLInputElement>) {
@@ -128,22 +146,14 @@ export default function RegisterForm() {
 
       const { name } = event.target;
 
-      return inputRef.current[name as keyof InputRef]?.classList.remove("input-field--active");
+      return inputRef.current[ name as keyof InputRef ]?.classList.remove("input-field--active");
     }
 
     function handleNavigate(event: MouseEvent<HTMLButtonElement>) {
       event.preventDefault();
-      router.push("/register/" + form.group);
-    }
-
-    function handleSelectGroups(value: string[]) {
-      console.log(value);
-      setForm({ ...form, group: value[0] });
+      router.push("/register/" + form.groups);
     }
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    console.log(form);
-  }
+
 }
