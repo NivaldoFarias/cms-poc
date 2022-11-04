@@ -6,6 +6,14 @@
   width: 100vw;
 }
 
+.page {
+  @include flexbox(column, center, flex-start, 10px);
+
+  max-height: 750px;
+  height: 100%;
+  width: 580px;
+}
+
 .sidebar {
   @include flexbox(column, initial, flex-start, 40px);
 

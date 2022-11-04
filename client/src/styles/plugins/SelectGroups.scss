@@ -1,0 +1,156 @@
+@import "./../index.scss";
+
+.select-groups {
+  position: relative;
+  font-size: 1.15rem;
+
+  min-height: fit-content;
+  min-width: 300px;
+  width: 100%;
+
+  &__control {
+    position: relative;
+
+    height: 54.75px;
+
+    border: none !important;
+    outline: none;
+    box-shadow: none;
+    flex-wrap: nowrap;
+    text-overflow: ellipsis;
+
+    border-top-left-radius: 0px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color: rgba(31, 30, 34, 0.623) !important;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -3px;
+      left: -3px;
+    }
+
+    &:before {
+      top: -3px;
+      width: 3px;
+      background-image: -webkit-gradient(linear, 0 100%, 0 0, from($primary), to(transparent));
+      background-image: -webkit-linear-gradient(transparent, $primary);
+      background-image: -moz-linear-gradient(transparent, $primary);
+      background-image: -o-linear-gradient(transparent, $primary);
+      background-image: linear-gradient(transparent, $primary);
+    }
+
+    &:after {
+      right: -3px;
+      height: 3px;
+      background-image: -webkit-gradient(linear, 0 0, 100% 0, from($primary), to(transparent));
+      background-image: -webkit-linear-gradient(to left, $primary, transparent);
+      background-image: -moz-linear-gradient(to left, $primary, transparent);
+      background-image: -o-linear-gradient(to left, $primary, transparent);
+      background-image: linear-gradient(to right, $primary, transparent);
+    }
+  }
+
+  &__menu {
+    position: relative;
+    height: min-content;
+    width: 100%;
+
+    color: $alt-primary;
+    text-shadow: $font-shadow;
+
+    border: 1px solid $primary;
+    background-color: $alt-secondary !important;
+    overflow-y: scroll;
+
+    ::-webkit-scrollbar {
+      display: block !important;
+      appearance: auto !important;
+    }
+  }
+
+  &__option {
+    cursor: pointer;
+    pointer-events: bounding-box;
+
+    * {
+      pointer-events: none;
+    }
+
+    &--is-selected {
+      color: initial;
+      background-color: $primary !important;
+    }
+
+    &--is-focused {
+      color: $alert;
+      background-color: initial;
+    }
+
+    &--is-selected.select-insurance__option--is-focused {
+      color: $primary;
+      background-color: $primary;
+    }
+  }
+
+  &__value-container,
+  &__value-container--has-value {
+    text-shadow: $font-shadow;
+  }
+
+  &__input-container,
+  &__placeholder,
+  &__indicator,
+  &__single-value,
+  &__clear-indicator {
+    color: $secondary;
+  }
+
+  &__indicator,
+  &__clear-indicator {
+    transition: all 100ms ease-in-out 0s;
+
+    * {
+      pointer-events: none;
+    }
+
+    &:hover {
+      color: $alert;
+    }
+
+    &-separator {
+      background-color: $alt-secondary;
+    }
+  }
+
+  &__placeholder {
+    pointer-events: none;
+  }
+
+  &__clear-indicator {
+    cursor: pointer;
+    pointer-events: bounding-box;
+  }
+
+  &__indicator {
+    cursor: pointer;
+    pointer-events: bounding-box;
+  }
+
+  &__single-value {
+    font-weight: 400;
+    letter-spacing: 2px;
+  }
+
+  .value-container-on-click {
+    width: 100%;
+    cursor: text;
+    pointer-events: all;
+
+    * {
+      pointer-events: none;
+    }
+  }
+}

@@ -1,11 +1,14 @@
-import type { ChangeEvent, FocusEvent } from "react";
+import type { ChangeEvent, FocusEvent, MouseEvent } from "react";
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
 import { HiMail } from "react-icons/hi";
-import { FaUserCircle, FaUsers } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 
-import InputSection from '../../ui/InputSection';
+import SelectGroups from "../../ui/SelectGroups";
+import InputSection from "../../ui/InputSection";
+
 import styles from "./styles.module.scss";
 import "./styles.scss";
 
@@ -15,7 +18,7 @@ type InputRef = Record<
 >;
 
 export default function RegisterForm() {
-  const [ form, setForm ] = useState<Record<string, string>>({
+  const [form, setForm] = useState<Record<string, string>>({
     email: "",
     name: "",
     password: "",
@@ -31,6 +34,7 @@ export default function RegisterForm() {
     group: null,
   });
 
+  const router = useRouter();
   const registerForm = buildRegisterForm();
 
   return (
@@ -82,7 +86,7 @@ export default function RegisterForm() {
           />
           <InputSection
             state={form.confirm_password}
-            name="confim_password"
+            name="confirm_password"
             label="Confirme Sua Senha"
             Icon={RiLockPasswordFill}
             type="password"
@@ -91,21 +95,12 @@ export default function RegisterForm() {
             handleInputFocus={handleInputFocus}
             handleInputBlur={handleInputBlur}
           />
-          <InputSection
-            state={form.group}
-            label="Seu Grupo"
-            name="group"
-            Icon={FaUsers}
-            type="text"
-            inputRef={inputRef}
-            handleInputChange={handleInputChange}
-            handleInputFocus={handleInputFocus}
-            handleInputBlur={handleInputBlur}
-          />
+          <SelectGroups />
         </div>
         <section className={styles.footer_section}>
           <button
             className={styles.next_btn}
+            onClick={handleNavigate}
             type="button"
           >
             PRÓXIMO
@@ -117,7 +112,7 @@ export default function RegisterForm() {
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
       const { name, value } = event.target;
 
-      setForm({ ...form, [ name ]: value });
+      setForm({ ...form, [name]: value });
     }
 
     function handleInputFocus(event: FocusEvent<HTMLInputElement>) {
@@ -125,7 +120,7 @@ export default function RegisterForm() {
 
       const { name } = event.target;
 
-      return inputRef.current[ name as keyof InputRef ]?.classList.add("input-field--active");
+      return inputRef.current[name as keyof InputRef]?.classList.add("input-field--active");
     }
 
     function handleInputBlur(event: FocusEvent<HTMLInputElement>) {
@@ -133,7 +128,17 @@ export default function RegisterForm() {
 
       const { name } = event.target;
 
-      return inputRef.current[ name as keyof InputRef ]?.classList.remove("input-field--active");
+      return inputRef.current[name as keyof InputRef]?.classList.remove("input-field--active");
+    }
+
+    function handleNavigate(event: MouseEvent<HTMLButtonElement>) {
+      event.preventDefault();
+      router.push("/register/" + form.group);
+    }
+
+    function handleSelectGroups(value: string[]) {
+      console.log(value);
+      setForm({ ...form, group: value[0] });
     }
   }
 

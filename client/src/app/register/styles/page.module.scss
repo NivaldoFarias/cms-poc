@@ -1,21 +1,12 @@
 @import "./../../../styles/index.scss";
 
-.page {
-  @include flexbox(column, center, flex-start, 10px);
+.title_card {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0;
 
-  max-height: 750px;
-  height: 100%;
-  width: 580px;
-
-  .title_card {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: 0;
-
-    >span {
-      color: $primary;
-    }
+  > span {
+    color: $primary;
   }
-
 }

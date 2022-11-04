@@ -37,7 +37,7 @@ export default function InputSection(props: Props) {
           name={name}
           value={state}
           className={`input-field spacedout-field ${state.length > 0 ? "input-field--active" : ""}`}
-          ref={(element) => (inputRef.current[ name ] = element)}
+          ref={(element) => (inputRef.current[name] = element)}
           onChange={handleInputChange}
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}

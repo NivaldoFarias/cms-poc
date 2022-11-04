@@ -9,7 +9,7 @@ import styles from "./styles/layout.module.scss";
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <main className={styles.wrapper}>
-      {children}
+      <div className={styles.page}>{children}</div>
       <aside className={styles.sidebar}>
         <Image
           width={300}
