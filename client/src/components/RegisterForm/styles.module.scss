@@ -4,11 +4,11 @@
   @include flexbox(column, center, center, 30px);
   position: relative;
 
-  padding: 30px 60px 45px;
+  padding: 30px 43px 45px;
 
   max-height: 790px;
   height: fit-content;
-  width: 580px;
+  width: 600px;
 
   border-radius: 8px;
 
@@ -33,7 +33,7 @@
 
     padding: 5px 15px 10px;
     height: fit-content;
-    width: fit-content;
+    width: 490px;
 
     border-top-left-radius: 0px;
     border-top-right-radius: 8px;

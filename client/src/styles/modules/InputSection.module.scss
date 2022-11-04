@@ -1,12 +1,12 @@
 @import "./../index.scss";
 
 .input_section {
-  @include flexbox(row, space-evenly, center, 15px);
+  @include flexbox(row, initial, center, 15px);
   position: relative;
 
   padding: 5px 15px 10px;
   height: fit-content;
-  width: fit-content;
+  width: 493px;
 
   border-top-left-radius: 0px;
   border-top-right-radius: 8px;

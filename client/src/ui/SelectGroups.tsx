@@ -1,5 +1,5 @@
 import "./../styles/plugins/SelectGroups.scss";
-import Select from "react-select";
+import Select, { ValueContainerProps, components } from "react-select";
 
 import { FaUsers } from "react-icons/fa";
 
@@ -24,17 +24,25 @@ const options: Option[] = [
 ];
 
 export default function SelectGroups() {
+  const ValueContainer = (props: ValueContainerProps) => {
+    const { children } = props;
+    return (
+      <components.ValueContainer {...props}>
+        <>
+          <FaUsers className="svg-icon" />
+          {children}
+        </>
+      </components.ValueContainer>
+    );
+  };
+
   return (
     <Select
       // @ts-ignore
       options={options}
       name="groups"
-      placeholder={
-        <>
-          <FaUsers />
-          Seus Grupos
-        </>
-      }
+      placeholder="Seus Grupos"
+      components={{ ValueContainer }}
       className="select-groups"
       classNamePrefix="select-groups"
       isMulti={true}
