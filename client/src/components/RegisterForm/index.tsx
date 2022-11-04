@@ -13,6 +13,7 @@ import InputSection from "../../ui/InputSection";
 
 import styles from "./styles.module.scss";
 import "./styles.scss";
+import Link from "next/link";
 
 export type InputRef = Record<
   "email" | "password" | "name" | "confirm_password" | "groups",
@@ -28,7 +29,7 @@ export type Forms = {
 };
 
 export default function RegisterForm() {
-  const [ form, setForm ] = useState<Forms>({
+  const [form, setForm] = useState<Forms>({
     email: "",
     name: "",
     password: "",
@@ -44,7 +45,6 @@ export default function RegisterForm() {
     groups: null,
   });
 
-  const router = useRouter();
   const registerForm = buildRegisterForm();
 
   return (
@@ -116,13 +116,22 @@ export default function RegisterForm() {
           />
         </div>
         <section className={styles.footer_section}>
-          <button
+          <Link
+            href={
+              "/register/" +
+              (form.groups.length > 1
+                ? form.groups[0]?.value +
+                  "?groups_left=" +
+                  (form.groups[1]?.value
+                    ? form.groups[1]?.value +
+                      (form.groups[2]?.value ? "-" + form.groups[2]?.value : "")
+                    : "")
+                : form.groups[0]?.value)
+            }
             className={styles.next_btn}
-            onClick={handleNavigate}
-            type="button"
           >
             PRÓXIMO
-          </button>
+          </Link>
         </section>
       </>
     );
@@ -130,7 +139,7 @@ export default function RegisterForm() {
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
       const { name, value } = event.target;
 
-      setForm({ ...form, [ name ]: value });
+      setForm({ ...form, [name]: value });
     }
 
     function handleInputFocus(event: FocusEvent<HTMLInputElement>) {
@@ -138,7 +147,7 @@ export default function RegisterForm() {
 
       const { name } = event.target;
 
-      return inputRef.current[ name as keyof InputRef ]?.classList.add("input-field--active");
+      return inputRef.current[name as keyof InputRef]?.classList.add("input-field--active");
     }
 
     function handleInputBlur(event: FocusEvent<HTMLInputElement>) {
@@ -146,24 +155,7 @@ export default function RegisterForm() {
 
       const { name } = event.target;
 
-      return inputRef.current[ name as keyof InputRef ]?.classList.remove("input-field--active");
-    }
-
-    function handleNavigate(event: MouseEvent<HTMLButtonElement>) {
-      event.preventDefault();
-      const params = __generateParams();
-
-      return router.push("/register/" + params);
-
-      function __generateParams() {
-        return form.groups.length > 1
-          ? form.groups[ 0 ].value +
-          "?groups_left=" +
-          (form.groups[ 1 ]?.value
-            ? form.groups[ 1 ].value + (form.groups[ 2 ]?.value ? "&" + form.groups[ 2 ].value : "")
-            : "")
-          : form.groups[ 0 ].value;
-      }
+      return inputRef.current[name as keyof InputRef]?.classList.remove("input-field--active");
     }
   }
 }
