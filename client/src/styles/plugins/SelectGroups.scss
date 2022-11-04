@@ -2,16 +2,18 @@
 
 .select-groups {
   position: relative;
-  font-size: 1.15rem;
 
   min-height: fit-content;
   min-width: 300px;
   width: 100%;
 
+  color: white;
+  font-size: 1.3rem;
+
   &__control {
     position: relative;
 
-    height: 54.75px;
+    height: 100%;
 
     border: none !important;
     outline: none;
@@ -58,7 +60,7 @@
     height: min-content;
     width: 100%;
 
-    color: $alt-primary;
+    color: white;
     text-shadow: $font-shadow;
 
     border: 1px solid $primary;
@@ -66,8 +68,7 @@
     overflow-y: scroll;
 
     ::-webkit-scrollbar {
-      display: block !important;
-      appearance: auto !important;
+      display: none;
     }
   }
 
@@ -81,17 +82,12 @@
 
     &--is-selected {
       color: initial;
-      background-color: $primary !important;
     }
 
     &--is-focused {
       color: $alert;
-      background-color: initial;
-    }
-
-    &--is-selected.select-insurance__option--is-focused {
-      color: $primary;
-      background-color: $primary;
+      cursor: pointer !important;
+      background-color: $primary !important;
     }
   }
 
@@ -105,7 +101,7 @@
   &__indicator,
   &__single-value,
   &__clear-indicator {
-    color: $secondary;
+    color: white !important;
   }
 
   &__indicator,
@@ -121,12 +117,22 @@
     }
 
     &-separator {
-      background-color: $alt-secondary;
+      cursor: default !important;
+      background-color: $primary !important;
     }
   }
 
   &__placeholder {
+    @include flexbox(row, initial, center, 15px);
+
+    padding-left: 5px;
     pointer-events: none;
+
+    svg {
+      fill: $primary;
+      width: 28px;
+      height: 28px;
+    }
   }
 
   &__clear-indicator {
@@ -137,11 +143,41 @@
   &__indicator {
     cursor: pointer;
     pointer-events: bounding-box;
+
+    svg {
+      fill: $primary;
+      width: 32px;
+      height: 32px;
+    }
   }
 
   &__single-value {
     font-weight: 400;
     letter-spacing: 2px;
+  }
+
+  &__multi-value {
+    background-color: $primary !important;
+    border-radius: 5px !important;
+
+    &__label {
+      text-shadow: none;
+    }
+
+    &__remove {
+      cursor: pointer !important;
+      pointer-events: bounding-box;
+
+      * {
+        pointer-events: none;
+      }
+
+      svg {
+        fill: black;
+        width: 20px;
+        height: 20px;
+      }
+    }
   }
 
   .value-container-on-click {

@@ -1,5 +1,7 @@
-import Select from "react-select";
 import "./../styles/plugins/SelectGroups.scss";
+import Select from "react-select";
+
+import { FaUsers } from "react-icons/fa";
 
 interface Option {
   readonly value: string;
@@ -26,9 +28,13 @@ export default function SelectGroups() {
     <Select
       // @ts-ignore
       options={options}
-      defaultValue={["supplier"]}
       name="groups"
-      placeholder="Seu Grupo"
+      placeholder={
+        <>
+          <FaUsers />
+          Seus Grupos
+        </>
+      }
       className="select-groups"
       classNamePrefix="select-groups"
       isMulti={true}
