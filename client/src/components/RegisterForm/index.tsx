@@ -1,7 +1,6 @@
-import type { ChangeEvent, FocusEvent, MouseEvent } from "react";
+import type { ChangeEvent, FocusEvent } from "react";
 import type { Group } from "../../ui/SelectGroups";
 
-import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
 import { HiMail } from "react-icons/hi";
@@ -29,7 +28,7 @@ export type Forms = {
 };
 
 export default function RegisterForm() {
-  const [form, setForm] = useState<Forms>({
+  const [ form, setForm ] = useState<Forms>({
     email: "",
     name: "",
     password: "",
@@ -120,13 +119,13 @@ export default function RegisterForm() {
             href={
               "/register/" +
               (form.groups.length > 1
-                ? form.groups[0]?.value +
-                  "?groups_left=" +
-                  (form.groups[1]?.value
-                    ? form.groups[1]?.value +
-                      (form.groups[2]?.value ? "-" + form.groups[2]?.value : "")
-                    : "")
-                : form.groups[0]?.value)
+                ? form.groups[ 0 ]?.value +
+                "?groups_left=" +
+                (form.groups[ 1 ]?.value
+                  ? form.groups[ 1 ]?.value +
+                  (form.groups[ 2 ]?.value ? "-" + form.groups[ 2 ]?.value : "")
+                  : "")
+                : form.groups[ 0 ]?.value)
             }
             className={styles.next_btn}
           >
@@ -139,7 +138,7 @@ export default function RegisterForm() {
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
       const { name, value } = event.target;
 
-      setForm({ ...form, [name]: value });
+      setForm({ ...form, [ name ]: value });
     }
 
     function handleInputFocus(event: FocusEvent<HTMLInputElement>) {
@@ -147,7 +146,7 @@ export default function RegisterForm() {
 
       const { name } = event.target;
 
-      return inputRef.current[name as keyof InputRef]?.classList.add("input-field--active");
+      return inputRef.current[ name as keyof InputRef ]?.classList.add("input-field--active");
     }
 
     function handleInputBlur(event: FocusEvent<HTMLInputElement>) {
@@ -155,7 +154,7 @@ export default function RegisterForm() {
 
       const { name } = event.target;
 
-      return inputRef.current[name as keyof InputRef]?.classList.remove("input-field--active");
+      return inputRef.current[ name as keyof InputRef ]?.classList.remove("input-field--active");
     }
   }
 }
