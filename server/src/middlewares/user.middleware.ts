@@ -22,4 +22,3 @@ function providedTokenMatchesUser(
 ) {
   if (user_id !== user._id.toString()) error.ForbiddenToken();
 }
-

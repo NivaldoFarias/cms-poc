@@ -1,6 +1,5 @@
 import type { ChangeEvent, FocusEvent, HTMLInputTypeAttribute, MutableRefObject } from "react";
 import type { IconType } from "react-icons/lib";
-import { InputRef } from "../app/register/[slug]/page";
 
 import styles from "./../styles/modules/InputSection.module.scss";
 

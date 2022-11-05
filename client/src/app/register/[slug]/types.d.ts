@@ -1,4 +1,7 @@
-import { MutableRefObject } from "react";
+import type { ActionMeta, MultiValue } from "react-select";
+import type { Option } from "../../../ui/MultiSelect";
+import type { MutableRefObject } from "react";
+import type { IconType } from "react-icons";
 
 export interface DefaultState {
   supplier: SupplierForms;
@@ -46,11 +49,37 @@ export interface SupplierForms {
 }
 
 export interface ProvisionsForms {
-  type: "Feijão" | "Macarrão" | "Arroz" | "";
+  type: {
+    label: "Feijão" | "Macarrão" | "Arroz" | "";
+    value: "feijao" | "macarrao" | "arroz" | "";
+  };
 }
 
 export interface CookForms {
   cri: string;
+}
+
+interface InputComponent {
+  state: string;
+  label: string;
+  name: string;
+  Icon: IconType;
+  type: string;
+  isSelect: boolean;
+}
+
+interface SelectComponent {
+  options: Option[];
+  state: Option;
+  name: string;
+  Icon: IconType;
+  isSelect: boolean;
+}
+
+export interface GroupComponents {
+  supplier: InputComponent[];
+  provisions: SelectComponent[];
+  cook: InputComponent[];
 }
 
 export type InputRef = SupplierRef | ProvisionsRef | CookRef;

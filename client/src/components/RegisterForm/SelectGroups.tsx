@@ -1,10 +1,11 @@
-import type { Forms } from "../components/RegisterForm/index";
 import type { MultiValue, ActionMeta } from "react-select";
 import type { Dispatch, SetStateAction } from "react";
+import type { Forms } from "./";
+
+import { FaUsers } from "react-icons/fa";
 
 import Select, { ValueContainerProps, components } from "react-select";
-import "./../styles/plugins/SelectGroups.scss";
-import { FaUsers } from "react-icons/fa";
+import "./../../styles/plugins/Select.scss";
 
 export interface Option {
   readonly value: string;
@@ -32,11 +33,10 @@ const options: Option[] = [
 ];
 
 interface Props {
-  groups: Group[];
   setForm: Dispatch<SetStateAction<Forms>>;
 }
 
-export default function SelectGroups({ groups, setForm }: Props) {
+export default function SelectGroups({ setForm }: Props) {
   const ValueContainer = (props: ValueContainerProps) => {
     const { children } = props;
     return (
@@ -56,8 +56,8 @@ export default function SelectGroups({ groups, setForm }: Props) {
       name="groups"
       placeholder="Seus Grupos"
       components={{ ValueContainer }}
-      className="select-groups"
-      classNamePrefix="select-groups"
+      className="select-wrapper"
+      classNamePrefix="select-wrapper"
       isMulti={true}
       isSearchable={false}
       openMenuOnFocus={true}

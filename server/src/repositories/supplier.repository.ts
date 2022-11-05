@@ -1,7 +1,4 @@
-import type {
-  CreateSupplier,
-  DeleteOne,
-} from "../types/collections";
+import type { CreateSupplier, DeleteOne } from "../types/collections";
 
 import { Supplier } from "../mongo/models";
 import AppLog from "../events/AppLog";

@@ -14,18 +14,19 @@ export const regex = {
   PASSWORD: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d]{8,}$/,
   CIR: /^\d{7}$/,
   CNPJ: /^\d{14}$/,
-  EMAIL: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  EMAIL:
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
   TIME: /^(0\d|1\d|2[0-3]):[0-5]\d$/,
   HEALTH: /^(0\d{2}|100)$/,
   COMPANY_NAME: /^[a-zA-Z\d]{3,100}$/,
   API_KEY: /^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/,
   URL: new RegExp(
     "^(https?:\\/\\/)?" + // protocol
-    "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-    "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-    "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-    "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-    "(\\#[-a-z\\d_]*)?$",
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+      "(\\#[-a-z\\d_]*)?$",
     "i",
   ),
   IMAGE_EXTENSION: /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i,
@@ -41,11 +42,11 @@ export const time = {
 };
 
 export const query: Query = {
-  LIMIT: [ 100, 1 ],
-  KEYS: [ "limit", "sort", "sort_by" ],
-  SORT: [ "asc", "desc", "ascending", "descending", "1", "-1" ],
-  USER: [ "username", "created_at", "last_update" ],
-  COMPANY: [ "name", "created_at", "last_update" ],
-  ASSET: [ "name", "created_at", "last_update" ],
-  UNIT: [ "name", "created_at", "last_update" ],
+  LIMIT: [100, 1],
+  KEYS: ["limit", "sort", "sort_by"],
+  SORT: ["asc", "desc", "ascending", "descending", "1", "-1"],
+  USER: ["username", "created_at", "last_update"],
+  COMPANY: ["name", "created_at", "last_update"],
+  ASSET: ["name", "created_at", "last_update"],
+  UNIT: ["name", "created_at", "last_update"],
 };

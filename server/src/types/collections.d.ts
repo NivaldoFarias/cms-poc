@@ -13,18 +13,18 @@ export type CookType = {
   _id?: Types.ObjectId;
   user: Types.ObjectId;
   cir: string;
-}
+};
 
-export type CreateCook = Omit<CookType, "_id">
+export type CreateCook = Omit<CookType, "_id">;
 
 export type SupplierType = {
   _id?: Types.ObjectId;
   user: Types.ObjectId;
   name: string;
   cnpj: string;
-}
+};
 
-export type CreateSupplier = Omit<SupplierType, "_id">
+export type CreateSupplier = Omit<SupplierType, "_id">;
 
 export enum EnumProvisions {
   "Feijão",
@@ -38,8 +38,7 @@ export type ProvisionType = {
   type: EnumProvisions;
 };
 
-export type CreateProvision = Omit<ProvisionType, "_id">
-
+export type CreateProvision = Omit<ProvisionType, "_id">;
 
 export type SessionType = {
   _id?: Types.ObjectId;
@@ -48,7 +47,12 @@ export type SessionType = {
   active: boolean;
 };
 
-export type APIModelsKeys = "User" | "Cook" | "Supplier" | "Session" | "Provision";
+export type APIModelsKeys =
+  | "User"
+  | "Cook"
+  | "Supplier"
+  | "Session"
+  | "Provision";
 
 export type APIModelsTypes =
   | UserType
@@ -71,7 +75,7 @@ export type AnyDocument =
   | ProvisionDocument;
 
 export interface QueriesGeneric {
-  [ key: string ]: unknown;
+  [key: string]: unknown;
 }
 
 export interface QueryParameters {
@@ -82,15 +86,15 @@ export interface QueryParameters {
 
 export type NonNullMongoDocument<T> =
   | Document<unknown, unknown, T> &
-  T & {
-    _id: Types.ObjectId;
-  };
+      T & {
+        _id: Types.ObjectId;
+      };
 
 export type MongoDocument<T> =
   | (Document<unknown, unknown, T> &
-    T & {
-      _id: Types.ObjectId;
-    })
+      T & {
+        _id: Types.ObjectId;
+      })
   | null;
 
 export interface UpdateResponse {

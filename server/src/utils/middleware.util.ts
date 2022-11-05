@@ -73,7 +73,7 @@ export default function useMiddleware({
 
     if (middlewares?.param || middlewares?.search) {
       globals.id = middlewares?.search
-        ? req.body[ middlewares.search ]
+        ? req.body[middlewares.search]
         : req.params.id;
 
       if (middlewares?.param && !middlewares?.search) {
@@ -81,7 +81,7 @@ export default function useMiddleware({
       }
     }
 
-    const [ user_id, result ] = (await Promise.all([
+    const [user_id, result] = (await Promise.all([
       __tokenIsRequired(),
       __parameterIsRequired(),
     ])) as MiddlewarePromises;
@@ -96,9 +96,9 @@ export default function useMiddleware({
     function __parameterIsRequired() {
       return (middlewares?.param || middlewares?.search) && globals.id
         ? validateParameters(
-          globals.id as string,
-          (globals.param as APIModelsKeys) ?? "",
-        )
+            globals.id as string,
+            (globals.param as APIModelsKeys) ?? "",
+          )
         : __resolve();
     }
 
@@ -111,10 +111,10 @@ export default function useMiddleware({
     function __validateModel() {
       return middlewares?.model && globals.body && globals.model
         ? validateModel(
-          globals.model as APIModelsKeys,
-          globals.body as Record<string, unknown>,
-          user_id
-        )
+            globals.model as APIModelsKeys,
+            globals.body as Record<string, unknown>,
+            user_id,
+          )
         : __resolve();
     }
   };

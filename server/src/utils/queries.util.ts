@@ -11,15 +11,15 @@ export async function findByField({ field, value, model }: FindByField) {
   AppLog({ type: "Repository", text: `Search ${model} by ${field}` });
   switch (model) {
     case "User":
-      return await User.findOne({ [ field ]: searchKey }).exec();
+      return await User.findOne({ [field]: searchKey }).exec();
     case "Cook":
-      return await Cook.findOne({ [ field ]: searchKey }).exec();
+      return await Cook.findOne({ [field]: searchKey }).exec();
     case "Session":
-      return await Session.findOne({ [ field ]: searchKey }).exec();
+      return await Session.findOne({ [field]: searchKey }).exec();
     case "Supplier":
-      return await Supplier.findOne({ [ field ]: searchKey }).exec();
+      return await Supplier.findOne({ [field]: searchKey }).exec();
     case "Provision":
-      return await Provision.findOne({ [ field ]: searchKey }).exec();
+      return await Provision.findOne({ [field]: searchKey }).exec();
     default:
       throw new AppError({
         statusCode: 500,
@@ -66,25 +66,25 @@ export async function searchAll({ queries, model }: SearchAll) {
     case "User":
       return await User.find()
         .limit(parsed.limit)
-        .sort({ [ parsed.sort_by ]: parsed.sort })
+        .sort({ [parsed.sort_by]: parsed.sort })
         .exec();
     case "Cook":
       return await Cook.find()
         .limit(parsed.limit)
-        .sort({ [ parsed.sort_by ]: parsed.sort })
+        .sort({ [parsed.sort_by]: parsed.sort });
     case "Session":
       return await Session.find()
         .limit(parsed.limit)
-        .sort({ [ parsed.sort_by ]: parsed.sort })
+        .sort({ [parsed.sort_by]: parsed.sort })
         .exec();
     case "Supplier":
       return await Supplier.find()
         .limit(parsed.limit)
-        .sort({ [ parsed.sort_by ]: parsed.sort })
+        .sort({ [parsed.sort_by]: parsed.sort });
     case "Provision":
       return await Provision.find()
         .limit(parsed.limit)
-        .sort({ [ parsed.sort_by ]: parsed.sort })
+        .sort({ [parsed.sort_by]: parsed.sort });
     default:
       throw new AppError({
         statusCode: 500,
@@ -105,9 +105,9 @@ export async function deleteOne({ id, model }: FindById) {
     case "Session":
       return await Session.findByIdAndDelete(id).exec();
     case "Supplier":
-      return await Supplier.findByIdAndDelete(id).exec()
+      return await Supplier.findByIdAndDelete(id).exec();
     case "Provision":
-      return await Provision.findByIdAndDelete(id).exec()
+      return await Provision.findByIdAndDelete(id).exec();
     default:
       throw new AppError({
         statusCode: 500,

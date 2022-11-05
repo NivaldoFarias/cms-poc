@@ -24,10 +24,10 @@ export default function ExceptionHandler(
           });
         }
 
-        const key = Object.keys(keyPattern)[ 0 ];
+        const key = Object.keys(keyPattern)[0];
         const capitalized =
           key.charAt(0).toUpperCase() + key.slice(1).toLowerCase();
-        const value = keyValue[ key ];
+        const value = keyValue[key];
 
         return res.status(409).json({
           message: `${capitalized} already registered`,

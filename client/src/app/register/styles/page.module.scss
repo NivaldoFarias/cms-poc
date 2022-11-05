@@ -1,5 +1,13 @@
 @import "./../../../styles/index.scss";
 
+.page {
+  @include flexbox(column, center, flex-start, 10px);
+
+  max-height: 750px;
+  height: 100%;
+  width: fit-content;
+}
+
 .title_card {
   color: white;
   font-size: 1.5rem;

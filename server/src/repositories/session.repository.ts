@@ -6,10 +6,7 @@ interface CreateSessionData {
   token: string;
 }
 
-export async function create({
-  email,
-  token,
-}: CreateSessionData) {
+export async function create({ email, token }: CreateSessionData) {
   await new Session({
     email,
     token,
@@ -33,7 +30,7 @@ export async function findByField({
   field: string;
   value: string;
 }) {
-  const result = await Session.findOne({ [ field ]: value }).exec();
+  const result = await Session.findOne({ [field]: value }).exec();
 
   AppLog({ type: "Repository", text: `Search User by ${field}` });
   return result;

@@ -7,11 +7,11 @@
 }
 
 .page {
-  @include flexbox(column, center, flex-start, 10px);
+  @include flexbox(column, center, flex-start, 20px);
 
   max-height: 750px;
   height: 100%;
-  width: 580px;
+  width: fit-content;
 }
 
 .sidebar {

@@ -1,7 +1,4 @@
-import type {
-  CreateProvision,
-  DeleteOne,
-} from "../types/collections";
+import type { CreateProvision, DeleteOne } from "../types/collections";
 
 import { Provision } from "../mongo/models";
 import AppLog from "../events/AppLog";
@@ -11,7 +8,7 @@ export async function create(data: CreateProvision) {
 
   await new Provision({
     user,
-    type
+    type,
   }).save({
     validateBeforeSave: false,
   });

@@ -1,14 +1,10 @@
-import type {
-  QueryParameters,
-  ProvisionDocument
-} from "../types/collections";
+import type { QueryParameters, ProvisionDocument } from "../types/collections";
 import type { CreateProvision } from "../types/collections";
 import type { Request, Response } from "express";
 
-
 import * as repository from "../repositories/provision.repository";
 import * as util from "./../utils/queries.util";
-import { Types } from 'mongoose';
+import { Types } from "mongoose";
 
 import AppLog from "../events/AppLog";
 
@@ -19,7 +15,7 @@ export async function create(_req: Request, res: Response) {
   const data: CreateProvision = {
     user: new Types.ObjectId(user_id),
     type: body.type,
-  }
+  };
 
   await repository.create(data);
 

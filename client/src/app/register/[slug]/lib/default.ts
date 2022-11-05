@@ -6,7 +6,10 @@ export const defaultState: DefaultState = {
     cnpj: "",
   },
   provisions: {
-    type: "",
+    type: {
+      label: "",
+      value: "",
+    },
   },
   cook: {
     cri: "",

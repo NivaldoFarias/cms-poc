@@ -1,14 +1,17 @@
 import { Schema } from "mongoose";
 
-import type {
-  UserType,
-  SessionType,
-} from "../types/collections";
-import { regex } from "./../utils/constants.util"
+import type { UserType, SessionType } from "../types/collections";
+import { regex } from "./../utils/constants.util";
 
 export const usersSchema = new Schema<UserType>({
   name: { type: String, required: true, maxLength: 100 },
-  email: { type: String, required: true, unique: true, index: true, match: regex.EMAIL },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    index: true,
+    match: regex.EMAIL,
+  },
   password: { type: String, required: true },
   created_at: { type: Date, required: false, default: Date.now },
 });
@@ -35,11 +38,9 @@ export const provisionsSchema = new Schema({
   type: {
     type: String,
     enum: {
-      values: [ "Arroz", "Feijão", "Macarrão" ],
+      values: ["Arroz", "Feijão", "Macarrão"],
       message: "{VALUE} is not supported",
     },
     required: true,
-  }
+  },
 });
-
-

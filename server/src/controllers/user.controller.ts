@@ -1,7 +1,4 @@
-import type {
-  QueryParameters,
-  UserDocument
-} from "../types/collections";
+import type { QueryParameters, UserDocument } from "../types/collections";
 import type { CreateUser } from "../types/user";
 import type { Request, Response } from "express";
 

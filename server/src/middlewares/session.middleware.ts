@@ -54,8 +54,7 @@ function validateUser(user: UserDocument) {
     throw new AppError({
       statusCode: 404,
       message: "User not found",
-      detail:
-        "Ensure to provide an email that corresponds to an existing user",
+      detail: "Ensure to provide an email that corresponds to an existing user",
     });
   }
 

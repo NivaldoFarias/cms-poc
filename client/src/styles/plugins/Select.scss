@@ -1,6 +1,6 @@
 @import "./../index.scss";
 
-.select-groups {
+.select-wrapper {
   position: relative;
 
   min-height: fit-content;
@@ -16,6 +16,7 @@
     min-height: 54px !important;
     height: 100%;
     width: 100%;
+    min-width: 440px;
 
     border: none !important;
     outline: none;
@@ -104,7 +105,7 @@
 
     flex-wrap: wrap;
     margin-left: 7px;
-    min-width: fit-content;
+    width: min-content;
 
     text-shadow: $font-shadow;
 

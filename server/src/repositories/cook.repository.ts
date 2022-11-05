@@ -1,7 +1,4 @@
-import type {
-  CreateCook,
-  DeleteOne,
-} from "../types/collections";
+import type { CreateCook, DeleteOne } from "../types/collections";
 
 import { Cook } from "../mongo/models";
 import AppLog from "../events/AppLog";
@@ -11,7 +8,7 @@ export async function create(data: CreateCook) {
 
   await new Cook({
     user,
-    cir
+    cir,
   }).save({
     validateBeforeSave: false,
   });

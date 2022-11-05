@@ -7,6 +7,7 @@
     "start": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
     "build": "concurrently \"cd server && npm run build\" \"cd client && npm run build\"",
     "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
+    "format": "concurrently \"cd server && npm run format\" \"cd client && npm run format\"",
     "test": "concurrently \"cd server && npm test\" \"cd client && npm test\""
   },
   "repository": {
