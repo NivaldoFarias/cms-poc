@@ -25,7 +25,7 @@
 }
 
 .input_group {
-  @include flexbox(column, initial, center, 45px);
+  @include flexbox(column, initial, center, 38px);
 
   .input_section {
     @include flexbox(row, space-evenly, center, 15px);

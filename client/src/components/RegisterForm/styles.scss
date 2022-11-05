@@ -26,22 +26,22 @@
     outline: none;
 
     /* active state */
-    ~ .bar:before,
-    ~ .bar:after {
+    ~.bar:before,
+    ~.bar:after {
       width: 50%;
     }
 
-    ~ .highlight {
+    ~.highlight {
       animation: input-highlighter 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
     }
   }
 
   /* active state */
-  &.input-field--active ~ .label-text,
-  &:valid ~ .label-text {
-    top: -37px;
-    left: 3px;
-    font-size: 1.4rem;
+  &.input-field--active~.label-text,
+  &:valid~.label-text {
+    top: -30px;
+    left: -50px;
+    font-size: 1rem;
     color: $primary;
   }
 
@@ -62,7 +62,7 @@
   left: 10px;
 
   color: white;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1.2rem;
   text-shadow: $font-shadow;
 
