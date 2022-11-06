@@ -232,7 +232,7 @@ In this section, you will find the example API's endpoints and their respective 
 
 - `_id`: A unique identifier for each provision. `ObjectId`
 - `user`: A Object Id referencing the relative user. `User ObjectId`
-- `type`: The provision's type. `enum { 'Feijão' | 'Arroz' | 'Macarrão' }` `required`
+- `type`: The provision's type, references each provision selected. `Array: [ Object { value: enum { 'Feijão' | 'Arroz' | 'Macarrão' } ]` `required`
 - `created_at`: The date and time when the provision was created. `Date`
 
 ## Routes
