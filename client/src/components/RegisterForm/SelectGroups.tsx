@@ -33,10 +33,11 @@ const options: Option[] = [
 ];
 
 interface Props {
+  displayError: boolean;
   setForm: Dispatch<SetStateAction<Forms>>;
 }
 
-export default function SelectGroups({ setForm }: Props) {
+export default function SelectGroups({ displayError, setForm }: Props) {
   const ValueContainer = (props: ValueContainerProps) => {
     const { children } = props;
     return (
@@ -56,7 +57,7 @@ export default function SelectGroups({ setForm }: Props) {
       name="groups"
       placeholder="Seus Grupos"
       components={{ ValueContainer }}
-      className="select-wrapper"
+      className={`select-wrapper ${displayError ? "select-wrapper--error" : ""}`}
       classNamePrefix="select-wrapper"
       isMulti={true}
       isSearchable={false}

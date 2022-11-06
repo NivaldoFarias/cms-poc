@@ -117,6 +117,7 @@ export default function Page({ params, searchParams: { groups_left } }: Params) 
                 inputRef={inputRef}
                 name={component.name}
                 Icon={component.Icon}
+                displayError={false}
                 state={component.state as string}
                 type={(component as InputComponent).type}
                 label={(component as InputComponent).label}

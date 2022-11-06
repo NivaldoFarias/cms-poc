@@ -195,6 +195,11 @@
     }
   }
 
+  &--error svg.svg-icon {
+    fill: $alert !important;
+    stroke: $alert !important;
+  }
+
   .css-mohuvp-dummyInput-DummyInput {
     display: none !important;
     grid-area: none !important;

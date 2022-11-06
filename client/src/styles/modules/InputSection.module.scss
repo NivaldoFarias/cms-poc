@@ -47,6 +47,16 @@
     width: 26px;
 
     fill: $primary;
+    stroke: $primary;
+  }
+
+  .svg_icon__error {
+    margin-top: 6px;
+    height: 26px;
+    width: 26px;
+
+    fill: $alert;
+    stroke: $alert;
   }
 
   .styled_input {
