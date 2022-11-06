@@ -35,7 +35,7 @@ export enum EnumProvisions {
 export type ProvisionType = {
   _id?: Types.ObjectId;
   user: Types.ObjectId;
-  type: EnumProvisions;
+  type: EnumProvisions[];
 };
 
 export type CreateProvision = Omit<ProvisionType, "_id">;

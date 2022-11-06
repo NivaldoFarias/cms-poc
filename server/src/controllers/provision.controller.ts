@@ -10,7 +10,7 @@ import AppLog from "../events/AppLog";
 
 export async function create(_req: Request, res: Response) {
   const user_id: string = res.locals.user_id;
-  const body: Omit<CreateProvision, "user"> = res.locals.body;
+  const body: Pick<CreateProvision, "type"> = res.locals.body;
 
   const data: CreateProvision = {
     user: new Types.ObjectId(user_id),

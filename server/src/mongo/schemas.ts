@@ -33,9 +33,8 @@ export const cooksSchema = new Schema({
   cir: { type: String, required: true, unique: true, match: regex.CIR },
 });
 
-export const provisionsSchema = new Schema({
-  user: { type: Schema.Types.ObjectId, ref: "User", required: true },
-  type: {
+const subType = new Schema({
+  value: {
     type: String,
     enum: {
       values: ["Arroz", "Feijão", "Macarrão"],
@@ -43,4 +42,9 @@ export const provisionsSchema = new Schema({
     },
     required: true,
   },
+});
+
+export const provisionsSchema = new Schema({
+  user: { type: Schema.Types.ObjectId, ref: "User", required: true },
+  type: [subType],
 });
