@@ -1,22 +1,30 @@
-import type { DefaultInputRef, DefaultState } from "../types";
+import type { InitialDisplayError, InitialInputRef, InitialState } from "../types";
 
-export const defaultState: DefaultState = {
+export const form: InitialState = {
   supplier: {
     name: "",
     cnpj: "",
   },
-  provisions: {
-    type: {
-      label: "",
-      value: "",
-    },
-  },
+  provisions: [],
   cook: {
     cri: "",
   },
 };
 
-export const defaultInputRef: DefaultInputRef = {
+export const displayError: InitialDisplayError = {
+  supplier: {
+    name: false,
+    cnpj: false,
+  },
+  provisions: {
+    type: false,
+  },
+  cook: {
+    cri: false,
+  },
+};
+
+export const inputRef: InitialInputRef = {
   supplier: {
     name: null,
     cnpj: null,

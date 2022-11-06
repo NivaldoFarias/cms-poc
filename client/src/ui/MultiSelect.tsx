@@ -10,16 +10,15 @@ export interface Option {
 }
 
 interface Props {
-  state: Option;
-  name: string;
   Icon: IconType;
   options: Option[];
   placeholder: string;
+  displayError: boolean;
   handleChangeSelection: (newValue: MultiValue<unknown>, actionMeta: ActionMeta<unknown>) => void;
 }
 
 export default function MultiSelect(props: Props) {
-  const { placeholder, name, options, Icon, handleChangeSelection } = props;
+  const { placeholder, displayError, options, Icon, handleChangeSelection } = props;
 
   const ValueContainer = (props: ValueContainerProps) => {
     const { children } = props;
@@ -35,11 +34,10 @@ export default function MultiSelect(props: Props) {
 
   return (
     <Select
-      name={name}
       options={options}
       placeholder={placeholder}
       components={{ ValueContainer }}
-      className="select-wrapper"
+      className={`select-wrapper ${displayError ? "select-wrapper--error" : ""}`}
       classNamePrefix="select-wrapper"
       isMulti={true}
       isSearchable={false}

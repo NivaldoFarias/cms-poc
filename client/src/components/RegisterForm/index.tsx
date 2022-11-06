@@ -2,30 +2,21 @@ import type { ChangeEvent, FocusEvent, MouseEvent } from "react";
 import type { Group } from "./SelectGroups";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
 
 import { HiMail } from "react-icons/hi";
 import { FaUserCircle } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 
-import SelectGroups from "./SelectGroups";
 import InputSection from "../../ui/InputSection";
+import SelectGroups from "./SelectGroups";
 
 import styles from "./styles.module.scss";
 import "./styles.scss";
-import Link from "next/link";
 
-export type InputRef = Record<
-  "email" | "password" | "name" | "confirm_password" | "groups",
-  HTMLInputElement | null
->;
+import * as initial from "./lib/initial";
 
-interface DisplayError {
-  email: boolean;
-  password: boolean;
-  name: boolean;
-  confirm_password: boolean;
-  groups: boolean;
-}
+export type InputRef = Fields<HTMLInputElement | null>;
 
 export type Forms = {
   email: string;
@@ -35,29 +26,12 @@ export type Forms = {
   groups: Group[];
 };
 
-export default function RegisterForm() {
-  const [displayError, setDisplayError] = useState<DisplayError>({
-    email: false,
-    password: false,
-    name: false,
-    confirm_password: false,
-    groups: false,
-  });
-  const [form, setForm] = useState<Forms>({
-    email: "",
-    name: "",
-    password: "",
-    confirm_password: "",
-    groups: [],
-  });
+type Fields<T> = Record<"email" | "password" | "name" | "confirm_password" | "groups", T>;
 
-  const inputRef = useRef<InputRef>({
-    email: null,
-    name: null,
-    password: null,
-    confirm_password: null,
-    groups: null,
-  });
+export default function RegisterForm() {
+  const [displayError, setDisplayError] = useState<Fields<boolean>>(initial.displayError);
+  const [form, setForm] = useState<Forms>(initial.form);
+  const inputRef = useRef<InputRef>(initial.inputRef);
 
   const registerForm = buildRegisterForm();
 
@@ -168,28 +142,29 @@ export default function RegisterForm() {
     }
 
     function handleNextBtnClick(event: MouseEvent<HTMLAnchorElement>) {
+      const { email, password, name, confirm_password, groups } = form;
       const newDisplayErrorState = { ...displayError };
 
       __emailError();
       __nameError();
       __passwordError();
-      __confirm_passwordError();
+      __confirmPasswordError();
       __groupsError();
 
-      setDisplayError(newDisplayErrorState);
+      return setDisplayError(newDisplayErrorState);
 
       function __groupsError() {
-        if (form.groups.length === 0) {
-          event.preventDefault();
+        if (groups.length === 0) {
+          if (!event.defaultPrevented) event.preventDefault();
           newDisplayErrorState.groups = true;
         } else if (displayError.groups) {
           newDisplayErrorState.groups = false;
         }
       }
 
-      function __confirm_passwordError() {
-        if (form.confirm_password.length >= 4 || form.password !== form.confirm_password) {
-          event.preventDefault();
+      function __confirmPasswordError() {
+        if (confirm_password.length < 4 || password !== confirm_password) {
+          if (!event.defaultPrevented) event.preventDefault();
           newDisplayErrorState.confirm_password = true;
 
           if (document.activeElement?.tagName !== "INPUT") {
@@ -201,8 +176,8 @@ export default function RegisterForm() {
       }
 
       function __passwordError() {
-        if (form.password.length >= 4 || form.password !== form.confirm_password) {
-          event.preventDefault();
+        if (password.length < 4 || password !== confirm_password) {
+          if (!event.defaultPrevented) event.preventDefault();
           newDisplayErrorState.password = true;
 
           if (document.activeElement?.tagName !== "INPUT") {
@@ -214,8 +189,8 @@ export default function RegisterForm() {
       }
 
       function __nameError() {
-        if (form.name.length === 0) {
-          event.preventDefault();
+        if (name.length === 0) {
+          if (!event.defaultPrevented) event.preventDefault();
           newDisplayErrorState.name = true;
 
           if (document.activeElement?.tagName !== "INPUT") {
@@ -227,8 +202,8 @@ export default function RegisterForm() {
       }
 
       function __emailError() {
-        if (form.email.length === 0) {
-          event.preventDefault();
+        if (email.length === 0) {
+          if (!event.defaultPrevented) event.preventDefault();
           newDisplayErrorState.email = true;
 
           if (document.activeElement?.tagName !== "INPUT") {

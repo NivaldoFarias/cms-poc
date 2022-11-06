@@ -1,223 +1,240 @@
 "use client";
 
-import type { ChangeEvent, FocusEvent, MouseEvent } from "react";
 import type {
   ComponentInputRef,
-  CookForms,
-  Forms,
   InputRef,
-  Params,
-  ProvisionsForms,
-  SupplierForms,
-  DefaultState,
-  GroupComponents,
+  Forms,
+  Props,
+  InitialState,
   InputComponent,
   SelectComponent,
+  DisplayError,
+  SupplierForms,
+  Supplier,
+  ProvisionsForms,
+  Provisions,
+  CookForms,
+  Cook,
 } from "./types";
+import type { ChangeEvent, FocusEvent, MouseEvent } from "react";
 import type { ActionMeta, MultiValue } from "react-select";
 import type { Option } from "../../../ui/MultiSelect";
 
 import { useRef, useState } from "react";
 import Link from "next/link";
 
-import { MdOutlineLocationCity } from "react-icons/md";
-import { IoIosBarcode } from "react-icons/io";
-import { GoPackage } from "react-icons/go";
-
-import { defaultInputRef, defaultState, groups } from "./lib/default";
+import MultiSelect from "../../../ui/MultiSelect";
 import InputSection from "../../../ui/InputSection";
 
 import formStyles from "./../../../components/RegisterForm/styles.module.scss";
 import styles from "./../styles/page.module.scss";
-import MultiSelect from "../../../ui/MultiSelect";
 
-export default function Page({ params, searchParams: { groups_left } }: Params) {
+import generateComponents from "./lib/components";
+import * as initial from "./lib/default";
+
+export default function Page({ params, searchParams: { groups_left } }: Props) {
   const slug = parseSlug();
-  const [form, setForm] = useState<Forms>(defaultState[slug]);
 
+  const [ displayError, setDisplayError ] = useState<DisplayError>(initial.displayError[ slug ]);
+  const [ form, setForm ] = useState<Forms>(initial.form[ slug ]);
   const inputRef: ComponentInputRef = useRef<InputRef>(
-    defaultInputRef[slug],
+    initial.inputRef[ slug ],
   ) as unknown as ComponentInputRef;
 
-  const groupComponents: GroupComponents = {
-    supplier: [
-      {
-        state: (form as SupplierForms).name,
-        label: "Nome da sua Empresa",
-        name: "name",
-        Icon: MdOutlineLocationCity,
-        type: "text",
-        isSelect: false,
-      },
-      {
-        state: (form as SupplierForms).cnpj,
-        label: "CNPJ da sua Empresa",
-        name: "cnpj",
-        Icon: IoIosBarcode,
-        type: "text",
-        isSelect: false,
-      },
-    ],
-    provisions: [
-      {
-        options: [
-          {
-            label: "Macarrão",
-            value: "macarrao",
-          },
-          {
-            label: "Feijão",
-            value: "feijao",
-          },
-          {
-            label: "Arroz",
-            value: "arroz",
-          },
-        ],
-        state: (form as ProvisionsForms).type,
-        name: "provisions",
-        Icon: GoPackage,
-        isSelect: true,
-      },
-    ],
-    cook: [
-      {
-        state: (form as CookForms).cri,
-        label: "Seu CRI (Código da Caderneta)",
-        name: "type",
-        Icon: IoIosBarcode,
-        type: "text",
-        isSelect: false,
-      },
-    ],
-  };
+  const components = generateComponents(form);
 
-  return (
-    <div className={styles.page}>
-      <p className={styles.title_card}>
-        Cadastro de Usuário - <span>{groups[slug]}</span>
-      </p>
-      <div className={formStyles.form_group}>
-        <h3 className={formStyles.header_section}>Crie sua conta</h3>
-        <div className={formStyles.input_group}>
-          {groupComponents[slug].map((component, index) => {
-            return component.isSelect ? (
-              <MultiSelect
-                key={index}
-                name={component.name}
-                Icon={component.Icon}
-                state={(component as SelectComponent).state}
-                options={(component as SelectComponent).options}
-                placeholder="Selecione os Suprimentos"
-                handleChangeSelection={handleChangeSelection}
-              />
-            ) : (
-              <InputSection
-                key={index}
-                inputRef={inputRef}
-                name={component.name}
-                Icon={component.Icon}
-                displayError={false}
-                state={component.state as string}
-                type={(component as InputComponent).type}
-                label={(component as InputComponent).label}
-                handleInputBlur={handleInputBlur}
-                handleInputFocus={handleInputFocus}
-                handleInputChange={handleInputChange}
-              />
-            );
-          })}
-        </div>
-        <section className={formStyles.footer_section}>
-          {!!groups_left ? (
-            <Link
-              href={`/register/${
-                groups_left.includes("-") ? groups_left.split("-")[0] : groups_left
-              }${groups_left.includes("-") ? `?groups_left=${groups_left.split("-")[1]}` : ``}`}
-              className={formStyles.next_btn}
-            >
-              PRÓXIMO
-            </Link>
-          ) : (
-            <button
-              className={formStyles.next_btn}
-              onClick={handleSubmit}
-            >
-              Cadastrar
-            </button>
-          )}
-        </section>
-      </div>
-    </div>
-  );
+  const page = buildPage();
+
+  return <div className={styles.page}>{page}</div>;
 
   function parseSlug() {
     return params.slug.includes("-")
-      ? (params.slug.split("-")[0] as keyof DefaultState)
+      ? (params.slug.split("-")[ 0 ] as keyof InitialState)
       : params.slug;
   }
 
-  function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
-    const { name, value } = event.target;
+  function buildPage() {
+    return (
+      <>
+        <p className={styles.title_card}>
+          Cadastro de Usuário - <span>{initial.groups[ slug ]}</span>
+        </p>
+        <div className={formStyles.form_group}>
+          <h3 className={formStyles.header_section}>Crie sua conta</h3>
+          <div className={formStyles.input_group}>
+            {components[ slug ].map((component, index) => {
+              return component.isSelect ? (
+                <MultiSelect
+                  key={index}
+                  Icon={component.Icon}
+                  placeholder="Selecione os Suprimentos"
+                  handleChangeSelection={handleChangeSelection}
+                  options={(component as SelectComponent).options}
+                  displayError={
+                    displayError[ (component as SelectComponent).key as keyof DisplayError ]
+                  }
+                />
+              ) : (
+                <InputSection
+                  key={index}
+                  inputRef={inputRef}
+                  name={(component as InputComponent).name}
+                  Icon={component.Icon}
+                  state={(component as InputComponent).state as string}
+                  type={(component as InputComponent).type}
+                  label={(component as InputComponent).label}
+                  displayError={
+                    displayError[ (component as InputComponent).name as keyof DisplayError ]
+                  }
+                  handleInputBlur={handleInputBlur}
+                  handleInputFocus={handleInputFocus}
+                  handleInputChange={handleInputChange}
+                />
+              );
+            })}
+          </div>
+          <section className={formStyles.footer_section}>
+            {!!groups_left ? (
+              <Link
+                href={parseHref()}
+                className={formStyles.next_btn}
+                onClick={handleNextBtnClick}
+              >
+                PRÓXIMO
+              </Link>
+            ) : (
+              <button
+                className={formStyles.next_btn}
+                onClick={handleSubmit}
+              >
+                Cadastrar
+              </button>
+            )}
+          </section>
+        </div>
+      </>
+    );
 
-    setForm({ ...form, [name]: value });
-  }
+    function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
+      const { name, value } = event.target;
 
-  function handleInputFocus(event: FocusEvent<HTMLInputElement>) {
-    if (event.target.value.length !== 0) return null;
+      setForm({ ...form, [ name ]: value });
+    }
 
-    const { name } = event.target;
+    function handleInputFocus(event: FocusEvent<HTMLInputElement>) {
+      if (event.target.value.length !== 0) return null;
 
-    return inputRef.current[name as keyof InputRef]?.classList.add("input-field--active");
-  }
+      const { name } = event.target;
 
-  function handleInputBlur(event: FocusEvent<HTMLInputElement>) {
-    if (event.target.value.length !== 0) return null;
+      return inputRef.current[ name as keyof InputRef ]?.classList.add("input-field--active");
+    }
 
-    const { name } = event.target;
+    function handleInputBlur(event: FocusEvent<HTMLInputElement>) {
+      if (event.target.value.length !== 0) return null;
 
-    return inputRef.current[name as keyof InputRef]?.classList.remove("input-field--active");
-  }
+      const { name } = event.target;
 
-  function handleSubmit(event: MouseEvent<HTMLButtonElement>) {
-    event.preventDefault();
-    console.log(form);
-  }
+      return inputRef.current[ name as keyof InputRef ]?.classList.remove("input-field--active");
+    }
 
-  function handleChangeSelection(newValue: MultiValue<unknown>, actionMeta: ActionMeta<unknown>) {
-    const { action } = actionMeta;
+    function handleSubmit(event: MouseEvent<HTMLButtonElement>) {
+      handleNextBtnClick(event as unknown as MouseEvent<HTMLAnchorElement>);
+      console.log(event.defaultPrevented);
+    }
 
-    switch (action) {
-      case "select-option": {
-        const NewProvisions = (newValue as Option[]).map(({ label, value }: Option) => {
-          return { label, value };
-        });
+    function handleChangeSelection(newValue: MultiValue<unknown>, actionMeta: ActionMeta<unknown>) {
+      const { action } = actionMeta;
 
-        setForm((prev) => ({ ...prev, provisions: NewProvisions }));
-        break;
+      switch (action) {
+        case "select-option": {
+          const NewProvisions = (newValue as Option[]).map(({ label, value }: Option) => {
+            return { label, value };
+          });
+
+          setForm((prev) => ({ ...prev, provisions: NewProvisions }));
+          break;
+        }
+        case "remove-value": {
+          const NewProvisions = (newValue as Option[]).map(({ label, value }: Option) => {
+            return { label, value };
+          });
+
+          setForm((prev) => ({ ...prev, provisions: NewProvisions }));
+          break;
+        }
+        case "clear": {
+          setForm((prev) => ({ ...prev, provisions: [] }));
+          break;
+        }
+        case "pop-value": {
+          const NewProvisions = (newValue as Option[]).map(({ label, value }: Option) => {
+            return { label, value };
+          });
+
+          setForm((prev) => ({ ...prev, provisions: NewProvisions }));
+          break;
+        }
+        default:
+          throw new TypeError("Unsuported action");
       }
-      case "remove-value": {
-        const NewProvisions = (newValue as Option[]).map(({ label, value }: Option) => {
-          return { label, value };
-        });
+    }
 
-        setForm((prev) => ({ ...prev, provisions: NewProvisions }));
-        break;
-      }
-      case "clear": {
-        setForm((prev) => ({ ...prev, provisions: [] }));
-        break;
-      }
-      case "pop-value": {
-        const NewProvisions = (newValue as Option[]).map(({ label, value }: Option) => {
-          return { label, value };
-        });
+    function handleNextBtnClick(event: MouseEvent<HTMLAnchorElement>) {
+      const newDisplayErrorState = { ...displayError };
 
-        setForm((prev) => ({ ...prev, provisions: NewProvisions }));
-        break;
+      switch (slug) {
+        case "supplier" as keyof InitialState: {
+          const { name, cnpj } = form as SupplierForms;
+
+          if (name.length === 0) {
+            if (!event.defaultPrevented) event.preventDefault();
+            (newDisplayErrorState as Supplier<boolean>).name = true;
+          } else if ((displayError as Supplier<boolean>).name) {
+            (newDisplayErrorState as Supplier<boolean>).name = false;
+          }
+
+          if (cnpj.length !== 14) {
+            if (!event.defaultPrevented) event.preventDefault();
+            (newDisplayErrorState as unknown as Supplier<boolean>).cnpj = true;
+          } else if ((displayError as unknown as Supplier<boolean>).cnpj) {
+            (newDisplayErrorState as unknown as Supplier<boolean>).cnpj = false;
+          }
+          break;
+        }
+        case "provisions" as keyof InitialState: {
+          if ((form as ProvisionsForms).length === 0) {
+            if (!event.defaultPrevented) event.preventDefault();
+            (newDisplayErrorState as Provisions<boolean>).type = true;
+          } else if ((displayError as Provisions<boolean>).type) {
+            (newDisplayErrorState as Provisions<boolean>).type = false;
+          }
+          break;
+        }
+        case "cook" as keyof InitialState: {
+          const { cri } = form as CookForms;
+
+          if (cri.length !== 7) {
+            if (!event.defaultPrevented) event.preventDefault();
+            (newDisplayErrorState as Cook<boolean>).cri = true;
+          } else if ((displayError as Cook<boolean>).cri) {
+            (newDisplayErrorState as Cook<boolean>).cri = false;
+          }
+          break;
+        }
+        default:
+          throw new TypeError("Unsuported slug");
       }
-      default:
-        throw new TypeError("Unsuported action");
+
+      return setDisplayError(newDisplayErrorState);
+    }
+
+    function parseHref() {
+      const slug = groups_left.includes("-") ? groups_left.split("-")[ 0 ] : groups_left;
+      const searchParams = groups_left.includes("-")
+        ? `?groups_left=${groups_left.split("-")[ 1 ]}`
+        : ``;
+
+      return `/register/${slug}${searchParams}`;
     }
   }
 }
