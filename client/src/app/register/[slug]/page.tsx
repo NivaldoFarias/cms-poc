@@ -3,20 +3,21 @@
 import type {
   ComponentInputRef,
   InputRef,
-  Forms,
-  Props,
-  InitialState,
-  InputComponent,
   SelectComponent,
-  DisplayError,
+  InputComponent,
   SupplierForms,
-  Supplier,
   ProvisionsForms,
-  Provisions,
   CookForms,
+  Forms,
+  Supplier,
+  Provisions,
   Cook,
+  DisplayError,
+  InitialState,
+  Props,
+  DisplayerErrorState,
 } from "./types";
-import type { ChangeEvent, FocusEvent, MouseEvent } from "react";
+import { ChangeEvent, FocusEvent, MouseEvent, useContext } from "react";
 import type { ActionMeta, MultiValue } from "react-select";
 import type { Option } from "../../../ui/MultiSelect";
 
@@ -26,14 +27,16 @@ import Link from "next/link";
 import MultiSelect from "../../../ui/MultiSelect";
 import InputSection from "../../../ui/InputSection";
 
-import formStyles from "./../../../components/RegisterForm/styles.module.scss";
+import formStyles from "./../../../components/RegisterForm/styles/styles.module.scss";
 import styles from "./../styles/page.module.scss";
 
 import generateComponents from "./lib/components";
 import * as initial from "./lib/default";
+import DataContext from "../../data-provider";
+import { useRouter } from "next/router";
 
 export default function Page({ params, searchParams: { groups_left } }: Props) {
-  const slug = parseSlug();
+  const slug = __parseSlug(params);
 
   const [ displayError, setDisplayError ] = useState<DisplayError>(initial.displayError[ slug ]);
   const [ form, setForm ] = useState<Forms>(initial.form[ slug ]);
@@ -41,17 +44,20 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
     initial.inputRef[ slug ],
   ) as unknown as ComponentInputRef;
 
+  const { data, setData } = useContext(DataContext);
   const components = generateComponents(form);
+  const router = useRouter();
 
   const page = buildPage();
 
-  return <div className={styles.page}>{page}</div>;
-
-  function parseSlug() {
-    return params.slug.includes("-")
-      ? (params.slug.split("-")[ 0 ] as keyof InitialState)
-      : params.slug;
-  }
+  return (
+    <form
+      className={styles.page}
+      onSubmit={handleSubmit}
+    >
+      {page}
+    </form>
+  );
 
   function buildPage() {
     return (
@@ -105,7 +111,7 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
             ) : (
               <button
                 className={formStyles.next_btn}
-                onClick={handleSubmit}
+                type={"submit"}
               >
                 Cadastrar
               </button>
@@ -135,11 +141,6 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
       const { name } = event.target;
 
       return inputRef.current[ name as keyof InputRef ]?.classList.remove("input-field--active");
-    }
-
-    function handleSubmit(event: MouseEvent<HTMLButtonElement>) {
-      handleNextBtnClick(event as unknown as MouseEvent<HTMLAnchorElement>);
-      console.log(event.defaultPrevented);
     }
 
     function handleChangeSelection(newValue: MultiValue<unknown>, actionMeta: ActionMeta<unknown>) {
@@ -179,55 +180,6 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
       }
     }
 
-    function handleNextBtnClick(event: MouseEvent<HTMLAnchorElement>) {
-      const newDisplayErrorState = { ...displayError };
-
-      switch (slug) {
-        case "supplier" as keyof InitialState: {
-          const { name, cnpj } = form as SupplierForms;
-
-          if (name.length === 0) {
-            if (!event.defaultPrevented) event.preventDefault();
-            (newDisplayErrorState as Supplier<boolean>).name = true;
-          } else if ((displayError as Supplier<boolean>).name) {
-            (newDisplayErrorState as Supplier<boolean>).name = false;
-          }
-
-          if (cnpj.length !== 14) {
-            if (!event.defaultPrevented) event.preventDefault();
-            (newDisplayErrorState as unknown as Supplier<boolean>).cnpj = true;
-          } else if ((displayError as unknown as Supplier<boolean>).cnpj) {
-            (newDisplayErrorState as unknown as Supplier<boolean>).cnpj = false;
-          }
-          break;
-        }
-        case "provisions" as keyof InitialState: {
-          if ((form as ProvisionsForms).length === 0) {
-            if (!event.defaultPrevented) event.preventDefault();
-            (newDisplayErrorState as Provisions<boolean>).type = true;
-          } else if ((displayError as Provisions<boolean>).type) {
-            (newDisplayErrorState as Provisions<boolean>).type = false;
-          }
-          break;
-        }
-        case "cook" as keyof InitialState: {
-          const { cri } = form as CookForms;
-
-          if (cri.length !== 7) {
-            if (!event.defaultPrevented) event.preventDefault();
-            (newDisplayErrorState as Cook<boolean>).cri = true;
-          } else if ((displayError as Cook<boolean>).cri) {
-            (newDisplayErrorState as Cook<boolean>).cri = false;
-          }
-          break;
-        }
-        default:
-          throw new TypeError("Unsuported slug");
-      }
-
-      return setDisplayError(newDisplayErrorState);
-    }
-
     function parseHref() {
       const slug = groups_left.includes("-") ? groups_left.split("-")[ 0 ] : groups_left;
       const searchParams = groups_left.includes("-")
@@ -237,4 +189,127 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
       return `/register/${slug}${searchParams}`;
     }
   }
+
+  function handleSubmit(event: MouseEvent<HTMLFormElement>) {
+    checkForms(event, { ...displayError });
+    if (!event.defaultPrevented) event.preventDefault();
+
+    return console.log({ data, form });
+  }
+
+  function handleNextBtnClick(event: MouseEvent<HTMLAnchorElement>) {
+    const newDisplayErrorState = { ...displayError };
+
+    checkForms(event, newDisplayErrorState);
+
+    const stateChanged = Object.values(newDisplayErrorState).some((value) => value === true);
+
+    if (stateChanged) setDisplayError(newDisplayErrorState);
+    if (!event.defaultPrevented) {
+      return setData({
+        ...data,
+        groups: {
+          ...data.groups,
+          [ slug ]: form,
+        },
+      });
+    }
+
+    return null;
+  }
+
+  function checkForms(
+    event: MouseEvent<HTMLAnchorElement | HTMLFormElement, globalThis.MouseEvent>,
+    newDisplayErrorState: DisplayerErrorState,
+  ) {
+    switch (slug) {
+      case "supplier" as keyof InitialState: {
+        const { name, cnpj } = form as SupplierForms;
+
+        if (name.length === 0) {
+          if (!event.defaultPrevented) event.preventDefault();
+          (newDisplayErrorState as Supplier<boolean>).name = true;
+        } else if ((displayError as Supplier<boolean>).name) {
+          (newDisplayErrorState as Supplier<boolean>).name = false;
+        }
+
+        if (cnpj.length !== 14) {
+          if (!event.defaultPrevented) event.preventDefault();
+          (newDisplayErrorState as unknown as Supplier<boolean>).cnpj = true;
+        } else if ((displayError as unknown as Supplier<boolean>).cnpj) {
+          (newDisplayErrorState as unknown as Supplier<boolean>).cnpj = false;
+        }
+        break;
+      }
+      case "provisions" as keyof InitialState: {
+        if ((form as ProvisionsForms).length === 0) {
+          if (!event.defaultPrevented) event.preventDefault();
+          (newDisplayErrorState as Provisions<boolean>).type = true;
+        } else if ((displayError as Provisions<boolean>).type) {
+          (newDisplayErrorState as Provisions<boolean>).type = false;
+        }
+        break;
+      }
+      case "cook" as keyof InitialState: {
+        const { cri } = form as CookForms;
+
+        if (cri.length !== 7) {
+          if (!event.defaultPrevented) event.preventDefault();
+          (newDisplayErrorState as Cook<boolean>).cri = true;
+        } else if ((displayError as Cook<boolean>).cri) {
+          (newDisplayErrorState as Cook<boolean>).cri = false;
+        }
+        break;
+      }
+      default:
+        throw new TypeError("Unsuported slug");
+    }
+  }
+
+  async function __submitRegisterData() {
+    const url = "/api/auth/register";
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: slug === "provisions" ? normalizeProvisionsValue() : normalizeDefaultValue(),
+    };
+
+    const response = await fetch(url, options);
+
+    if (response.ok) return router.push("/register/success");
+
+    return console.error("An unexpected error occurred");
+
+    function normalizeDefaultValue() {
+      return JSON.stringify({
+        ...data,
+        groups: {
+          ...data.groups,
+          [ slug ]: form,
+        },
+      });
+    }
+
+    function normalizeProvisionsValue() {
+      return JSON.stringify({
+        ...data,
+        groups: {
+          ...data.groups,
+          type: (form as unknown as { provisions: ProvisionsForms }).provisions.map(
+            (provisions) => {
+              return { value: provisions.label };
+            },
+          ),
+        },
+      });
+    }
+  }
+}
+
+function __parseSlug(params: { slug: "supplier" | "provisions" | "cook" }) {
+  return params.slug.includes("-")
+    ? (params.slug.split("-")[ 0 ] as keyof InitialState)
+    : params.slug;
 }

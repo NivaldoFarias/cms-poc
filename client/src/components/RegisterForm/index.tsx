@@ -1,4 +1,4 @@
-import type { ChangeEvent, FocusEvent, MouseEvent } from "react";
+import { ChangeEvent, FocusEvent, MouseEvent, useContext } from "react";
 import type { Group } from "./SelectGroups";
 
 import { useRef, useState } from "react";
@@ -11,10 +11,11 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import InputSection from "../../ui/InputSection";
 import SelectGroups from "./SelectGroups";
 
-import styles from "./styles.module.scss";
-import "./styles.scss";
+import styles from "./styles/styles.module.scss";
+import "./styles/styles.scss";
 
 import * as initial from "./lib/initial";
+import DataContext from "../../app/data-provider";
 
 export type InputRef = Fields<HTMLInputElement | null>;
 
@@ -33,21 +34,11 @@ export default function RegisterForm() {
   const [form, setForm] = useState<Forms>(initial.form);
   const inputRef = useRef<InputRef>(initial.inputRef);
 
+  const { data, setData } = useContext(DataContext);
+
   const registerForm = buildRegisterForm();
 
-  return (
-    <form
-      className={styles.form_group}
-      onSubmit={handleSubmit}
-    >
-      {registerForm}
-    </form>
-  );
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    console.log(form);
-  }
+  return <div className={styles.form_group}>{registerForm}</div>;
 
   function buildRegisterForm() {
     return (
@@ -151,7 +142,19 @@ export default function RegisterForm() {
       __confirmPasswordError();
       __groupsError();
 
-      return setDisplayError(newDisplayErrorState);
+      const stateChanged = Object.values(newDisplayErrorState).some((value) => value === true);
+
+      if (stateChanged) setDisplayError(newDisplayErrorState);
+      if (!event.defaultPrevented) {
+        return setData({
+          ...data,
+          email,
+          password,
+          name,
+        });
+      }
+
+      return null;
 
       function __groupsError() {
         if (groups.length === 0) {

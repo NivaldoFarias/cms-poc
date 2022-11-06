@@ -38,9 +38,10 @@ export default function InputSection(props: Props) {
           type={type}
           name={name}
           value={state}
-          className={`input-field ${type === "password" || name === "cri" || name === "cnpj" ? "input-spacedout-field" : ""} ${state.length > 0 ? "input-field--active" : ""
-            }`}
-          ref={(element) => (inputRef.current[ name ] = element)}
+          className={`input-field ${
+            type === "password" || name === "cri" || name === "cnpj" ? "input-spacedout-field" : ""
+          } ${state.length > 0 ? "input-field--active" : ""}`}
+          ref={(element) => (inputRef.current[name] = element)}
           onChange={handleInputChange}
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}

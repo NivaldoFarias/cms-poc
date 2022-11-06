@@ -76,6 +76,7 @@ declare interface Feijao {
   label: "Feijão";
   value: "feijao";
 }
+
 declare type Option = Macarrao | Arroz | Feijao;
 
 export type ProvisionsRef = Provisions<HTMLInputElement | null>;
@@ -93,3 +94,15 @@ export type GroupComponents = {
 export type Forms = SupplierForms | ProvisionsForms | CookForms;
 export type InputRef = SupplierRef | ProvisionsRef | CookRef;
 export type ComponentInputRef = MutableRefObject<Record<string, HTMLInputElement | null>>;
+
+export type DisplayerErrorState =
+  | {
+      name: boolean;
+      cnpj: boolean;
+    }
+  | {
+      type: boolean;
+    }
+  | {
+      cri: boolean;
+    };

@@ -13,8 +13,8 @@ export interface Option {
 }
 
 export interface Group {
-  label: string;
-  value: string;
+  label: "Fornecedor" | "Suprimentos" | "Cozinheiro";
+  value: "supplier" | "provisions" | "cook";
 }
 
 const options: Option[] = [

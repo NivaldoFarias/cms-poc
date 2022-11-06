@@ -1,6 +1,8 @@
 import { Poppins } from "@next/font/google";
 import "./styles/globals.scss";
 
+import { DataProvider } from "./data-provider";
+
 const poppins = Poppins({
   weight: "700",
   style: ["normal", "italic"],
@@ -30,7 +32,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="/site.webmanifest"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <DataProvider>{children}</DataProvider>
+      </body>
     </html>
   );
 }
