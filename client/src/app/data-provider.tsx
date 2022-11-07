@@ -31,15 +31,15 @@ const initialState = {
       type: [],
     },
     cook: {
-      cri: "",
+      cir: "",
     },
   },
 };
 
-const DataContext = createContext<ContextType>({ data: initialState, setData: () => {} });
+const DataContext = createContext<ContextType>({ data: initialState, setData: () => { } });
 
 export function DataProvider({ children }: { children: React.ReactNode }) {
-  const [data, setData] = useState<Data>(initialState);
+  const [ data, setData ] = useState<Data>(initialState);
 
   return <DataContext.Provider value={{ data, setData }}>{children}</DataContext.Provider>;
 }

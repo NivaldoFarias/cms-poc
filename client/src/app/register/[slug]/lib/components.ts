@@ -49,9 +49,9 @@ const generateComponents: GenerateComponents = (form) => {
     ],
     cook: [
       {
-        state: (form as CookForms).cri,
-        label: "Seu CRI (Código da Caderneta)",
-        name: "cri",
+        state: (form as CookForms).cir,
+        label: "Seu CIR (Código da Caderneta)",
+        name: "cir",
         Icon: IoIosBarcode,
         type: "text",
         isSelect: false,

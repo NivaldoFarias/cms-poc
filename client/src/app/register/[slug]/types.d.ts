@@ -14,7 +14,7 @@ declare interface Provisions<T> {
 }
 
 declare interface Cook<T> {
-  cri: T;
+  cir: T;
 }
 
 declare interface InputComponent {
@@ -104,5 +104,5 @@ export type DisplayerErrorState =
       type: boolean;
     }
   | {
-      cri: boolean;
+      cir: boolean;
     };

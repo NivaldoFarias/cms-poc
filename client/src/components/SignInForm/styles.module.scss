@@ -1,10 +1,10 @@
-@import "./../../../styles/index.scss";
+@import "./../../styles/index.scss";
 
 .form_group {
   @include flexbox(column, center, center, 30px);
   position: relative;
 
-  padding: 30px 43px 45px;
+  padding: 70px 43px;
 
   max-height: 790px;
   height: fit-content;
@@ -25,13 +25,13 @@
 }
 
 .input_group {
-  @include flexbox(column, initial, center, 38px);
+  @include flexbox(column, initial, center, 45px);
 
   .input_section {
     @include flexbox(row, space-evenly, center, 15px);
     position: relative;
 
-    padding: 5px 15px 10px;
+    padding: 20px 15px 10px;
     height: fit-content;
     width: 490px;
 

@@ -7,7 +7,7 @@ export const form: InitialState = {
   },
   provisions: [],
   cook: {
-    cri: "",
+    cir: "",
   },
 };
 
@@ -20,7 +20,7 @@ export const displayError: InitialDisplayError = {
     type: false,
   },
   cook: {
-    cri: false,
+    cir: false,
   },
 };
 
@@ -33,7 +33,7 @@ export const inputRef: InitialInputRef = {
     type: null,
   },
   cook: {
-    cri: null,
+    cir: null,
   },
 };
 

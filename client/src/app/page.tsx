@@ -20,7 +20,7 @@ export default function Home() {
           />
           <figcaption>Faça seu Login na Plataforma</figcaption>
         </figure>
-        <SignInForm form_group={styles.form_group} />
+        <SignInForm />
       </main>
     </div>
   );

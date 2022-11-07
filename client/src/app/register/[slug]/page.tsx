@@ -22,6 +22,7 @@ import type { ActionMeta, MultiValue } from "react-select";
 import type { Option } from "../../../ui/MultiSelect";
 
 import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 import MultiSelect from "../../../ui/MultiSelect";
@@ -30,18 +31,18 @@ import InputSection from "../../../ui/InputSection";
 import formStyles from "./../../../components/RegisterForm/styles/styles.module.scss";
 import styles from "./../styles/page.module.scss";
 
+import { RegisterUserForm, useRegister } from "../../../hooks/useAPI";
 import generateComponents from "./lib/components";
 import * as initial from "./lib/default";
 import DataContext from "../../data-provider";
-import { useRouter } from "next/router";
 
 export default function Page({ params, searchParams: { groups_left } }: Props) {
   const slug = __parseSlug(params);
 
-  const [displayError, setDisplayError] = useState<DisplayError>(initial.displayError[slug]);
-  const [form, setForm] = useState<Forms>(initial.form[slug]);
+  const [ displayError, setDisplayError ] = useState<DisplayError>(initial.displayError[ slug ]);
+  const [ form, setForm ] = useState<Forms>(initial.form[ slug ]);
   const inputRef: ComponentInputRef = useRef<InputRef>(
-    initial.inputRef[slug],
+    initial.inputRef[ slug ],
   ) as unknown as ComponentInputRef;
 
   const { data, setData } = useContext(DataContext);
@@ -63,12 +64,12 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
     return (
       <>
         <p className={styles.title_card}>
-          Cadastro de Usuário - <span>{initial.groups[slug]}</span>
+          Cadastro de Usuário - <span>{initial.groups[ slug ]}</span>
         </p>
         <div className={formStyles.form_group}>
-          <h3 className={formStyles.header_section}>Crie sua conta</h3>
+          <h3 className={formStyles.header_section}>cire sua conta</h3>
           <div className={formStyles.input_group}>
-            {components[slug].map((component, index) => {
+            {components[ slug ].map((component, index) => {
               return component.isSelect ? (
                 <MultiSelect
                   key={index}
@@ -77,7 +78,7 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
                   handleChangeSelection={handleChangeSelection}
                   options={(component as SelectComponent).options}
                   displayError={
-                    displayError[(component as SelectComponent).key as keyof DisplayError]
+                    displayError[ (component as SelectComponent).key as keyof DisplayError ]
                   }
                 />
               ) : (
@@ -90,7 +91,7 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
                   type={(component as InputComponent).type}
                   label={(component as InputComponent).label}
                   displayError={
-                    displayError[(component as InputComponent).name as keyof DisplayError]
+                    displayError[ (component as InputComponent).name as keyof DisplayError ]
                   }
                   handleInputBlur={handleInputBlur}
                   handleInputFocus={handleInputFocus}
@@ -124,7 +125,7 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
       const { name, value } = event.target;
 
-      setForm({ ...form, [name]: value });
+      setForm({ ...form, [ name ]: value });
     }
 
     function handleInputFocus(event: FocusEvent<HTMLInputElement>) {
@@ -132,7 +133,7 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
 
       const { name } = event.target;
 
-      return inputRef.current[name as keyof InputRef]?.classList.add("input-field--active");
+      return inputRef.current[ name as keyof InputRef ]?.classList.add("input-field--active");
     }
 
     function handleInputBlur(event: FocusEvent<HTMLInputElement>) {
@@ -140,7 +141,7 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
 
       const { name } = event.target;
 
-      return inputRef.current[name as keyof InputRef]?.classList.remove("input-field--active");
+      return inputRef.current[ name as keyof InputRef ]?.classList.remove("input-field--active");
     }
 
     function handleChangeSelection(newValue: MultiValue<unknown>, actionMeta: ActionMeta<unknown>) {
@@ -181,9 +182,9 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
     }
 
     function parseHref() {
-      const slug = groups_left.includes("-") ? groups_left.split("-")[0] : groups_left;
+      const slug = groups_left.includes("-") ? groups_left.split("-")[ 0 ] : groups_left;
       const searchParams = groups_left.includes("-")
-        ? `?groups_left=${groups_left.split("-")[1]}`
+        ? `?groups_left=${groups_left.split("-")[ 1 ]}`
         : ``;
 
       return `/register/${slug}${searchParams}`;
@@ -194,7 +195,9 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
     checkForms(event, { ...displayError });
     if (!event.defaultPrevented) event.preventDefault();
 
-    return console.log({ data, form });
+    console.log({ data, form });
+
+    return registerUser();
   }
 
   function handleNextBtnClick(event: MouseEvent<HTMLAnchorElement>) {
@@ -210,7 +213,7 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
         ...data,
         groups: {
           ...data.groups,
-          [slug]: form,
+          [ slug ]: form,
         },
       });
     }
@@ -251,13 +254,13 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
         break;
       }
       case "cook" as keyof InitialState: {
-        const { cri } = form as CookForms;
+        const { cir } = form as CookForms;
 
-        if (cri.length !== 7) {
+        if (cir.length !== 7) {
           if (!event.defaultPrevented) event.preventDefault();
-          (newDisplayErrorState as Cook<boolean>).cri = true;
-        } else if ((displayError as Cook<boolean>).cri) {
-          (newDisplayErrorState as Cook<boolean>).cri = false;
+          (newDisplayErrorState as Cook<boolean>).cir = true;
+        } else if ((displayError as Cook<boolean>).cir) {
+          (newDisplayErrorState as Cook<boolean>).cir = false;
         }
         break;
       }
@@ -266,50 +269,54 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
     }
   }
 
-  async function __submitRegisterData() {
-    const url = "/api/users/create";
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: slug === "provisions" ? normalizeProvisionsValue() : normalizeDefaultValue(),
-    };
+  async function registerUser() {
+    const body = slug === "provisions" ? __normalizeProvisionsValue() : __normalizeDefaultValue();
 
-    const response = await fetch(url, options);
-
-    if (response.ok) return router.push("/register/success");
-
-    return console.error("An unexpected error occurred");
-
-    function normalizeDefaultValue() {
-      return JSON.stringify({
-        ...data,
-        groups: {
-          ...data.groups,
-          [slug]: form,
-        },
-      });
+    try {
+      await useRegister(body);
+      return router.push("/");
+    } catch (error: unknown) {
+      alert("Erro ao cadastrar usuário. " + (error as Error)!.message ?? "");
+      console.error(error);
     }
 
-    function normalizeProvisionsValue() {
-      return JSON.stringify({
+    function __normalizeDefaultValue() {
+      return {
         ...data,
         groups: {
           ...data.groups,
-          type: (form as unknown as { provisions: ProvisionsForms }).provisions.map(
-            (provisions) => {
+          [ slug ]: form,
+          provisions: {
+            type: (
+              data.groups.provisions as unknown as { provisions: ProvisionsForms }
+            ).provisions.map((provisions) => {
               return { value: provisions.label };
-            },
-          ),
+            }),
+          },
         },
-      });
+      } as unknown as RegisterUserForm;
+    }
+
+    function __normalizeProvisionsValue() {
+      return {
+        ...data,
+        groups: {
+          ...data.groups,
+          provisions: {
+            type: (form as unknown as { provisions: ProvisionsForms }).provisions.map(
+              (provisions) => {
+                return { value: provisions.label };
+              },
+            ),
+          },
+        },
+      } as unknown as RegisterUserForm;
     }
   }
 }
 
 function __parseSlug(params: { slug: "supplier" | "provisions" | "cook" }) {
   return params.slug.includes("-")
-    ? (params.slug.split("-")[0] as keyof InitialState)
+    ? (params.slug.split("-")[ 0 ] as keyof InitialState)
     : params.slug;
 }
