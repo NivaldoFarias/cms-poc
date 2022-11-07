@@ -6,16 +6,6 @@ import useMiddleware from "../utils/middleware.util";
 const cooksRouter = Router();
 const endpoint = "/cooks";
 
-const createEndpoint = "/create";
-cooksRouter.post(
-  createEndpoint,
-  useMiddleware({
-    middlewares: { token: true, model: "Cook" },
-    endpoint: endpoint + createEndpoint,
-  }),
-  controller.create,
-);
-
 const searchAllEndpoint = "/search";
 cooksRouter.get(
   searchAllEndpoint,

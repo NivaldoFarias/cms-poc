@@ -1,31 +1,10 @@
 import type { QueryParameters, SupplierDocument } from "../types/collections";
-import type { CreateSupplier } from "../types/collections";
 import type { Request, Response } from "express";
 
 import * as repository from "../repositories/supplier.repository";
 import * as util from "./../utils/queries.util";
-import { Types } from "mongoose";
 
 import AppLog from "../events/AppLog";
-
-export async function create(_req: Request, res: Response) {
-  const user_id: string = res.locals.user_id;
-  const body: { cnpj: string; name: string } = res.locals.body;
-
-  const data: CreateSupplier = {
-    user: new Types.ObjectId(user_id),
-    name: body.name,
-    cnpj: body.cnpj,
-  };
-
-  await repository.create(data);
-
-  AppLog({
-    type: "Controller",
-    text: "Supplier created",
-  });
-  return res.sendStatus(201);
-}
 
 export async function searchAll(_req: Request, res: Response) {
   const queries: QueryParameters = res.locals.query;

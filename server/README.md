@@ -60,7 +60,7 @@
 
 # Installation and Usage
 
-###### Pre-requisites: Node.js `^16.14.0`, TypeScript `^4.7.4`
+###### Pre-requisites: Node.js `^18.12.0`
 
 Download the zip file and extract it in the root of a new project folder by running these commands:
 
@@ -251,14 +251,12 @@ In this section, you will find the example API's endpoints and their respective 
 
 ### [Cooks](#cooks) _`/cooks`_
 
-- [Create](#---create-an-cook) `token` 
 - [Search All Cooks](#---search-all-cooks) `token`
 - [Search by Id](#---search-cook-by-id) `token`
 - [Delete](#---delete-an-cook) `token` 
 
 ### [Suppliers](#suppliers) _`/suppliers`_
 
-- [Create](#---create-a-supplier) 
 - [Search All Suppliers](#---search-all-suppliers) `token`
 - [Search by Id](#---search-suppliers-by-id) `token`
 - [Delete](#---delete-a-supplier) `token` 
@@ -266,7 +264,6 @@ In this section, you will find the example API's endpoints and their respective 
 
 ### [Provisions](#provisions) _`/provisions`_
 
-- [Create](#---create-an-provision) `token` 
 - [Search All Provisions](#---search-all-provisions) `token`
 - [Search by Id](#---search-provision-by-id) `token`
 - [Delete](#---delete-an-provision) `token` 
@@ -348,7 +345,26 @@ In this section, you will find the example API's endpoints and their respective 
 {
   "name": "John Doe Junior the Third",
   "email": "johndoe@gmail.com",
-  "password": "123456789"
+  "password": "123456789",
+	"groups": {
+		"provisions": {
+			"type": [
+				{
+					"value": "Macarrão"
+				},
+				{
+					"value": "Feijão"
+				}
+			]
+		},
+		"supplier": {
+			"name": "Acme Inc.",
+			"cnpj": "44681667000172"
+		},
+		"cook": {
+			"cir": "9999999"
+		}
+	}
 }
 ```
 
@@ -461,41 +477,6 @@ In this section, you will find the example API's endpoints and their respective 
 
 ## Cooks
 
-### &nbsp; ‣ &nbsp; Create a Cook
-
-###### &nbsp; &nbsp; POST _`/cooks/create`_
-
-#### &nbsp; ☰ &nbsp; Request
-
-##### Body
-
-```json
-{
-  "cir": "9999999",
-}
-```
-
-##### Headers
-
-```json
-{
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>"
-}
-```
-
-#### &nbsp; ☰ &nbsp; Responses
-
-| Status Code |      Description       |          Properties          |
-| :---------: | :--------------------: | :--------------------------: |
-|   **201**   |        Created         |         `data: null`         |
-|   **400**   |     Invalid Syntax     | `error: { message, detail }` |
-|   **401**   |     Missing Token      | `error: { message, detail }` |
-|   **403**   |    Forbidden Token     | `error: { message, detail }` |
-|   **409**   | CIR Already Registered | `error: { message, detail }` |
-|   **422**   | Invalid Request Input  | `error: { message, detail }` |
-|   **500**   | Internal Server Error  | `error: { message, detail }` |
-
 ### &nbsp; ‣ &nbsp; Search all Cooks
 
 ###### &nbsp; &nbsp; GET _`/cooks/all`_
@@ -586,42 +567,6 @@ In this section, you will find the example API's endpoints and their respective 
 |   **500**   | Internal Server Error | `error: { message, detail }` |
 
 ## Suppliers
-
-### &nbsp; ‣ &nbsp; Create a Supplier
-
-###### &nbsp; &nbsp; POST _`/suppliers/create`_
-
-#### &nbsp; ☰ &nbsp; Request
-
-##### Body
-
-```json
-{
-  "name": "Semantix",
-  "cnpj": "44681667000172",
-}
-```
-
-##### Headers
-
-```json
-{
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>"
-}
-```
-
-#### &nbsp; ☰ &nbsp; Responses
-
-| Status Code |       Description       |          Properties          |
-| :---------: | :---------------------: | :--------------------------: |
-|   **201**   |         Created         |         `data: null`         |
-|   **400**   |     Invalid Syntax      | `error: { message, detail }` |
-|   **401**   |      Missing Token      | `error: { message, detail }` |
-|   **403**   |     Forbidden Token     | `error: { message, detail }` |
-|   **409**   | CNPJ Already Registered | `error: { message, detail }` |
-|   **422**   |  Invalid Request Input  | `error: { message, detail }` |
-|   **500**   |  Internal Server Error  | `error: { message, detail }` |
 
 ### &nbsp; ‣ &nbsp; Search all Suppliers
 
@@ -714,40 +659,6 @@ In this section, you will find the example API's endpoints and their respective 
 
 
 ## Provisions
-
-### &nbsp; ‣ &nbsp; Create a Provision
-
-###### &nbsp; &nbsp; POST _`/provisions/create`_
-
-#### &nbsp; ☰ &nbsp; Request
-
-##### Body
-
-```json
-{
-  "type": "Macarrão",
-}
-```
-
-##### Headers
-
-```json
-{
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>"
-}
-```
-
-#### &nbsp; ☰ &nbsp; Responses
-
-| Status Code |      Description      |          Properties          |
-| :---------: | :-------------------: | :--------------------------: |
-|   **201**   |        Created        |         `data: null`         |
-|   **400**   |    Invalid Syntax     | `error: { message, detail }` |
-|   **401**   |     Missing Token     | `error: { message, detail }` |
-|   **403**   |    Forbidden Token    | `error: { message, detail }` |
-|   **422**   | Invalid Request Input | `error: { message, detail }` |
-|   **500**   | Internal Server Error | `error: { message, detail }` |
 
 ### &nbsp; ‣ &nbsp; Search all Provisions
 

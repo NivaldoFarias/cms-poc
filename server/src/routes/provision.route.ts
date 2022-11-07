@@ -6,16 +6,6 @@ import useMiddleware from "../utils/middleware.util";
 const provisionsRouter = Router();
 const endpoint = "/provisions";
 
-const createEndpoint = "/create";
-provisionsRouter.post(
-  createEndpoint,
-  useMiddleware({
-    middlewares: { token: true, model: "Provision" },
-    endpoint: endpoint + createEndpoint,
-  }),
-  controller.create,
-);
-
 const searchAllEndpoint = "/search";
 provisionsRouter.get(
   searchAllEndpoint,

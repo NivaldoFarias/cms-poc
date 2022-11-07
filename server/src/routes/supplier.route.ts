@@ -6,16 +6,6 @@ import useMiddleware from "../utils/middleware.util";
 const suppliersRouter = Router();
 const endpoint = "/suppliers";
 
-const createEndpoint = "/create";
-suppliersRouter.post(
-  createEndpoint,
-  useMiddleware({
-    middlewares: { token: true, model: "Supplier" },
-    endpoint: endpoint + createEndpoint,
-  }),
-  controller.create,
-);
-
 const searchAllEndpoint = "/search";
 suppliersRouter.get(
   searchAllEndpoint,

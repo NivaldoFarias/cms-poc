@@ -33,18 +33,18 @@ export const cooksSchema = new Schema({
   cir: { type: String, required: true, unique: true, match: regex.CIR },
 });
 
-const subType = new Schema({
-  value: {
-    type: String,
-    enum: {
-      values: ["Arroz", "Feijão", "Macarrão"],
-      message: "{VALUE} is not supported",
-    },
-    required: true,
-  },
-});
-
 export const provisionsSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: "User", required: true },
-  type: [subType],
+  type: [
+    new Schema({
+      value: {
+        type: String,
+        enum: {
+          values: ["Arroz", "Feijão", "Macarrão"],
+          message: "{VALUE} is not supported",
+        },
+        required: true,
+      },
+    }),
+  ],
 });
