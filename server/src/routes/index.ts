@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import provisionsRouter from "./provision.route";
+import provisionsRouter from "./provisions.route";
 import supplierRouter from "./supplier.route";
 import sessionRouter from "./session.route";
 import usersRouter from "./user.route";

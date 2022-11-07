@@ -12,7 +12,7 @@ import * as repository from "../repositories/user.repository";
 import * as service from "../services/user.service";
 import * as util from "./../utils/queries.util";
 
-import * as provisions from "./../repositories/provision.repository";
+import * as provisions from "../repositories/provisions.repository";
 import * as supplier from "./../repositories/supplier.repository";
 import * as cook from "./../repositories/cook.repository";
 

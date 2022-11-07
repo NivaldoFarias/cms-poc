@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import * as controller from "./../controllers/provision.controller";
+import * as controller from "../controllers/provisions.controller";
 import useMiddleware from "../utils/middleware.util";
 
 const provisionsRouter = Router();
@@ -10,7 +10,7 @@ const searchAllEndpoint = "/search";
 provisionsRouter.get(
   searchAllEndpoint,
   useMiddleware({
-    middlewares: { token: true, query: "Provision" },
+    middlewares: { token: true, query: "Provisions" },
     endpoint: endpoint + searchAllEndpoint,
   }),
   controller.searchAll,
@@ -20,7 +20,7 @@ const searchByIdEndpoint = "/search/:id";
 provisionsRouter.get(
   searchByIdEndpoint,
   useMiddleware({
-    middlewares: { token: true, param: "Provision" },
+    middlewares: { token: true, param: "Provisions" },
     endpoint: endpoint + searchByIdEndpoint,
   }),
   controller.searchById,
@@ -32,7 +32,7 @@ provisionsRouter.delete(
   useMiddleware({
     middlewares: {
       token: true,
-      param: "Provision",
+      param: "Provisions",
     },
     endpoint: endpoint + deleteOneEndpoint,
   }),

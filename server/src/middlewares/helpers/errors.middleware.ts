@@ -33,6 +33,22 @@ export function notFound(model: APIModelsKeys) {
   });
 }
 
+export function notFoundToken() {
+  throw new AppError({
+    statusCode: 404,
+    message: "Session Not Found",
+    detail: "The provided token does not match any existing session",
+  });
+}
+
+export function ExpiredSession() {
+  throw new AppError({
+    statusCode: 403,
+    message: "Session expired",
+    detail: "Ensure to provide a token that corresponds to an active session",
+  });
+}
+
 export function cookNotFound() {
   return notFound("Cook");
 }
@@ -46,5 +62,5 @@ export function supplierNotFound() {
 }
 
 export function provisionNotFound() {
-  return notFound("Provision");
+  return notFound("Provisions");
 }

@@ -1,6 +1,14 @@
 import "./../config/setup";
 
-type Query = Record<string, string[] | number[] | (string | number)[]>;
+type Query = {
+  LIMIT: number[];
+  KEYS: string[];
+  SORT: string[];
+  USER: string[];
+  SUPPLIER: string[];
+  PROVISIONS: string[];
+  COOK: string[];
+};
 
 export const env = {
   SALT_ROUNDS: Number(process.env.SALT_ROUNDS) || 10,
@@ -45,8 +53,8 @@ export const query: Query = {
   LIMIT: [100, 1],
   KEYS: ["limit", "sort", "sort_by"],
   SORT: ["asc", "desc", "ascending", "descending", "1", "-1"],
-  USER: ["username", "created_at", "last_update"],
-  COMPANY: ["name", "created_at", "last_update"],
-  ASSET: ["name", "created_at", "last_update"],
-  UNIT: ["name", "created_at", "last_update"],
+  USER: ["email", "created_at"],
+  SUPPLIER: ["user", "name", "cnpj"],
+  PROVISIONS: ["user", "type"],
+  COOK: ["user", "cir"],
 };

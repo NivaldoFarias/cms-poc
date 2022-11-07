@@ -41,7 +41,7 @@ function __validateParameter({ key, value, model }: ValidateParameters) {
       }
       break;
     case "sort":
-      const allowedSorts = query.SORT as string[];
+      const allowedSorts = query.SORT;
 
       if (!allowedSorts.includes(value ?? "")) {
         throw new AppError({
@@ -55,10 +55,10 @@ function __validateParameter({ key, value, model }: ValidateParameters) {
       break;
     case "sort_by":
       const MODEL = model.toUpperCase();
-      const allowedFields = query[MODEL] as string[];
+      const allowedFields = query[MODEL as keyof typeof query];
       const normalizedField = value?.toLowerCase() ?? "";
 
-      if (!allowedFields.includes(normalizedField)) {
+      if (!allowedFields.includes(normalizedField as never)) {
         throw new AppError({
           statusCode: 400,
           message: "Invalid query parameter",

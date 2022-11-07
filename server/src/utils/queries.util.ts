@@ -1,4 +1,13 @@
-import type { FindByField, FindById, SearchAll } from "../types/collections";
+import type {
+  CookDocument,
+  FindByField,
+  FindById,
+  ProvisionDocument,
+  SearchAll,
+  SessionDocument,
+  SupplierDocument,
+  UserDocument,
+} from "../types/collections";
 import type { SortOrder } from "mongoose";
 
 import { User, Cook, Session, Supplier, Provision } from "./../mongo/models";
@@ -11,15 +20,25 @@ export async function findByField({ field, value, model }: FindByField) {
   AppLog({ type: "Repository", text: `Search ${model} by ${field}` });
   switch (model) {
     case "User":
-      return await User.findOne({ [field]: searchKey }).exec();
+      return (await User.findOne({
+        [field]: searchKey,
+      }).exec()) as UserDocument;
     case "Cook":
-      return await Cook.findOne({ [field]: searchKey }).exec();
+      return (await Cook.findOne({
+        [field]: searchKey,
+      }).exec()) as CookDocument;
     case "Session":
-      return await Session.findOne({ [field]: searchKey }).exec();
+      return (await Session.findOne({
+        [field]: searchKey,
+      }).exec()) as SessionDocument;
     case "Supplier":
-      return await Supplier.findOne({ [field]: searchKey }).exec();
-    case "Provision":
-      return await Provision.findOne({ [field]: searchKey }).exec();
+      return (await Supplier.findOne({
+        [field]: searchKey,
+      }).exec()) as SupplierDocument;
+    case "Provisions":
+      return (await Provision.findOne({
+        [field]: searchKey,
+      }).exec()) as ProvisionDocument;
     default:
       throw new AppError({
         statusCode: 500,
@@ -34,15 +53,15 @@ export async function findById({ id, model }: FindById) {
 
   switch (model) {
     case "User":
-      return await User.findById(id).exec();
+      return (await User.findById(id).exec()) as UserDocument;
     case "Cook":
-      return await Cook.findById(id).exec();
+      return (await Cook.findById(id).exec()) as CookDocument;
     case "Session":
-      return await Session.findById(id).exec();
+      return (await Session.findById(id).exec()) as SessionDocument;
     case "Supplier":
-      return await Supplier.findById(id).exec();
-    case "Provision":
-      return await Provision.findById(id).exec();
+      return (await Supplier.findById(id).exec()) as SupplierDocument;
+    case "Provisions":
+      return (await Provision.findById(id).exec()) as ProvisionDocument;
     default:
       throw new AppError({
         statusCode: 500,
@@ -61,30 +80,36 @@ export async function searchAll({ queries, model }: SearchAll) {
     sort: (sort?.toString() ?? "desc") as SortOrder,
   };
 
-  AppLog({ type: "Repository", text: `Search all ${model}` });
+  AppLog({
+    type: "Repository",
+    text: `Search all ${model}${model.includes("s") ? "" : "s"}`,
+  });
   switch (model) {
     case "User":
-      return await User.find()
+      return (await User.find()
         .limit(parsed.limit)
         .sort({ [parsed.sort_by]: parsed.sort })
-        .exec();
+        .exec()) as UserDocument[];
     case "Cook":
-      return await Cook.find()
-        .limit(parsed.limit)
-        .sort({ [parsed.sort_by]: parsed.sort });
-    case "Session":
-      return await Session.find()
+      return (await Cook.find()
         .limit(parsed.limit)
         .sort({ [parsed.sort_by]: parsed.sort })
-        .exec();
+        .exec()) as CookDocument[];
+    case "Session":
+      return (await Session.find()
+        .limit(parsed.limit)
+        .sort({ [parsed.sort_by]: parsed.sort })
+        .exec()) as SessionDocument[];
     case "Supplier":
-      return await Supplier.find()
+      return (await Supplier.find()
         .limit(parsed.limit)
-        .sort({ [parsed.sort_by]: parsed.sort });
-    case "Provision":
-      return await Provision.find()
+        .sort({ [parsed.sort_by]: parsed.sort })
+        .exec()) as SupplierDocument[];
+    case "Provisions":
+      return (await Provision.find()
         .limit(parsed.limit)
-        .sort({ [parsed.sort_by]: parsed.sort });
+        .sort({ [parsed.sort_by]: parsed.sort })
+        .exec()) as unknown as ProvisionDocument[];
     default:
       throw new AppError({
         statusCode: 500,
@@ -106,7 +131,7 @@ export async function deleteOne({ id, model }: FindById) {
       return await Session.findByIdAndDelete(id).exec();
     case "Supplier":
       return await Supplier.findByIdAndDelete(id).exec();
-    case "Provision":
+    case "Provisions":
       return await Provision.findByIdAndDelete(id).exec();
     default:
       throw new AppError({

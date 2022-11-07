@@ -51,7 +51,7 @@ export type APIModelsKeys =
   | "Cook"
   | "Supplier"
   | "Session"
-  | "Provision";
+  | "Provisions";
 
 export type APIModelsTypes =
   | UserType

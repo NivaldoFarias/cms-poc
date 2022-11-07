@@ -2,12 +2,12 @@ import type { SessionDocument, UserDocument } from "../types/collections";
 import type { Request, Response, NextFunction } from "express";
 import type { SignInBody } from "../types/user";
 
-import * as repository from "../repositories/session.repository";
 import * as service from "../services/session.service";
 import * as queries from "../utils/queries.util";
 
 import AppError from "../config/error";
 import AppLog from "../events/AppLog";
+import { ExpiredSession, notFoundToken } from "./helpers/errors.middleware";
 
 export async function signInValidations(
   _req: Request,
@@ -36,10 +36,11 @@ export async function signOutValidations(
 ) {
   const token: string = res.locals.token;
 
-  const result = await repository.findByField({
+  const result = (await queries.findByField({
+    model: "Session",
     field: "token",
     value: token,
-  });
+  })) as SessionDocument;
 
   validateSession(result);
 
@@ -75,19 +76,11 @@ function validPassword(providedPassword: string, password = "") {
 }
 
 function validateSession(session: SessionDocument) {
-  if (!session) {
-    throw new AppError({
-      statusCode: 404,
-      message: "Session not found",
-      detail:
-        "Ensure to provide a token that corresponds to an existing session",
-    });
-  } else if (session.active === false) {
-    throw new AppError({
-      statusCode: 403,
-      message: "Session expired",
-      detail: "Ensure to provide a token that corresponds to an active session",
-    });
+  console.log({ session });
+
+  if (!session) notFoundToken();
+  else if (session.active === false) {
+    ExpiredSession();
   }
 
   return AppLog({ type: "Middleware", text: "Session exists" });

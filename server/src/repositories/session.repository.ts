@@ -22,16 +22,3 @@ export async function deleteOne(token: string) {
   AppLog({ type: "Repository", text: "Session instance deleted" });
   return result;
 }
-
-export async function findByField({
-  field,
-  value,
-}: {
-  field: string;
-  value: string;
-}) {
-  const result = await Session.findOne({ [field]: value }).exec();
-
-  AppLog({ type: "Repository", text: `Search User by ${field}` });
-  return result;
-}

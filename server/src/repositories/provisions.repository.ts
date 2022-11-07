@@ -13,7 +13,7 @@ export async function create(data: CreateProvision) {
     validateBeforeSave: false,
   });
 
-  return AppLog({ type: "Repository", text: "Provision instance inserted" });
+  return AppLog({ type: "Repository", text: "Provisions instance inserted" });
 }
 
 export async function deleteOne(data: DeleteOne) {
@@ -21,6 +21,6 @@ export async function deleteOne(data: DeleteOne) {
 
   const result = await Provision.findByIdAndDelete(id).exec();
 
-  AppLog({ type: "Repository", text: "Delete Provision instance" });
+  AppLog({ type: "Repository", text: "Delete Provisions instance" });
   return !!result;
 }

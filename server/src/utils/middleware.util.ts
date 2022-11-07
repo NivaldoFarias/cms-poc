@@ -36,7 +36,7 @@ export default function useMiddleware({
       body: req.body,
     };
 
-    if (middlewares?.model) {
+    if (middlewares?.model && req.body) {
       res.locals.body = req.body;
     }
 
@@ -120,6 +120,6 @@ export default function useMiddleware({
   };
 }
 
-function __resolve(): Promise<unknown> {
+function __resolve() {
   return new Promise((resolve) => resolve(null));
 }
