@@ -1,4 +1,10 @@
-import type { QueryParameters, UserDocument } from "../types/collections";
+import type {
+  CookType,
+  ProvisionType,
+  QueryParameters,
+  SupplierType,
+  UserDocument,
+} from "../types/collections";
 import type { CreateUser } from "../types/user";
 import type { Request, Response } from "express";
 
@@ -6,14 +12,46 @@ import * as repository from "../repositories/user.repository";
 import * as service from "../services/user.service";
 import * as util from "./../utils/queries.util";
 
+import * as provisions from "./../repositories/provision.repository";
+import * as supplier from "./../repositories/supplier.repository";
+import * as cook from "./../repositories/cook.repository";
+
 import AppLog from "../events/AppLog";
 
+type CreateSupplier = Pick<SupplierType, "name" | "cnpj">;
+type CreateProvisions = Pick<ProvisionType, "type">;
+type CreateCook = Pick<CookType, "cir">;
+
+type RequestBody = CreateUser & {
+  groups: {
+    supplier: CreateSupplier;
+    provisions: CreateProvisions;
+    cook: CreateCook;
+  };
+};
+
 export async function create(_req: Request, res: Response) {
-  const body: CreateUser = res.locals.body;
+  const body: RequestBody = res.locals.body;
 
   body.password = service.hashPassword(body.password);
 
-  await repository.create(body);
+  const { _id: user } = await repository.create({
+    email: body.email,
+    password: body.password,
+    name: body.name,
+  });
+
+  const {
+    provisions: provisionsData,
+    supplier: supplierData,
+    cook: cookData,
+  } = body.groups;
+
+  await Promise.all([
+    provisions.create({ user, ...provisionsData }),
+    supplier.create({ user, ...supplierData }),
+    cook.create({ user, ...cookData }),
+  ]);
 
   AppLog({
     type: "Controller",

@@ -267,7 +267,7 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
   }
 
   async function __submitRegisterData() {
-    const url = "/api/auth/register";
+    const url = "/api/users/create";
     const options = {
       method: "POST",
       headers: {

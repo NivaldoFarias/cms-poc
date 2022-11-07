@@ -14,7 +14,8 @@ export async function create(data: CreateUser) {
     validateBeforeSave: false,
   });
 
-  return AppLog({ type: "Repository", text: "User instance inserted" });
+  AppLog({ type: "Repository", text: "User instance inserted" });
+  return user;
 }
 
 export async function deleteOne(data: DeleteOne) {
