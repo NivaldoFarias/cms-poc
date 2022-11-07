@@ -35,6 +35,7 @@ import { RegisterUserForm, useRegister } from "../../../hooks/useAPI";
 import generateComponents from "./lib/components";
 import * as initial from "./lib/default";
 import DataContext from "../../data-provider";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Page({ params, searchParams: { groups_left } }: Props) {
   const slug = __parseSlug(params);
@@ -57,6 +58,18 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
       onSubmit={handleSubmit}
     >
       {page}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </form>
   );
 
@@ -276,7 +289,10 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
       await useRegister(body);
       return router.push("/");
     } catch (error: unknown) {
-      alert("Erro ao cadastrar usuário. " + (error as Error)!.message ?? "");
+      toast.warn((error as Error)!.message ?? "Ops! Algo deu errado", {
+        draggable: true,
+        progress: 1,
+      });
       console.error(error);
     }
 

@@ -10,8 +10,10 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import useSession from "../../hooks/useSession";
 import { useSignIn } from "../../hooks/useAPI";
 
-import styles from "./styles.module.scss"
-import InputSection from '../../ui/InputSection';
+import styles from "./styles.module.scss";
+import InputSection from "../../ui/InputSection";
+import { toast, ToastContainer } from "react-toastify";
+import { GetServerSidePropsContext } from "next";
 
 type InputRef = Fields<HTMLInputElement | null>;
 
@@ -48,6 +50,18 @@ export default function SignInForm() {
       onSubmit={handleSubmit}
     >
       {signInForm}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </form>
   );
 
@@ -130,8 +144,15 @@ export default function SignInForm() {
       setSession(token);
       return router.push("/dashboard");
     } catch (error: unknown) {
-      alert("Erro ao fazer login. " + (error as Error)!.message ?? "");
+      toast.warn((error as Error)!.message ?? "Ops! Algo deu errado", {
+        draggable: true,
+        progress: 1,
+      });
       console.error(error);
     }
   }
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  console.log(context.req.headers.referer);
 }

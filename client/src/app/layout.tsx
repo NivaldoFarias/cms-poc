@@ -1,14 +1,16 @@
 import { Poppins } from "@next/font/google";
-import "./styles/globals.scss";
 
 import { DataProvider } from "./data-provider";
 
+import "react-toastify/dist/ReactToastify.css";
+import "./styles/globals.scss";
+
 const poppins = Poppins({
   weight: "700",
-  style: ["normal", "italic"],
+  style: [ "normal", "italic" ],
   preload: true,
-  subsets: ["devanagari", "latin-ext", "latin"],
-  fallback: ["ubuntu", "sans-serif"],
+  subsets: [ "devanagari", "latin-ext", "latin" ],
+  fallback: [ "ubuntu", "sans-serif" ],
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -33,7 +35,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <DataProvider>{children}</DataProvider>
+        <DataProvider>
+          {children}
+        </DataProvider>
       </body>
     </html>
   );
