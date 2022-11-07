@@ -41,16 +41,18 @@ export async function create(_req: Request, res: Response) {
     name: body.name,
   });
 
-  const {
-    provisions: provisionsData,
-    supplier: supplierData,
-    cook: cookData,
-  } = body.groups;
+  const [provisionsData, supplierData, cookData] = [
+    body.groups?.provisions,
+    body.groups?.supplier,
+    body.groups?.cook,
+  ];
 
   await Promise.all([
-    provisions.create({ user, ...provisionsData }),
-    supplier.create({ user, ...supplierData }),
-    cook.create({ user, ...cookData }),
+    provisionsData
+      ? provisions.create({ user, ...provisionsData })
+      : __resolve(),
+    supplierData ? supplier.create({ user, ...supplierData }) : __resolve(),
+    cookData ? cook.create({ user, ...cookData }) : __resolve(),
   ]);
 
   AppLog({
@@ -58,6 +60,10 @@ export async function create(_req: Request, res: Response) {
     text: "User created",
   });
   return res.sendStatus(201);
+
+  function __resolve(): Promise<unknown> {
+    return new Promise((resolve) => resolve(null));
+  }
 }
 
 export async function searchAll(_req: Request, res: Response) {
