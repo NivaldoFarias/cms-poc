@@ -44,6 +44,11 @@
 - [Installation and Usage](#installation-and-usage)
           - [Pre-requisites: Node.js `^18.12.0`, Git `^2.33.0`](#pre-requisites-nodejs-18120-git-2330)
 - [Client and Server](#client-and-server)
+- [Running inside Docker](#running-inside-docker)
+          - [Pre-requisites: Docker `^20.10.17`, Docker Compose `^1.29.2`](#pre-requisites-docker-201017-docker-compose-1292)
+    - [Stopping the containers](#stopping-the-containers)
+    - [Clean Up](#clean-up)
+    - [Run Server Only](#run-server-only)
 
 # Installation and Usage
 
@@ -76,5 +81,33 @@ The client and server are separated into two different folders, each containing 
 - [Client](https://github.com/NivaldoFarias/customer-management/tree/main/client) `Next.js` `TypeScript` `React` `SASS`
 - [Server](https://github.com/NivaldoFarias/customer-management/tree/main/server) `Node.js` `TypeScript` `Express` `MongoDB` `Mongoose` `JWT`
 
-#
+# Running inside Docker
+###### Pre-requisites: Docker `^20.10.17`, Docker Compose `^1.29.2`
 
+With the pre-requisites installed and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/customer-management#installation-and-usage))_, run the following command:
+
+```bash
+npm run docker:up
+```
+
+The development containers will run in the background, during which the following services will be available through the respective ports in your machine:
+
+- `8080` - Client
+- `5000` - Server
+
+### Stopping the containers
+
+- Stop containers created by _docker-compose_: `npm run docker:down`
+- Stop the _Client_ container: `docker stop cms-client-dev`
+- Stop the _Server_ container: `docker stop cms-server-dev`
+
+### Clean Up
+
+- Prune Dangling Images: `docker image prune`
+- Prune Dangling and unused Images: `docker volume prune -a`
+
+### Run Server Only
+
+To run a lone Server Container, check the steps described at [Server](https://github.com/NivaldoFarias/customer-management/tree/main/server#docker-container).
+
+#

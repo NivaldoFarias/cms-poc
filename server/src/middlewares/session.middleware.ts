@@ -76,8 +76,6 @@ function validPassword(providedPassword: string, password = "") {
 }
 
 function validateSession(session: SessionDocument) {
-  console.log({ session });
-
   if (!session) notFoundToken();
   else if (session.active === false) {
     ExpiredSession();

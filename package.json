@@ -1,13 +1,15 @@
 {
   "name": "customer-management",
   "version": "1.0.0",
-  "description": "Customer Relationship Management System PoC",
+  "description": "Customer Management System PoC",
   "main": "package.json",
   "scripts": {
     "start": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
     "build": "concurrently \"cd server && npm run build\" \"cd client && npm run build\"",
     "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
     "format": "concurrently \"cd server && npm run format\" \"cd client && npm run format\"",
+    "docker:up": "docker-compose -f ./docker/docker-compose.dev.yml up -d",
+    "docker:down": "docker-compose -f ./docker/docker-compose.dev.yml down",
     "test": "concurrently \"cd server && npm test\" \"cd client && npm test\""
   },
   "repository": {

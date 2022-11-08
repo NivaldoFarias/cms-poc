@@ -22,7 +22,7 @@ export async function validateModel(
     case "Supplier":
       document = new Supplier({ user: user_id, ...body });
       break;
-    case "Provision":
+    case "Provisions":
       document = new Provision({ user: user_id, ...body });
       break;
     case "Session":

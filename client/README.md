@@ -37,8 +37,8 @@
   </a>
 </div>
 
-<!-- Running the App Locally -->
-# Running the App Locally
+<!-- Running the Client Locally -->
+# Running the Client Locally
 
 ###### Pre-requisites: Node.js `^18.12.0`, Git `^2.33.0`
 

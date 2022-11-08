@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "Customer Relationship Management System - Server Side",
+  "description": "Customer Management System - Server Side",
   "private": true,
   "main": "dist/server.js",
   "type": "commonjs",
@@ -13,6 +13,8 @@
     "debug": "tsnd --respawn --transpile-only --exit-child --debug src/server.ts",
     "lint": "npx eslint --fix --ext .ts src/",
     "format": "prettier --write \"src/**/*.ts\"",
+    "docker:server": "docker-compose -f ./docker/docker-compose.dev.yml up -d",
+    "docker:down": "docker-compose -f ./docker/docker-compose.dev.yml down",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

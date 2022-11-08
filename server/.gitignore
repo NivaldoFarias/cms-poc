@@ -17,8 +17,8 @@ dist
 .eslintcache
 
 # dotenv environment variable files
-.env
-.env.local
+**.env**
+!.env.example
 
 # Temp and cache directory
 .temp

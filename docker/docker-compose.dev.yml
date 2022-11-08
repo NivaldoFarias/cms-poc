@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  server:
+    container_name: cms-server-dev
+    image: cms/server-dev
+    build:
+      context: ./../server
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - 5050:5000
+    env_file:
+      - ./../server/.env.dev
+
+  client:
+    container_name: cms-client-dev
+    image: cms/client-dev
+    build:
+      context: ./../client
+      dockerfile: ./docker/Dockerfile
+    env_file:
+      - ./../client/.env.dev
+    volumes:
+      - nextjs_dev_build:/var/www/html
+
+  nginx:
+    container_name: cms-nginx-dev
+    image: cms/nginx-dev
+    build: ./../nginx
+    ports:
+      - 8080:80
+      - 443:443
+    depends_on:
+      - client
+    volumes:
+      - nextjs_dev_build:/var/www/html
+
+volumes:
+  nextjs_dev_build:

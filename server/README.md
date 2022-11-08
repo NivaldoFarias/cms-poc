@@ -42,8 +42,9 @@
 # Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Installation and Usage](#installation-and-usage)
-  - [Pre-requisites](#pre-requisites-nodejs-18120-lts)
+- [Running the Server](#running-the-server)
+  - [Locally](#locally) - [Pre-requisites](#pre-requisites-nodejs-18120-git-2330)
+  - [Docker Container](#docker-container) - [Pre-requisites](#pre-requisites-docker-201017-docker-compose-1292)
 - [Error Handling and Logging](#error-handling-and-logging)
   - [AppError](#--apperror)
   - [AppLog](#--applog)
@@ -58,11 +59,13 @@
   - [Suppliers](#suppliers)
   - [Provisions](#provisions)
 
-# Installation and Usage
+# Running the Server
 
+With the respective pre-requisites installed and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/customer-management#installation-and-usage))_, run the commands that corresponds to your case:  
+
+## Locally
 ###### Pre-requisites: Node.js `^18.12.0`, Git `^2.33.0`
 
-With the pre-requisites and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/customer-management#installation-and-usage))_, run the following commands:
 
 ```bash
 # Install dependencies
@@ -71,6 +74,22 @@ $ npm install
 # Run the app
 $ npm run dev
 ```
+
+## Docker Container
+
+###### Pre-requisites: Docker `^20.10.17`, Docker Compose `^1.29.2`
+
+```bash
+npm run docker:server
+```
+
+The development container will run in the background, during which the *Server* will be available through port `5000` in your machine.
+
+### Valuable Docker Commands
+
+- Stop containers created by _docker-compose_: `npm run docker:down`
+- Prune Dangling Images _(i.e. untagged images)_: `docker image prune`
+- Prune Dangling and unused Images _(i.e node.js-alpine)_: `docker volume prune -a`
 
 <!-- Error Handling and Logging -->
 
