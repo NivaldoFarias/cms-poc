@@ -60,24 +60,16 @@
 
 # Installation and Usage
 
-###### Pre-requisites: Node.js `^18.12.0`
+###### Pre-requisites: Node.js `^18.12.0`, Git `^2.33.0`
 
-Download the zip file and extract it in the root of a new project folder by running these commands:
-
-```bash
-wget https://github.com/NivaldoFarias/customer-management/archive/main.zip
-```
-
-Then run the following command to install the project's dependencies:
+With the pre-requisites and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/customer-management#installation-and-usage))_, run the following commands:
 
 ```bash
-npm install
-```
+# Install dependencies
+$ npm install
 
-That's it! You can now start developing your TypeScript Project by running the command below. Happy coding!
-
-```bash
-npm run dev
+# Run the app
+$ npm run dev
 ```
 
 <!-- Error Handling and Logging -->

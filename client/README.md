@@ -36,3 +36,18 @@
     <img src="https://img.shields.io/badge/license-MIT-%23A8D1FF?style=flat-square" />
   </a>
 </div>
+
+<!-- Running the App Locally -->
+# Running the App Locally
+
+###### Pre-requisites: Node.js `^18.12.0`, Git `^2.33.0`
+
+With the pre-requisites and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/customer-management#installation-and-usage))_, run the following commands:
+
+```bash
+# Install dependencies
+$ npm install
+
+# Run the app
+$ npm run dev
+```
