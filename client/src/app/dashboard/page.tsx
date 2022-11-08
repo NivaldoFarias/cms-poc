@@ -13,16 +13,16 @@ export default function Dashboard() {
     <div>
       <p>This is the Dashboard</p>
       <ToastContainer
+        theme="dark"
         position="top-right"
         autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
         rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
+        draggable={true}
+        closeOnClick={true}
+        newestOnTop={false}
+        pauseOnHover={false}
+        hideProgressBar={false}
+        pauseOnFocusLoss={false}
       />
     </div>
   );

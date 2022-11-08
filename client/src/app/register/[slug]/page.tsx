@@ -220,7 +220,12 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
 
     const stateChanged = Object.values(newDisplayErrorState).some((value) => value === true);
 
-    if (stateChanged) setDisplayError(newDisplayErrorState);
+    if (stateChanged) {
+      toast.warn("Revise os campos destacados!", {
+        progress: undefined,
+      });
+      setDisplayError(newDisplayErrorState);
+    }
     if (!event.defaultPrevented) {
       return setData({
         ...data,

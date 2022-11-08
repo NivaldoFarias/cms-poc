@@ -1,4 +1,4 @@
-import type { ChangeEvent, FocusEvent } from "react";
+import type { ChangeEvent, FocusEvent, MouseEvent } from "react";
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -51,16 +51,16 @@ export default function SignInForm() {
     >
       {signInForm}
       <ToastContainer
+        theme="dark"
         position="top-right"
         autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
+        closeOnClick={true}
         rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
+        draggable={false}
+        newestOnTop={false}
+        pauseOnHover={false}
+        hideProgressBar={false}
+        pauseOnFocusLoss={true}
       />
     </form>
   );
@@ -102,8 +102,9 @@ export default function SignInForm() {
             Entrar
           </button>
           <Link
-            className={styles.navigate_link}
             href="/register"
+            className={styles.navigate_link}
+            onClick={handleNextBtnClick}
           >
             Não tem uma conta? <span>Registre-se</span>
           </Link>
@@ -132,6 +133,51 @@ export default function SignInForm() {
 
       return inputRef.current[ name as keyof InputRef ]?.classList.remove("input-field--active");
     }
+
+    function handleNextBtnClick(event: MouseEvent<HTMLAnchorElement>) {
+      const { email, password, } = form;
+      const newDisplayErrorState = { ...displayError };
+
+      __emailError();
+      __passwordError();
+
+      const stateChanged = Object.values(newDisplayErrorState).some((value) => value === true);
+
+      if (stateChanged) {
+        toast.warn("Revise os campos destacados!", {
+          progress: undefined,
+        });
+        return setDisplayError(newDisplayErrorState);
+      }
+
+      return null;
+
+      function __passwordError() {
+        if (password.length < 4) {
+          if (!event.defaultPrevented) event.preventDefault();
+          newDisplayErrorState.password = true;
+
+          if (document.activeElement?.tagName !== "INPUT") {
+            inputRef.current.password?.focus();
+          }
+        } else if (displayError.password) {
+          newDisplayErrorState.password = false;
+        }
+      }
+
+      function __emailError() {
+        if (email.length === 0) {
+          if (!event.defaultPrevented) event.preventDefault();
+          newDisplayErrorState.email = true;
+
+          if (document.activeElement?.tagName !== "INPUT") {
+            inputRef.current.email?.focus();
+          }
+        } else if (displayError.email) {
+          newDisplayErrorState.email = false;
+        }
+      }
+    }
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -145,8 +191,7 @@ export default function SignInForm() {
       return router.push("/dashboard");
     } catch (error: unknown) {
       toast.warn((error as Error)!.message ?? "Ops! Algo deu errado", {
-        draggable: true,
-        progress: 1,
+        progress: undefined,
       });
       console.error(error);
     }
