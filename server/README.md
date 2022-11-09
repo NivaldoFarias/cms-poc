@@ -86,7 +86,14 @@ npm run docker:server
 npm run docker:server:dev
 ```
 
-The development container will run in the background, during which the *Server* will be available through port `5000` _(production)_ or `5050` _(development)_ in your machine.
+The development containers will run in the background, during which the following services will be available through the respective ports in your machine:
+
+- **Production**
+  - `5000` - Server
+  - `27017`- Database
+- **Development**
+  - `5050` - Server
+  - `27027`- Database
 
 ### Valuable Docker Commands
 
