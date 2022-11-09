@@ -61,11 +61,10 @@
 
 # Running the Server
 
-With the respective pre-requisites installed and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/customer-management#installation-and-usage))_, run the commands that corresponds to your case:  
+With the respective pre-requisites installed and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/customer-management#installation-and-usage))_, populate your local `.env` or `.env.dev` file with the variables specified in the `.env.example` file, and run the commands below.
 
 ## Locally
 ###### Pre-requisites: Node.js `^18.12.0`, Git `^2.33.0`
-
 
 ```bash
 # Install dependencies
@@ -80,14 +79,18 @@ $ npm run dev
 ###### Pre-requisites: Docker `^20.10.17`, Docker Compose `^1.29.2`
 
 ```bash
+# Running in production mode
 npm run docker:server
+
+# Running in development mode
+npm run docker:server:dev
 ```
 
-The development container will run in the background, during which the *Server* will be available through port `5000` in your machine.
+The development container will run in the background, during which the *Server* will be available through port `5000` _(production)_ or `5050` _(development)_ in your machine.
 
 ### Valuable Docker Commands
 
-- Stop containers created by _docker-compose_: `npm run docker:down`
+- Stop containers created by _docker-compose_: `npm run docker:down` or `npm run docker:down:dev`
 - Prune Dangling Images _(i.e. untagged images)_: `docker image prune`
 - Prune Dangling and unused Images _(i.e node.js-alpine)_: `docker volume prune -a`
 

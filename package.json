@@ -8,8 +8,10 @@
     "build": "concurrently \"cd server && npm run build\" \"cd client && npm run build\"",
     "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
     "format": "concurrently \"cd server && npm run format\" \"cd client && npm run format\"",
-    "docker:up": "docker-compose -f ./docker/docker-compose.dev.yml up -d",
-    "docker:down": "docker-compose -f ./docker/docker-compose.dev.yml down",
+    "docker:up": "docker-compose -f ./docker/docker-compose.yml up -d",
+    "docker:down": "docker-compose -f ./docker/docker-compose.yml down",
+    "docker:up:dev": "docker-compose -f ./docker/docker-compose.dev.yml up -d",
+    "docker:down:dev": "docker-compose -f ./docker/docker-compose.dev.yml down",
     "test": "concurrently \"cd server && npm test\" \"cd client && npm test\""
   },
   "repository": {

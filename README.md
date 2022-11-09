@@ -84,22 +84,34 @@ The client and server are separated into two different folders, each containing 
 # Running inside Docker
 ###### Pre-requisites: Docker `^20.10.17`, Docker Compose `^1.29.2`
 
-With the pre-requisites installed and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/customer-management#installation-and-usage))_, run the following command:
+With the pre-requisites installed and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/customer-management#installation-and-usage))_, populate your local `.env` or `.env.dev` file with the variables specified in the `.env.example` file.
+
+Then run the following command to start the containers:
 
 ```bash
+# Running in production mode
 npm run docker:up
+
+# Running in development mode
+npm run docker:up:dev
 ```
 
 The development containers will run in the background, during which the following services will be available through the respective ports in your machine:
 
-- `8080` - Client
-- `5000` - Server
+- **Production**
+  - `80` - Client
+  - `5000` - Server
+  - `27017`- Database
+- **Development**
+  - `8080` - Client
+  - `5050` - Server
+  - `27027`- Database
 
 ### Stopping the containers
 
 - Stop containers created by _docker-compose_: `npm run docker:down`
-- Stop the _Client_ container: `docker stop cms-client-dev`
-- Stop the _Server_ container: `docker stop cms-server-dev`
+- Stop the _Client_ container: `docker stop cms-client_dev`
+- Stop the _Server_ container: `docker stop cms-server_dev`
 
 ### Clean Up
 
@@ -108,6 +120,6 @@ The development containers will run in the background, during which the followin
 
 ### Run Server Only
 
-To run a lone Server Container, check the steps described at [Server](https://github.com/NivaldoFarias/customer-management/tree/main/server#docker-container).
+To run a lone Server Container, follow the steps described at [Server](https://github.com/NivaldoFarias/customer-management/tree/main/server#docker-container).
 
 #
