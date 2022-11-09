@@ -41,11 +41,11 @@
 # Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Installation and Usage](#installation-and-usage) 
-  - [Pre-requisites](#pre-requisites-nodejs-18120-git-2330)
+- [Installation and Usage](#installation-and-usage)
+          - [Pre-requisites: Node.js `^18.12.0`, Git `^2.33.0`](#pre-requisites-nodejs-18120-git-2330)
 - [Client and Server](#client-and-server)
-- [Running inside Docker](#running-inside-docker) 
-  - [Pre-requisites](#pre-requisites-docker-201017-docker-compose-1292)
+- [Running inside Docker](#running-inside-docker)
+          - [Pre-requisites: Docker `^20.10.17`, Docker Compose `^1.29.2`](#pre-requisites-docker-201017-docker-compose-1292)
     - [Stopping the containers](#stopping-the-containers)
     - [Clean Up](#clean-up)
     - [Run Server Only](#run-server-only)
@@ -109,7 +109,7 @@ The development containers will run in the background, during which the followin
 
 ### Stopping the containers
 
-- Stop containers created by _docker-compose_: `npm run docker:down`
+- Stop containers created by _docker-compose_: `npm run docker:down` or `npm run docker:down:dev`
 - Stop the _Client_ container: `docker stop cms-client_dev`
 - Stop the _Server_ container: `docker stop cms-server_dev`
 
