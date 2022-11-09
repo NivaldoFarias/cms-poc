@@ -42,7 +42,7 @@
 
 ###### Pre-requisites: Node.js `^18.12.0`, Git `^2.33.0`
 
-With the pre-requisites and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/customer-management#installation-and-usage))_, run the following commands:
+With the pre-requisites installed and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/customer-management#installation-and-usage))_, populate your local `.env` file with the variables specified in the `.env.example` file, and run the commands below.
 
 ```bash
 # Install dependencies
