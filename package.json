@@ -4,9 +4,11 @@
   "description": "Customer Management System PoC",
   "main": "package.json",
   "scripts": {
+    "prepare": "npx husky install",
     "start": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
-    "build": "concurrently \"cd server && npm run build\" \"cd client && npm run build\"",
     "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
+    "lint": "concurrently \"cd server && npm run lint\" \"cd client && npm run lint\"",
+    "build": "concurrently \"cd server && npm run build\" \"cd client && npm run build\"",
     "format": "concurrently \"cd server && npm run format\" \"cd client && npm run format\"",
     "docker:up": "docker-compose -f ./docker/docker-compose.yml up -d",
     "docker:down": "docker-compose -f ./docker/docker-compose.yml down",
@@ -27,5 +29,8 @@
   "homepage": "https://github.com/NivaldoFarias/customer-management-poc#readme",
   "dependencies": {
     "concurrently": "^7.4.0"
+  },
+  "devDependencies": {
+    "husky": "^8.0.2"
   }
 }

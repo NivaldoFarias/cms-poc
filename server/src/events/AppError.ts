@@ -1,16 +1,15 @@
-import { Request, Response } from "express";
+import type { Request, Response, NextFunction } from "express";
 import MongoServerError from "../mongo/MongoServerError";
 
 import AppError from "./../config/error";
 import AppLog from "./AppLog";
 
-
 export default function ExceptionHandler(
   error: AppError | Error,
   _req: Request,
   res: Response,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars 
-  _next: Function
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _next: NextFunction,
 ) {
   if (!(error instanceof AppError)) {
     if (error.hasOwnProperty("code")) {

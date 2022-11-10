@@ -16,7 +16,7 @@ import "./styles/styles.scss";
 
 import * as initial from "./lib/initial";
 import DataContext from "../../app/data-provider";
-import { toast, ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from "react-toastify";
 
 export type InputRef = Fields<HTMLInputElement | null>;
 
@@ -31,29 +31,31 @@ export type Forms = {
 type Fields<T> = Record<"email" | "password" | "name" | "confirm_password" | "groups", T>;
 
 export default function RegisterForm() {
-  const [ displayError, setDisplayError ] = useState<Fields<boolean>>(initial.displayError);
-  const [ form, setForm ] = useState<Forms>(initial.form);
+  const [displayError, setDisplayError] = useState<Fields<boolean>>(initial.displayError);
+  const [form, setForm] = useState<Forms>(initial.form);
   const inputRef = useRef<InputRef>(initial.inputRef);
 
   const { data, setData } = useContext(DataContext);
 
   const registerForm = buildRegisterForm();
 
-  return <div className={styles.form_group}>
-    {registerForm}
-    <ToastContainer
-      theme="dark"
-      position="top-right"
-      autoClose={4000}
-      rtl={false}
-      draggable={true}
-      closeOnClick={true}
-      newestOnTop={false}
-      pauseOnHover={false}
-      hideProgressBar={false}
-      pauseOnFocusLoss={false}
-    />
-  </div>;
+  return (
+    <div className={styles.form_group}>
+      {registerForm}
+      <ToastContainer
+        theme="dark"
+        position="top-right"
+        autoClose={4000}
+        rtl={false}
+        draggable={true}
+        closeOnClick={true}
+        newestOnTop={false}
+        pauseOnHover={false}
+        hideProgressBar={false}
+        pauseOnFocusLoss={false}
+      />
+    </div>
+  );
 
   function buildRegisterForm() {
     return (
@@ -128,7 +130,7 @@ export default function RegisterForm() {
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
       const { name, value } = event.target;
 
-      setForm({ ...form, [ name ]: value });
+      setForm({ ...form, [name]: value });
     }
 
     function handleInputFocus(event: FocusEvent<HTMLInputElement>) {
@@ -136,7 +138,7 @@ export default function RegisterForm() {
 
       const { name } = event.target;
 
-      return inputRef.current[ name as keyof InputRef ]?.classList.add("input-field--active");
+      return inputRef.current[name as keyof InputRef]?.classList.add("input-field--active");
     }
 
     function handleInputBlur(event: FocusEvent<HTMLInputElement>) {
@@ -144,7 +146,7 @@ export default function RegisterForm() {
 
       const { name } = event.target;
 
-      return inputRef.current[ name as keyof InputRef ]?.classList.remove("input-field--active");
+      return inputRef.current[name as keyof InputRef]?.classList.remove("input-field--active");
     }
 
     function handleNextBtnClick(event: MouseEvent<HTMLAnchorElement>) {
@@ -164,7 +166,7 @@ export default function RegisterForm() {
           progress: undefined,
         });
         setDisplayError(newDisplayErrorState);
-      };
+      }
       if (!event.defaultPrevented) {
         return setData({
           ...data,
@@ -239,7 +241,7 @@ export default function RegisterForm() {
     }
 
     function parseHref() {
-      const [ slug, search, extra ] = form.groups;
+      const [slug, search, extra] = form.groups;
 
       const extraSearchParam = extra?.value ? "-" + extra?.value : "";
       const searchParams = search?.value ? search?.value + extraSearchParam : "";

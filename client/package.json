@@ -5,9 +5,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "lint": "next lint",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
     "format": "prettier --write \"src/**/*.{ts,tsx,.d.ts,md,scss}\""
   },
   "dependencies": {

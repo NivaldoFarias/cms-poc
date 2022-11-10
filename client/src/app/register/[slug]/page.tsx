@@ -40,10 +40,10 @@ import { toast, ToastContainer } from "react-toastify";
 export default function Page({ params, searchParams: { groups_left } }: Props) {
   const slug = __parseSlug(params);
 
-  const [ displayError, setDisplayError ] = useState<DisplayError>(initial.displayError[ slug ]);
-  const [ form, setForm ] = useState<Forms>(initial.form[ slug ]);
+  const [displayError, setDisplayError] = useState<DisplayError>(initial.displayError[slug]);
+  const [form, setForm] = useState<Forms>(initial.form[slug]);
   const inputRef: ComponentInputRef = useRef<InputRef>(
-    initial.inputRef[ slug ],
+    initial.inputRef[slug],
   ) as unknown as ComponentInputRef;
 
   const { data, setData } = useContext(DataContext);
@@ -77,12 +77,12 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
     return (
       <>
         <p className={styles.title_card}>
-          Cadastro de Usuário - <span>{initial.groups[ slug ]}</span>
+          Cadastro de Usuário - <span>{initial.groups[slug]}</span>
         </p>
         <div className={formStyles.form_group}>
           <h3 className={formStyles.header_section}>cire sua conta</h3>
           <div className={formStyles.input_group}>
-            {components[ slug ].map((component, index) => {
+            {components[slug].map((component, index) => {
               return component.isSelect ? (
                 <MultiSelect
                   key={index}
@@ -91,7 +91,7 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
                   handleChangeSelection={handleChangeSelection}
                   options={(component as SelectComponent).options}
                   displayError={
-                    displayError[ (component as SelectComponent).key as keyof DisplayError ]
+                    displayError[(component as SelectComponent).key as keyof DisplayError]
                   }
                 />
               ) : (
@@ -104,7 +104,7 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
                   type={(component as InputComponent).type}
                   label={(component as InputComponent).label}
                   displayError={
-                    displayError[ (component as InputComponent).name as keyof DisplayError ]
+                    displayError[(component as InputComponent).name as keyof DisplayError]
                   }
                   handleInputBlur={handleInputBlur}
                   handleInputFocus={handleInputFocus}
@@ -138,7 +138,7 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
       const { name, value } = event.target;
 
-      setForm({ ...form, [ name ]: value });
+      setForm({ ...form, [name]: value });
     }
 
     function handleInputFocus(event: FocusEvent<HTMLInputElement>) {
@@ -146,7 +146,7 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
 
       const { name } = event.target;
 
-      return inputRef.current[ name as keyof InputRef ]?.classList.add("input-field--active");
+      return inputRef.current[name as keyof InputRef]?.classList.add("input-field--active");
     }
 
     function handleInputBlur(event: FocusEvent<HTMLInputElement>) {
@@ -154,7 +154,7 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
 
       const { name } = event.target;
 
-      return inputRef.current[ name as keyof InputRef ]?.classList.remove("input-field--active");
+      return inputRef.current[name as keyof InputRef]?.classList.remove("input-field--active");
     }
 
     function handleChangeSelection(newValue: MultiValue<unknown>, actionMeta: ActionMeta<unknown>) {
@@ -195,9 +195,9 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
     }
 
     function parseHref() {
-      const slug = groups_left.includes("-") ? groups_left.split("-")[ 0 ] : groups_left;
+      const slug = groups_left.includes("-") ? groups_left.split("-")[0] : groups_left;
       const searchParams = groups_left.includes("-")
-        ? `?groups_left=${groups_left.split("-")[ 1 ]}`
+        ? `?groups_left=${groups_left.split("-")[1]}`
         : ``;
 
       return `/register/${slug}${searchParams}`;
@@ -231,7 +231,7 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
         ...data,
         groups: {
           ...data.groups,
-          [ slug ]: form,
+          [slug]: form,
         },
       });
     }
@@ -291,6 +291,7 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
     const body = slug === "provisions" ? __normalizeProvisionsValue() : __normalizeDefaultValue();
 
     try {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       await useRegister(body);
       return router.push("/");
     } catch (error: unknown) {
@@ -306,7 +307,7 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
         ...data,
         groups: {
           ...data.groups,
-          [ slug ]: form,
+          [slug]: form,
           provisions: {
             type: (
               data.groups.provisions as unknown as { provisions: ProvisionsForms }
@@ -336,8 +337,8 @@ export default function Page({ params, searchParams: { groups_left } }: Props) {
   }
 }
 
-function __parseSlug(params: { slug: "supplier" | "provisions" | "cook" }) {
+function __parseSlug(params: { slug: keyof InitialState }) {
   return params.slug.includes("-")
-    ? (params.slug.split("-")[ 0 ] as keyof InitialState)
+    ? (params.slug.split("-")[0] as keyof InitialState)
     : params.slug;
 }

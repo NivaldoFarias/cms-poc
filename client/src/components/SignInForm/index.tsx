@@ -25,11 +25,11 @@ export interface SignInForm {
 }
 
 export default function SignInForm() {
-  const [ displayError, setDisplayError ] = useState<Fields<boolean>>({
+  const [displayError, setDisplayError] = useState<Fields<boolean>>({
     email: false,
     password: false,
   });
-  const [ form, setForm ] = useState<SignInForm>({
+  const [form, setForm] = useState<SignInForm>({
     email: "",
     password: "",
   });
@@ -115,7 +115,7 @@ export default function SignInForm() {
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
       const { name, value } = event.target;
 
-      setForm({ ...form, [ name ]: value });
+      setForm({ ...form, [name]: value });
     }
 
     function handleInputFocus(event: FocusEvent<HTMLInputElement>) {
@@ -123,7 +123,7 @@ export default function SignInForm() {
 
       const { name } = event.target;
 
-      return inputRef.current[ name as keyof InputRef ]?.classList.add("input-field--active");
+      return inputRef.current[name as keyof InputRef]?.classList.add("input-field--active");
     }
 
     function handleInputBlur(event: FocusEvent<HTMLInputElement>) {
@@ -131,11 +131,11 @@ export default function SignInForm() {
 
       const { name } = event.target;
 
-      return inputRef.current[ name as keyof InputRef ]?.classList.remove("input-field--active");
+      return inputRef.current[name as keyof InputRef]?.classList.remove("input-field--active");
     }
 
     function handleNextBtnClick(event: MouseEvent<HTMLAnchorElement>) {
-      const { email, password, } = form;
+      const { email, password } = form;
       const newDisplayErrorState = { ...displayError };
 
       __emailError();
@@ -184,6 +184,7 @@ export default function SignInForm() {
     event.preventDefault();
 
     try {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       const token = await useSignIn(form);
       if (!token) return null;
 
