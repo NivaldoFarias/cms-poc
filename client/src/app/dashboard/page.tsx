@@ -1,3 +1,5 @@
+"use client";
+
 import { toast, ToastContainer } from "react-toastify";
 import { useEffect } from "react";
 
