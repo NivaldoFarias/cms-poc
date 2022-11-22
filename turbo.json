@@ -1,0 +1,41 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^@cms/client#build", "^@cms/server#build"]
+    },
+    "@cms/client#build": {
+      "env": ["NEXT_APP_API_URL"],
+      "outputs": ["dist/**", ".next/**"]
+    },
+    "@cms/server#build": {
+      "env": [
+        "PORT",
+        "DATABASE_URL",
+        "JWT_SECRET",
+        "JWT_SUBJECT",
+        "JWT_ALGORITHM",
+        "JWT_EXPIRES_IN",
+        "SALT_ROUNDS"
+      ],
+      "outputs": ["dist/**"]
+    },
+    "lint": {
+      "dependsOn": ["^@cms/client#lint", "^@cms/server#lint"]
+    },
+    "@cms/client#lint": {
+      "env": ["NEXT_APP_API_URL"]
+    },
+    "@cms/server#lint": {
+      "env": [
+        "PORT",
+        "DATABASE_URL",
+        "JWT_SECRET",
+        "JWT_SUBJECT",
+        "JWT_ALGORITHM",
+        "JWT_EXPIRES_IN",
+        "SALT_ROUNDS"
+      ]
+    }
+  }
+}

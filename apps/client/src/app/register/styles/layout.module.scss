@@ -1,0 +1,67 @@
+@import "./../../../styles/index";
+
+.wrapper {
+  @include flexbox(row, center, center, 55px);
+
+  height: 100vh;
+  width: 100vw;
+}
+
+.page {
+  @include flexbox(column, center, flex-start, 20px);
+
+  max-height: 750px;
+  height: 100%;
+  width: fit-content;
+}
+
+.sidebar {
+  @include flexbox(column, initial, flex-start, 40px);
+
+  max-height: 550px;
+  height: fit-content;
+  width: 680px;
+
+  .description {
+    @include flexbox(column, initial, flex-start, 20px);
+
+    .navlink {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: $primary;
+    }
+
+    .title {
+      font-size: 3.2rem;
+      font-weight: 800;
+      color: white;
+    }
+
+    .content {
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: white;
+    }
+
+    .return_navigation {
+      @include flexbox(row, initial, center, 15px);
+
+      font-size: 1rem;
+      font-weight: 400;
+
+      .svg_icon {
+        width: 20px;
+        height: 20px;
+        fill: $primary !important;
+      }
+
+      > * {
+        color: $primary;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

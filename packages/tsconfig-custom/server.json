@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Server",
+  "extends": "./index.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs"
+  }
+}

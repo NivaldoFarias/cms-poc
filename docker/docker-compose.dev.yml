@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   mongodb:
     image: mongo:6.0
@@ -7,31 +7,31 @@ services:
     ports:
       - 27027:27017
     volumes:
-      - mongodb_database_dev:/data/db
+      - mongodb:/data/db
     env_file:
-      - ./../server/.env.dev
+      - ./../apps/server/.env.dev
 
   server:
     container_name: cms-server_dev
     image: cms/server_dev
     build:
-      context: ./../server
+      context: ./../apps/server
       dockerfile: ./docker/Dockerfile
     ports:
       - 5050:5000
     depends_on:
       - mongodb
     env_file:
-      - ./../server/.env.dev
+      - ./../apps/server/.env.dev
 
   client:
     container_name: cms-client_dev
     image: cms/client_dev
     build:
-      context: ./../client
+      context: ./../apps/client
       dockerfile: ./docker/Dockerfile
     env_file:
-      - ./../client/.env.dev
+      - ./../apps/client/.env.dev
     volumes:
       - nextjs_build:/var/www/html
 
@@ -48,5 +48,5 @@ services:
       - nextjs_build:/var/www/html
 
 volumes:
-  mongodb_database_dev:
+  mongodb:
   nextjs_build_dev:

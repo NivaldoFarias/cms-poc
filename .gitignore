@@ -1,2 +1,50 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
 node_modules
-.husky/_
+
+# Git hooks
+.husky/**
+
+# TypeScript cache and output files
+*.tsbuildinfo
+.output
+build
+dist
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# dotenv environment variable files
+**.env**
+!.env.example
+
+# Temp and cache directory
+.temp
+.cache
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode
+.vscode-test
+
+# Wakatime
+.wakatime**
+
+# Local template files
+**.template.**
+
+# Turbo
+.turbo
+
+# Vercel & Next.js
+.next/**
+.vercel
+
+# testing
+coverage/**

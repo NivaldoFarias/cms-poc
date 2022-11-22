@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Client",
+  "extends": "./index.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "jsx": "preserve",
+    "module": "esnext",
+    "target": "ES2022",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "skipLibCheck": true
+  }
+}

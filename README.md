@@ -24,7 +24,7 @@
   <img src="https://img.shields.io/badge/JWT-323330?style=for-the-badge&logo=json-web-tokens&logoColor=pink" height="30px"/>
   <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" height="30px"/>
   <img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" height="30px"/>  
-  <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" height="30px"/>  
+  <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" height="30px"/>
 
   <!-- Badges source: https://dev.to/envoy_/150-badges-for-github-pnk -->
 </div>
@@ -42,14 +42,12 @@
 # Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Installation and Usage](#installation-and-usage)
-          - [Pre-requisites](#pre-requisites-nodejs-18120-git-2330)
+- [Installation and Usage](#installation-and-usage) - [Pre-requisites](#pre-requisites-nodejs-18120-git-2330)
 - [Client and Server](#client-and-server)
-- [Running inside Docker](#running-inside-docker)
-          - [Pre-requisites](#pre-requisites-docker-201017-docker-compose-1292)
-    - [Stopping the containers](#stopping-the-containers)
-    - [Clean Up](#clean-up)
-    - [Run Server Only](#run-server-only)
+- [Running inside Docker](#running-inside-docker) - [Pre-requisites](#pre-requisites-docker-201017-docker-compose-1292)
+  - [Stopping the containers](#stopping-the-containers)
+  - [Clean Up](#clean-up)
+  - [Run Server Only](#run-server-only)
 
 # Installation and Usage
 
@@ -83,6 +81,7 @@ The client and server are separated into two different folders, each containing 
 - [Server](https://github.com/NivaldoFarias/customer-management/tree/main/server) `Node.js` `TypeScript` `Express` `MongoDB` `Mongoose` `JWT`
 
 # Running inside Docker
+
 ###### Pre-requisites: Docker `^20.10.17`, Docker Compose `^1.29.2`
 
 With the pre-requisites installed and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/customer-management#installation-and-usage))_, populate your local `.env` or `.env.dev` file with the variables specified in the `.env.example` file.

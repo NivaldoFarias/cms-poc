@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: cms-mongodb
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+    env_file:
+      - ./../.env
+
+  server:
+    container_name: cms-server
+    image: cms/server
+    build:
+      context: ./../
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - 5000:5000
+    depends_on:
+      - mongodb
+    env_file:
+      - ./../.env
+
+volumes:
+  mongodb:

@@ -1,0 +1,19 @@
+module.exports = {
+  extends: [
+    "turbo",
+    "prettier",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended",
+  ],
+  plugins: ["@typescript-eslint", "prettier"],
+  rules: {
+    "no-console": ["error", { allow: ["warn", "error"] }],
+    "no-useless-constructor": "warn",
+    "no-empty-function": "error",
+    "prettier/prettier": "off",
+    "no-unused-vars": "off",
+    "comma-dangle": "off",
+    "no-var": "error",
+    strict: "warn",
+  },
+};
