@@ -3,7 +3,7 @@
 <br />
 
 <div align="center">
-  <a href="https://github.com/NivaldoFarias/customer-management/tree/main/server">
+  <a href="https://github.com/NivaldoFarias/customer-management-system/tree/main/apps/server">
     <img src="../assets/logo.png" alt="Logo" width="100">
   </a>
 
@@ -12,9 +12,9 @@
     <h6>WIP</h6>
     Customer Relationship Management System - Full Stack PoC 
     <br />
-    <a href="https://github.com/NivaldoFarias/customer-management/tree/main/server"><strong>Browse Back End code»</strong></a>
+    <a href="https://github.com/NivaldoFarias/customer-management-system/tree/main/apps/server"><strong>Browse Back End code»</strong></a>
     -
-    <a href="https://github.com/NivaldoFarias/customer-management/tree/main/client"><strong>Browse Front End code»</strong></a>
+    <a href="https://github.com/NivaldoFarias/customer-management-system/tree/main/apps/client"><strong>Browse Front End code»</strong></a>
   </div>
 </div>
 
@@ -32,7 +32,7 @@
 <br />
 
 <div align="center">
-  <a href="https://github.com/NivaldoFarias/customer-management" alt="MIT license badge">
+  <a href="https://github.com/NivaldoFarias/customer-management-system" alt="MIT license badge">
     <img src="https://img.shields.io/badge/license-MIT-%23A8D1FF?style=flat-square" />
   </a>
 </div>
@@ -61,7 +61,7 @@
 
 # Running the Server
 
-With the respective pre-requisites installed and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/customer-management#installation-and-usage))_, populate your local `.env` or `.env.dev` file with the variables specified in the `.env.example` file, and run the commands below.
+With the respective pre-requisites installed and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/customer-management-system#installation-and-usage))_, populate your local `.env` or `.env.dev` file with the variables specified in the `.env.example` file, and run the commands below.
 
 ## Locally
 
@@ -190,7 +190,7 @@ The `useMiddleware()` function takes two parameters:
   - `token`: A boolean indicating whether the token provided by the client will be verified or not. If the token is not valid, an **`AppError`** Object will be thrown.
 - `endpoint`: A string that will be used to identify the endpoint at which the _client–api_ interaction is undergoing, which will be logged to console by the **`AppLog`** Object.
 
-###### Reference: [useMiddleware function declaration](https://github.com/NivaldoFarias/typescript-project-template/blob/main/src/utils/middleware.util.ts)
+###### Reference: [useMiddleware function declaration](https://github.com/NivaldoFarias/typescript-project-template/blob/main/apps/src/utils/middleware.util.ts)
 
 ##### Example Usage
 
