@@ -1,13 +1,13 @@
 {
   "name": "tsconfig-custom",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "license": "MIT",
-  "main": "index.json",
+  "main": "tsconfig.json",
   "files": [
-    "index.json",
-    "client.json",
-    "server.json"
+    "tsconfig.json",
+    "client/tsconfig.json",
+    "server/tsconfig.json"
   ],
   "devDependencies": {
     "typescript": "^4.7.4",
