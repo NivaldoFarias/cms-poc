@@ -19,12 +19,15 @@
 </div>
 
 <div align="center">
-  <h3>Built With</h3>
-  <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" height="30px"/>  
-  <img src="https://img.shields.io/badge/JWT-323330?style=for-the-badge&logo=json-web-tokens&logoColor=pink" height="30px"/>
+  <h3>Built and Managed With</h3>
+
+  <img src="https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white" height="30px"/>
+  <img src="https://img.shields.io/badge/Stylelint-black?style=for-the-badge&logo=stylelint&logoColor=white" height="30px"/>
+  <img src="https://img.shields.io/badge/commitlint-black?style=for-the-badge&logo=commitlint&logoColor=0096FF&logoWidth=30" height="30px"/>
+  <img src="https://img.shields.io/badge/Turborepo-151225?style=for-the-badge&logo=turborepo&logoColor=white" height="30px"/>
+  <img src="https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white" height="30px"/>
   <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" height="30px"/>
-  <img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" height="30px"/>  
-  <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" height="30px"/>
+  <img src="https://img.shields.io/badge/Docker-0096FF?style=for-the-badge&logo=docker&logoColor=white" height="30px"/>  
 
   <!-- Badges source: https://dev.to/envoy_/150-badges-for-github-pnk -->
 </div>
