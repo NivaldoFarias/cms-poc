@@ -3,7 +3,7 @@
 <br />
 
 <div align="center">
-  <a href="https://github.com/NivaldoFarias/customer-management/tree/main/server">
+  <a href="https://github.com/NivaldoFarias/customer-management-system/tree/main/server">
     <img src="assets/logo.png" alt="Logo" width="100">
   </a>
 
@@ -12,9 +12,9 @@
     <h6>WIP</h6>
     Full Stack Software Development PoC 
     <br />
-    <a href="https://github.com/NivaldoFarias/customer-management/tree/main/server"><strong>Browse Back End code»</strong></a>
+    <a href="https://github.com/NivaldoFarias/customer-management-system/tree/main/apps/server"><strong>Browse Back End code»</strong></a>
     -
-    <a href="https://github.com/NivaldoFarias/customer-management/tree/main/client"><strong>Browse Front End code»</strong></a>
+    <a href="https://github.com/NivaldoFarias/customer-management-system/tree/main/apps/client"><strong>Browse Front End code»</strong></a>
   </div>
 </div>
 
@@ -32,7 +32,7 @@
 <br />
 
 <div align="center">
-  <a href="https://github.com/NivaldoFarias/customer-management" alt="MIT license badge">
+  <a href="https://github.com/NivaldoFarias/customer-management-system" alt="MIT license badge">
     <img src="https://img.shields.io/badge/license-MIT-%23A8D1FF?style=flat-square" />
   </a>
 </div>
@@ -56,7 +56,7 @@
 Download the zip file and extract it in the root of a new project folder by running these commands:
 
 ```bash
-wget https://github.com/NivaldoFarias/customer-management/archive/main.zip
+wget https://github.com/NivaldoFarias/customer-management-system/archive/main.zip
 ```
 
 Then run the following command to install the project's dependencies:
@@ -84,7 +84,7 @@ The client and server are separated into two different folders, each containing 
 
 ###### Pre-requisites: Docker `^20.10.17`, Docker Compose `^1.29.2`
 
-With the pre-requisites installed and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/customer-management#installation-and-usage))_, populate your local `.env` or `.env.dev` file with the variables specified in the `.env.example` file.
+With the pre-requisites installed and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/customer-management-system#installation-and-usage))_, populate your local `.env` or `.env.dev` file with the variables specified in the `.env.example` file.
 
 Then run the following command to start the containers:
 
