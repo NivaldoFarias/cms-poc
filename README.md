@@ -10,7 +10,7 @@
   <h3 align="center">Customer Management System</h3>
   <div align="center">
     <h6>WIP</h6>
-    Full Stack Software Development PoC 
+    Customer Management System PoC & Full Stack Software Engineering Playground 
     <br />
     <a href="https://github.com/NivaldoFarias/customer-management-system/tree/main/apps/server"><strong>Browse Back End code»</strong></a>
     -
