@@ -3,18 +3,18 @@
 <br />
 
 <div align="center">
-  <a href="https://github.com/NivaldoFarias/customer-management-system">
+  <a href="https://github.com/NivaldoFarias/content-management-system">
     <img src="../assets/logo.png" alt="Logo" width="100">
   </a>
 
-  <h3 align="center">Customer Management System - Client Side</h3>
+  <h3 align="center">Content Management System - Client Side</h3>
   <div align="center">
   <h6>WIP</h6>
-    Customer Relationship Management System - Full Stack PoC
+    Content Relationship Management System - Full Stack PoC
     <br />
-    <a href="https://github.com/NivaldoFarias/customer-management-system/tree/main/apps/server"><strong>Browse Back End code»</strong></a>
+    <a href="https://github.com/NivaldoFarias/content-management-system/tree/main/apps/server"><strong>Browse Back End code»</strong></a>
     -
-    <a href="https://github.com/NivaldoFarias/customer-management-system"><strong>Return to Homepage</strong></a>
+    <a href="https://github.com/NivaldoFarias/content-management-system"><strong>Return to Homepage</strong></a>
   </div>
 </div>
 
@@ -32,7 +32,7 @@
 <br />
 
 <div align="center">
-  <a href="https://github.com/NivaldoFarias/customer-management-system" alt="MIT license badge">
+  <a href="https://github.com/NivaldoFarias/content-management-system" alt="MIT license badge">
     <img src="https://img.shields.io/badge/license-MIT-%23A8D1FF?style=flat-square" />
   </a>
 </div>
@@ -43,7 +43,7 @@
 
 ###### Pre-requisites: Node.js `^18.12.0`, Git `^2.33.0`
 
-With the pre-requisites installed and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/customer-management-system#installation-and-usage))_, populate your local `.env` file with the variables specified in the `.env.example` file, and run the commands below.
+With the pre-requisites installed and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/content-management-system#installation-and-usage))_, populate your local `.env` file with the variables specified in the `.env.example` file, and run the commands below.
 
 ```bash
 # Install dependencies

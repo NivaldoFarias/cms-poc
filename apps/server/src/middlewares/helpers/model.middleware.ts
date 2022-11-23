@@ -8,7 +8,7 @@ import AppLog from "../../events/AppLog";
 export async function validateModel(
   model: APIModelsKeys,
   body: Record<string, unknown>,
-  user_id?: string,
+  user_id?: string
 ) {
   let document = undefined;
 

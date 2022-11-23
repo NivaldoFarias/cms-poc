@@ -13,7 +13,7 @@ provisionsRouter.get(
     middlewares: { token: true, query: "Provisions" },
     endpoint: endpoint + searchAllEndpoint,
   }),
-  controller.searchAll,
+  controller.searchAll
 );
 
 const searchByIdEndpoint = "/search/:id";
@@ -23,7 +23,7 @@ provisionsRouter.get(
     middlewares: { token: true, param: "Provisions" },
     endpoint: endpoint + searchByIdEndpoint,
   }),
-  controller.searchById,
+  controller.searchById
 );
 
 const deleteOneEndpoint = "/delete/:id";
@@ -36,7 +36,7 @@ provisionsRouter.delete(
     },
     endpoint: endpoint + deleteOneEndpoint,
   }),
-  controller.deleteOne,
+  controller.deleteOne
 );
 
 export default provisionsRouter;

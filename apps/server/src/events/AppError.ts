@@ -9,7 +9,7 @@ export default function ExceptionHandler(
   _req: Request,
   res: Response,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _next: NextFunction,
+  _next: NextFunction
 ) {
   if (!(error instanceof AppError)) {
     if (error.hasOwnProperty("code")) {

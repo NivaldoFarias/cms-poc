@@ -16,7 +16,7 @@ export default class AppError {
       statusCode: 500,
       message: "Internal server error",
       detail: {},
-    },
+    }
   ) {
     this.properties = properties;
     this.properties.log = properties.log ?? properties.message;

@@ -3,18 +3,18 @@
 <br />
 
 <div align="center">
-  <a href="https://github.com/NivaldoFarias/customer-management-system/tree/main/apps/server">
+  <a href="https://github.com/NivaldoFarias/content-management-system/tree/main/apps/server">
     <img src="../assets/logo.png" alt="Logo" width="100">
   </a>
 
-  <h3 align="center">Customer Management System - Server Side</h3>
+  <h3 align="center">Content Management System - Server Side</h3>
   <div align="center">
     <h6>WIP</h6>
-    Customer Relationship Management System - Full Stack PoC 
+    Content Relationship Management System - Full Stack PoC 
     <br />
-    <a href="https://github.com/NivaldoFarias/customer-management-system/tree/main/apps/server"><strong>Browse Back End code»</strong></a>
+    <a href="https://github.com/NivaldoFarias/content-management-system/tree/main/apps/server"><strong>Browse Back End code»</strong></a>
     -
-    <a href="https://github.com/NivaldoFarias/customer-management-system/tree/main/apps/client"><strong>Browse Front End code»</strong></a>
+    <a href="https://github.com/NivaldoFarias/content-management-system/tree/main/apps/client"><strong>Browse Front End code»</strong></a>
   </div>
 </div>
 
@@ -32,7 +32,7 @@
 <br />
 
 <div align="center">
-  <a href="https://github.com/NivaldoFarias/customer-management-system" alt="MIT license badge">
+  <a href="https://github.com/NivaldoFarias/content-management-system" alt="MIT license badge">
     <img src="https://img.shields.io/badge/license-MIT-%23A8D1FF?style=flat-square" />
   </a>
 </div>
@@ -61,7 +61,7 @@
 
 # Running the Server
 
-With the respective pre-requisites installed and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/customer-management-system#installation-and-usage))_, populate your local `.env` or `.env.dev` file with the variables specified in the `.env.example` file, and run the commands below.
+With the respective pre-requisites installed and the repository cloned or downloaded _(see [Installation and Usage](https://github.com/NivaldoFarias/content-management-system#installation-and-usage))_, populate your local `.env` or `.env.dev` file with the variables specified in the `.env.example` file, and run the commands below.
 
 ## Locally
 

@@ -6,7 +6,7 @@ import * as error from "./helpers/errors.middleware";
 export async function updateOrDeleteOneValidations(
   _req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) {
   const user_id = res.locals.user_id;
   const user = res.locals.result;
@@ -18,7 +18,7 @@ export async function updateOrDeleteOneValidations(
 
 function providedTokenMatchesUser(
   user_id: string,
-  user: NonNullable<UserDocument>,
+  user: NonNullable<UserDocument>
 ) {
   if (user_id !== user._id.toString()) error.ForbiddenToken();
 }

@@ -15,7 +15,7 @@ export default function AppLog({ type, text }: AppLogType) {
   /* eslint-disable no-console */
   return console.log(
     chalk.bold[typesHash[type] as ChalkColors](
-      `[${type.toUpperCase()}] ${text}`,
-    ),
+      `[${type.toUpperCase()}] ${text}`
+    )
   );
 }

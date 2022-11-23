@@ -13,7 +13,7 @@ cooksRouter.get(
     middlewares: { token: true, query: "Cook" },
     endpoint: endpoint + searchAllEndpoint,
   }),
-  controller.searchAll,
+  controller.searchAll
 );
 
 const searchByIdEndpoint = "/search/:id";
@@ -23,7 +23,7 @@ cooksRouter.get(
     middlewares: { token: true, param: "Cook" },
     endpoint: endpoint + searchByIdEndpoint,
   }),
-  controller.searchById,
+  controller.searchById
 );
 
 const deleteOneEndpoint = "/delete/:id";
@@ -36,7 +36,7 @@ cooksRouter.delete(
     },
     endpoint: endpoint + deleteOneEndpoint,
   }),
-  controller.deleteOne,
+  controller.deleteOne
 );
 
 export default cooksRouter;

@@ -12,7 +12,7 @@ import { ExpiredSession, notFoundToken } from "./helpers/errors.middleware";
 export async function signInValidations(
   _req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) {
   const { email, password }: SignInBody = res.locals.body;
 
@@ -32,7 +32,7 @@ export async function signInValidations(
 export async function signOutValidations(
   _req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) {
   const token: string = res.locals.token;
 

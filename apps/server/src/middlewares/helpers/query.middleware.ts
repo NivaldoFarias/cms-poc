@@ -48,7 +48,7 @@ function __validateParameter({ key, value, model }: ValidateParameters) {
           statusCode: 400,
           message: "Invalid query parameter",
           detail: `The parameter 'sort' must be one of: ${allowedSorts.join(
-            ", ",
+            ", "
           )}`,
         });
       }
@@ -63,7 +63,7 @@ function __validateParameter({ key, value, model }: ValidateParameters) {
           statusCode: 400,
           message: "Invalid query parameter",
           detail: `The parameter 'sort_by' must be one of: ${allowedFields.join(
-            ", ",
+            ", "
           )}`,
         });
       }

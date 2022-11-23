@@ -13,7 +13,7 @@ suppliersRouter.get(
     middlewares: { token: true, query: "Supplier" },
     endpoint: endpoint + searchAllEndpoint,
   }),
-  controller.searchAll,
+  controller.searchAll
 );
 
 const searchByIdEndpoint = "/search/:id";
@@ -23,7 +23,7 @@ suppliersRouter.get(
     middlewares: { token: true, param: "Supplier" },
     endpoint: endpoint + searchByIdEndpoint,
   }),
-  controller.searchById,
+  controller.searchById
 );
 
 const deleteOneEndpoint = "/delete/:id";
@@ -36,7 +36,7 @@ suppliersRouter.delete(
     },
     endpoint: endpoint + deleteOneEndpoint,
   }),
-  controller.deleteOne,
+  controller.deleteOne
 );
 
 export default suppliersRouter;

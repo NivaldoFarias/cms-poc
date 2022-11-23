@@ -34,6 +34,6 @@ export default class AppError {
     log: string,
     statusCode: number,
     message: string,
-    detail: string | Record<string, unknown> | string[],
+    detail: string | Record<string, unknown> | string[]
   );
 }

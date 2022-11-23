@@ -1,7 +1,7 @@
 {
   "name": "@cms/server",
   "version": "1.2.0",
-  "description": "Customer Management System - Server Side",
+  "description": "Content Management System - Server Side",
   "private": true,
   "main": "dist/server.js",
   "type": "commonjs",

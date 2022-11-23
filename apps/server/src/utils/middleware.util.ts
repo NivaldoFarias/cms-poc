@@ -97,7 +97,7 @@ export default function useMiddleware({
       return (middlewares?.param || middlewares?.search) && globals.id
         ? validateParameters(
             globals.id as string,
-            (globals.param as APIModelsKeys) ?? "",
+            (globals.param as APIModelsKeys) ?? ""
           )
         : __resolve();
     }
@@ -113,7 +113,7 @@ export default function useMiddleware({
         ? validateModel(
             globals.model as APIModelsKeys,
             globals.body as Record<string, unknown>,
-            user_id,
+            user_id
           )
         : __resolve();
     }

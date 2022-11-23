@@ -62,7 +62,7 @@ function determineError(errors: {
         if (properties) {
           detail.push(
             // @ts-ignore
-            `Field '${path}' must be at least ${properties.minlength} characters in length`,
+            `Field '${path}' must be at least ${properties.minlength} characters in length`
           );
           break;
         }
@@ -76,7 +76,7 @@ function determineError(errors: {
         if (properties) {
           detail.push(
             // @ts-ignore
-            `Field '${path}' cannot exceed ${properties.maxlength} characters in length`,
+            `Field '${path}' cannot exceed ${properties.maxlength} characters in length`
           );
           break;
         }
@@ -89,7 +89,7 @@ function determineError(errors: {
         if (properties) {
           detail.push(
             // @ts-ignore
-            `${path} must be one of \`${properties.enumValues.join("`, `")}\``,
+            `${path} must be one of \`${properties.enumValues.join("`, `")}\``
           );
           break;
         }
@@ -102,7 +102,7 @@ function determineError(errors: {
         if (properties) {
           detail.push(
             // @ts-ignore
-            `Field \`${path}\` must match the provided regex \`${properties.regexp}\``,
+            `Field \`${path}\` must match the provided regex \`${properties.regexp}\``
           );
           break;
         }
@@ -145,6 +145,6 @@ function determineError(errors: {
           statusCode: 422,
           message: "Invalid Request Input",
           detail,
-        },
+        }
   );
 }

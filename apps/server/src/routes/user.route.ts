@@ -14,7 +14,7 @@ usersRouter.post(
     middlewares: { model: "User" },
     endpoint: endpoint + createEndpoint,
   }),
-  controller.create,
+  controller.create
 );
 
 const searchAllEndpoint = "/search";
@@ -24,7 +24,7 @@ usersRouter.get(
     middlewares: { token: true, query: "User" },
     endpoint: endpoint + searchAllEndpoint,
   }),
-  controller.searchAll,
+  controller.searchAll
 );
 
 const searchByIdEndpoint = "/search/:id";
@@ -34,7 +34,7 @@ usersRouter.get(
     middlewares: { token: true, param: "User" },
     endpoint: endpoint + searchByIdEndpoint,
   }),
-  controller.searchById,
+  controller.searchById
 );
 
 const deleteOneEndpoint = "/delete/:id";
@@ -48,7 +48,7 @@ usersRouter.delete(
     endpoint: endpoint + deleteOneEndpoint,
   }),
   middleware.updateOrDeleteOneValidations,
-  controller.deleteOne,
+  controller.deleteOne
 );
 
 export default usersRouter;

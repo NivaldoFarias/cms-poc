@@ -25,5 +25,5 @@ export type MiddlewareGlobals = {
 export type MiddlewarePromises = [
   string?,
   MongoDocument<APIModelsTypes>?,
-  unknown?,
+  unknown?
 ];

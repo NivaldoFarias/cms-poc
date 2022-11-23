@@ -16,7 +16,7 @@ sessionRouter.use(
     endpoint: endpoint + signInEndpoint,
   }),
   middleware.signInValidations,
-  controller.signIn,
+  controller.signIn
 );
 
 const signOutEndpoint = "/sign-out";
@@ -27,7 +27,7 @@ sessionRouter.use(
     endpoint: endpoint + signOutEndpoint,
   }),
   middleware.signOutValidations,
-  controller.signOut,
+  controller.signOut
 );
 
 export default sessionRouter;

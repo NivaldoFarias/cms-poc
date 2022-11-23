@@ -1,7 +1,7 @@
 {
   "name": "@cms/client",
   "version": "1.2.0",
-  "description": "Customer Management System - Client Side",
+  "description": "Content Management System - Client Side",
   "private": true,
   "scripts": {
     "dev": "next dev",

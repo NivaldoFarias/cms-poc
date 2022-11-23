@@ -1,8 +1,8 @@
 {
-  "name": "customer-management-system",
-  "version": "1.2.2",
-  "description": "Customer Management System PoC",
-  "homepage": "https://github.com/NivaldoFarias/customer-management-system#readme",
+  "name": "content-management-system",
+  "version": "1.2.3",
+  "description": "Content Management System PoC",
+  "homepage": "https://github.com/NivaldoFarias/content-management-system#readme",
   "author": "Nivaldo Farias",
   "license": "MIT",
   "workspaces": [
@@ -17,6 +17,7 @@
     "build": "turbo run build",
     "start": "turbo run start",
     "format": "turbo run format",
+    "turbo": "turbo run format lint build",
     "docker:up": "docker-compose -f ./docker/docker-compose.yml up -d",
     "docker:down": "docker-compose -f ./docker/docker-compose.yml down",
     "docker:up:dev": "docker-compose -f ./docker/docker-compose.dev.yml up -d",
@@ -40,7 +41,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NivaldoFarias/customer-management-system.git"
+    "url": "git+https://github.com/NivaldoFarias/content-management-system.git"
   },
   "engines": {
     "node": ">=19.0.0",
@@ -63,7 +64,7 @@
     "turbo"
   ],
   "bugs": {
-    "url": "https://github.com/NivaldoFarias/customer-management-system/issues"
+    "url": "https://github.com/NivaldoFarias/content-management-system/issues"
   },
   "publishConfig": {
     "access": "public"
