@@ -1,7 +1,12 @@
 {
   "$schema": "https://json.schemastore.org/commitlintrc.json",
   "extends": ["@commitlint/config-conventional"],
-  "parserPreset": "./.commitlint/parser-preset",
+  "parserPreset": {
+    "parserOpts": {
+      "headerPattern": "^(\\w*)(?:\\[([\\w$.\\-*/ ]*)\\])?: (.*)$",
+      "headerCorrespondence": ["type", "scope", "subject"]
+    }
+  },
   "rules": {
     "scope-enum": [2, "always", ["client", "server", "packages"]],
     "type-enum": [
