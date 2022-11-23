@@ -27,7 +27,7 @@
   <img src="https://img.shields.io/badge/Turborepo-151225?style=for-the-badge&logo=turborepo&logoColor=white" height="30px"/>
   <img src="https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white" height="30px"/>
   <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" height="30px"/>
-  <img src="https://img.shields.io/badge/Docker-0096FF?style=for-the-badge&logo=docker&logoColor=white" height="30px"/>  
+  <img src="https://img.shields.io/badge/Docker-0096FF?style=for-the-badge&logo=docker&logoColor=white" height="30px"/>
 
   <!-- Badges source: https://dev.to/envoy_/150-badges-for-github-pnk -->
 </div>
