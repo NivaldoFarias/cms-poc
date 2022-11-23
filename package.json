@@ -25,7 +25,6 @@
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
-    "commitlint": "^17.3.0",
     "concurrently": "^7.6.0",
     "eslint-config-custom": "*",
     "eslint-config-turbo": "^0.0.4",

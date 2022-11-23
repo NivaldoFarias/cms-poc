@@ -1,3 +1,4 @@
+/* eslint-disable no-empty-function, @typescript-eslint/no-empty-function */
 "use client";
 
 import type { Cook, Provisions, Supplier } from "./register/[slug]/types";
@@ -36,7 +37,6 @@ const initialState = {
   },
 };
 
-// eslint-disable-next-line no-empty-function, @typescript-eslint/no-empty-function
 const DataContext = createContext<ContextType>({
   data: initialState,
   setData: () => {},

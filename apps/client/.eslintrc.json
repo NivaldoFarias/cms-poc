@@ -5,7 +5,7 @@
   "plugins": ["eslint-plugin-react"],
   "settings": {
     "next": {
-      "rootDir": "src/",
-    },
-  },
-};
+      "rootDir": "src/"
+    }
+  }
+}
