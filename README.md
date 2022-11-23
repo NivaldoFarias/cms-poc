@@ -3,18 +3,18 @@
 <br />
 
 <div align="center">
-  <a href="https://github.com/NivaldoFarias/customer-management-system/tree/main/server">
+  <a href="https://github.com/NivaldoFarias/content-management-system/tree/main/server">
     <img src="assets/logo.png" alt="Logo" width="100">
   </a>
 
-  <h3 align="center">Customer Management System</h3>
+  <h3 align="center">Content Management System</h3>
   <div align="center">
     <h6>WIP</h6>
-    Customer Management System PoC & Full Stack Software Engineering Playground 
+    Content Management System PoC & Full Stack Software Engineering Playground 
     <br />
-    <a href="https://github.com/NivaldoFarias/customer-management-system/tree/main/apps/server"><strong>Browse Back End code»</strong></a>
+    <a href="https://github.com/NivaldoFarias/content-management-system/tree/main/apps/server"><strong>Browse Back End code»</strong></a>
     -
-    <a href="https://github.com/NivaldoFarias/customer-management-system/tree/main/apps/client"><strong>Browse Front End code»</strong></a>
+    <a href="https://github.com/NivaldoFarias/content-management-system/tree/main/apps/client"><strong>Browse Front End code»</strong></a>
   </div>
 </div>
 
@@ -35,7 +35,7 @@
 <br />
 
 <div align="center">
-  <a href="https://github.com/NivaldoFarias/customer-management-system" alt="MIT license badge">
+  <a href="https://github.com/NivaldoFarias/content-management-system" alt="MIT license badge">
     <img src="https://img.shields.io/badge/license-MIT-%23A8D1FF?style=flat-square" />
   </a>
 </div>
@@ -59,7 +59,7 @@
 Download the zip file and extract it in the root of a new project folder by running these commands:
 
 ```bash
-wget https://github.com/NivaldoFarias/customer-management-system/archive/main.zip
+wget https://github.com/NivaldoFarias/content-management-system/archive/main.zip
 ```
 
 Then run the following command to install the project's dependencies:
