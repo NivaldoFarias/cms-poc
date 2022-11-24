@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "CMS",
+  "short_name": "Content Management Platform",
+  "description": "A Content Management System PoC",
+  "display": "standalone",
+  "start_url": ".",
+  "scope": "/",
+  "theme_color": "#00D698",
+  "background_color": "#19152E",
+  "icons": [
+    {
+      "src": "/favicon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "url": "/dashboard",
+      "description": "Dashboard of the Content Management Platform"
+    },
+    {
+      "name": "Login Page",
+      "url": "/",
+      "description": "Login Page of the Content Management Platform"
+    },
+    {
+      "name": "Register Page",
+      "url": "/register",
+      "description": "Register Page of the Content Management Platform"
+    }
+  ]
+}

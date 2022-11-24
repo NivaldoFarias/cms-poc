@@ -4,9 +4,15 @@
     "build": {
       "dependsOn": ["^@cms/client#build", "^@cms/server#build"]
     },
+    "lint": {
+      "dependsOn": ["^@cms/client#lint", "^@cms/server#lint"]
+    },
     "@cms/client#build": {
-      "env": ["NEXT_APP_API_URL"],
+      "env": ["NEXT_APP_API_URL", "NODE_ENV"],
       "outputs": ["dist/**", ".next/**"]
+    },
+    "@cms/client#lint": {
+      "env": ["NEXT_APP_API_URL", "NODE_ENV"]
     },
     "@cms/server#build": {
       "env": [
@@ -20,12 +26,6 @@
       ],
       "outputs": ["dist/**"]
     },
-    "lint": {
-      "dependsOn": ["^@cms/client#lint", "^@cms/server#lint"]
-    },
-    "@cms/client#lint": {
-      "env": ["NEXT_APP_API_URL"]
-    },
     "@cms/server#lint": {
       "env": [
         "PORT",
@@ -38,6 +38,7 @@
       ]
     },
     "format": {},
-    "start": {}
+    "start": {},
+    "dev": {}
   }
 }
