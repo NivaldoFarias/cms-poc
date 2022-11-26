@@ -9,6 +9,6 @@ const PORT = process.env.PORT || 5000;
 
 app.get("/", async (_req: Request, res: Response) => res.send("Online"));
 app.listen(PORT, async () => {
-  await connectToDatabase();
-  AppLog({ type: "Server", text: `Running on port ${PORT}` });
+	await connectToDatabase();
+	AppLog({ type: "Server", text: `Running on port ${PORT}` });
 });

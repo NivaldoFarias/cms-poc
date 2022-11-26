@@ -5,74 +5,74 @@ import AppError from "../../config/error";
 import AppLog from "../../events/AppLog";
 
 interface ValidateParameters {
-  key: string;
-  value: string | undefined;
-  model: APIModelsKeys;
+	key: string;
+	value: string | undefined;
+	model: APIModelsKeys;
 }
 
 export function parseQueries(queries: QueriesGeneric, model: APIModelsKeys) {
-  const output: QueriesGeneric = {};
+	const output: QueriesGeneric = {};
 
-  for (const [key, value] of Object.entries(queries)) {
-    const KEYS = query.KEYS as string[];
-    const invalidKeyValues = typeof value !== "string" || !KEYS.includes(key);
-    if (invalidKeyValues) continue;
+	for (const [key, value] of Object.entries(queries)) {
+		const KEYS = query.KEYS as string[];
+		const invalidKeyValues = typeof value !== "string" || !KEYS.includes(key);
+		if (invalidKeyValues) continue;
 
-    __validateParameter({ key, value, model });
-    output[key] = value;
-  }
+		__validateParameter({ key, value, model });
+		output[key] = value;
+	}
 
-  AppLog({ type: "Middleware", text: "Queries parsed" });
-  return output;
+	AppLog({ type: "Middleware", text: "Queries parsed" });
+	return output;
 }
 
 function __validateParameter({ key, value, model }: ValidateParameters) {
-  switch (key) {
-    case "limit":
-      const [maxLimit, minLimit] = query.LIMIT;
-      const limit = Number(value);
+	switch (key) {
+		case "limit":
+			const [maxLimit, minLimit] = query.LIMIT;
+			const limit = Number(value);
 
-      if (isNaN(limit) || limit > maxLimit || limit < minLimit) {
-        throw new AppError({
-          statusCode: 400,
-          message: "Invalid query parameter",
-          detail: `The parameter 'limit' must be a number between ${minLimit} and ${maxLimit}`,
-        });
-      }
-      break;
-    case "sort":
-      const allowedSorts = query.SORT;
+			if (isNaN(limit) || limit > maxLimit || limit < minLimit) {
+				throw new AppError({
+					statusCode: 400,
+					message: "Invalid query parameter",
+					detail: `The parameter 'limit' must be a number between ${minLimit} and ${maxLimit}`,
+				});
+			}
+			break;
+		case "sort":
+			const allowedSorts = query.SORT;
 
-      if (!allowedSorts.includes(value ?? "")) {
-        throw new AppError({
-          statusCode: 400,
-          message: "Invalid query parameter",
-          detail: `The parameter 'sort' must be one of: ${allowedSorts.join(
-            ", "
-          )}`,
-        });
-      }
-      break;
-    case "sort_by":
-      const MODEL = model.toUpperCase();
-      const allowedFields = query[MODEL as keyof typeof query];
-      const normalizedField = value?.toLowerCase() ?? "";
+			if (!allowedSorts.includes(value ?? "")) {
+				throw new AppError({
+					statusCode: 400,
+					message: "Invalid query parameter",
+					detail: `The parameter 'sort' must be one of: ${allowedSorts.join(
+						", ",
+					)}`,
+				});
+			}
+			break;
+		case "sort_by":
+			const MODEL = model.toUpperCase();
+			const allowedFields = query[MODEL as keyof typeof query];
+			const normalizedField = value?.toLowerCase() ?? "";
 
-      if (!allowedFields.includes(normalizedField as never)) {
-        throw new AppError({
-          statusCode: 400,
-          message: "Invalid query parameter",
-          detail: `The parameter 'sort_by' must be one of: ${allowedFields.join(
-            ", "
-          )}`,
-        });
-      }
-      break;
-    default:
-      throw new AppError({
-        statusCode: 400,
-        message: "Invalid query parameter",
-        detail: `The parameter '${key}' is not allowed`,
-      });
-  }
+			if (!allowedFields.includes(normalizedField as never)) {
+				throw new AppError({
+					statusCode: 400,
+					message: "Invalid query parameter",
+					detail: `The parameter 'sort_by' must be one of: ${allowedFields.join(
+						", ",
+					)}`,
+				});
+			}
+			break;
+		default:
+			throw new AppError({
+				statusCode: 400,
+				message: "Invalid query parameter",
+				detail: `The parameter '${key}' is not allowed`,
+			});
+	}
 }

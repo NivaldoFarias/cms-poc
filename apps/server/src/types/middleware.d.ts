@@ -1,29 +1,29 @@
 import type {
-  APIModelsKeys,
-  MongoDocument,
-  APIModelsTypes,
+    APIModelsKeys,
+    MongoDocument,
+    APIModelsTypes,
 } from "./collections";
 
 export interface UseMiddleware {
-  model?: APIModelsKeys;
-  header?: string;
-  token?: boolean;
-  query?: APIModelsKeys;
-  param?: APIModelsKeys;
-  search?: "unit_id" | "company_id";
+    model?: APIModelsKeys;
+    header?: string;
+    token?: boolean;
+    query?: APIModelsKeys;
+    param?: APIModelsKeys;
+    search?: "unit_id" | "company_id";
 }
 
 export type MiddlewareGlobals = {
-  token?: string;
-  id?: string;
-  model?: APIModelsKeys;
-  param?: APIModelsKeys;
-  header?: string;
-  body?: Record<string, unknown>;
+    token?: string;
+    id?: string;
+    model?: APIModelsKeys;
+    param?: APIModelsKeys;
+    header?: string;
+    body?: Record<string, unknown>;
 };
 
 export type MiddlewarePromises = [
-  string?,
-  MongoDocument<APIModelsTypes>?,
-  unknown?
+    string?,
+    MongoDocument<APIModelsTypes>?,
+    unknown?,
 ];

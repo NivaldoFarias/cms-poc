@@ -10,24 +10,24 @@ const endpoint = "/auth";
 
 const signInEndpoint = "/sign-in";
 sessionRouter.use(
-  signInEndpoint,
-  useMiddleware({
-    middlewares: { model: "Session" },
-    endpoint: endpoint + signInEndpoint,
-  }),
-  middleware.signInValidations,
-  controller.signIn
+	signInEndpoint,
+	useMiddleware({
+		middlewares: { model: "Session" },
+		endpoint: endpoint + signInEndpoint,
+	}),
+	middleware.signInValidations,
+	controller.signIn,
 );
 
 const signOutEndpoint = "/sign-out";
 sessionRouter.use(
-  signOutEndpoint,
-  useMiddleware({
-    middlewares: { token: true },
-    endpoint: endpoint + signOutEndpoint,
-  }),
-  middleware.signOutValidations,
-  controller.signOut
+	signOutEndpoint,
+	useMiddleware({
+		middlewares: { token: true },
+		endpoint: endpoint + signOutEndpoint,
+	}),
+	middleware.signOutValidations,
+	controller.signOut,
 );
 
 export default sessionRouter;

@@ -1,64 +1,64 @@
 import type { Document, Types, UpdateWriteOpResult } from "mongoose";
 
 export type UserType = {
-  _id?: Types.ObjectId;
-  name: string;
-  email: string;
-  password: string;
-  created_at: Date;
+    _id?: Types.ObjectId;
+    name: string;
+    email: string;
+    password: string;
+    created_at: Date;
 };
 
 export type CookType = {
-  _id?: Types.ObjectId;
-  user: Types.ObjectId;
-  cir: string;
+    _id?: Types.ObjectId;
+    user: Types.ObjectId;
+    cir: string;
 };
 
 export type CreateCook = Omit<CookType, "_id">;
 
 export type SupplierType = {
-  _id?: Types.ObjectId;
-  user: Types.ObjectId;
-  name: string;
-  cnpj: string;
+    _id?: Types.ObjectId;
+    user: Types.ObjectId;
+    name: string;
+    cnpj: string;
 };
 
 export type CreateSupplier = Omit<SupplierType, "_id">;
 
 export enum EnumProvisions {
-  "Feijão",
-  "Arroz",
-  "Macarrão",
+    "Feijão",
+    "Arroz",
+    "Macarrão",
 }
 
 export type ProvisionType = {
-  _id?: Types.ObjectId;
-  user: Types.ObjectId;
-  type: EnumProvisions[];
+    _id?: Types.ObjectId;
+    user: Types.ObjectId;
+    type: EnumProvisions[];
 };
 
 export type CreateProvision = Omit<ProvisionType, "_id">;
 
 export type SessionType = {
-  _id?: Types.ObjectId;
-  email: string;
-  token: string;
-  active: boolean;
+    _id?: Types.ObjectId;
+    email: string;
+    token: string;
+    active: boolean;
 };
 
 export type APIModelsKeys =
-  | "User"
-  | "Cook"
-  | "Supplier"
-  | "Session"
-  | "Provisions";
+    | "User"
+    | "Cook"
+    | "Supplier"
+    | "Session"
+    | "Provisions";
 
 export type APIModelsTypes =
-  | UserType
-  | CookType
-  | SessionType
-  | SupplierType
-  | ProvisionType;
+    | UserType
+    | CookType
+    | SessionType
+    | SupplierType
+    | ProvisionType;
 
 export type UserDocument = MongoDocument<UserType>;
 export type CookDocument = MongoDocument<CookType>;
@@ -67,56 +67,56 @@ export type SupplierDocument = MongoDocument<SupplierType>;
 export type ProvisionDocument = MongoDocument<ProvisionType>;
 
 export type AnyDocument =
-  | UserDocument
-  | CookDocument
-  | SessionDocument
-  | SupplierDocument
-  | ProvisionDocument;
+    | UserDocument
+    | CookDocument
+    | SessionDocument
+    | SupplierDocument
+    | ProvisionDocument;
 
 export interface QueriesGeneric {
-  [key: string]: unknown;
+    [key: string]: unknown;
 }
 
 export interface QueryParameters {
-  limit?: number;
-  sort_by?: "name" | "created_at" | "last_update";
-  sort?: string;
+    limit?: number;
+    sort_by?: "name" | "created_at" | "last_update";
+    sort?: string;
 }
 
 export type NonNullMongoDocument<T> =
-  | Document<unknown, unknown, T> &
-      T & {
-        _id: Types.ObjectId;
-      };
+    | Document<unknown, unknown, T> &
+          T & {
+              _id: Types.ObjectId;
+          };
 
 export type MongoDocument<T> =
-  | (Document<unknown, unknown, T> &
-      T & {
-        _id: Types.ObjectId;
-      })
-  | null;
+    | (Document<unknown, unknown, T> &
+          T & {
+              _id: Types.ObjectId;
+          })
+    | null;
 
 export interface UpdateResponse {
-  message: string;
-  detail?: Partial<UpdateWriteOpResult>;
+    message: string;
+    detail?: Partial<UpdateWriteOpResult>;
 }
 
 export interface FindByField {
-  field: string;
-  value: string;
-  model: APIModelsKeys;
+    field: string;
+    value: string;
+    model: APIModelsKeys;
 }
 
 export interface FindById {
-  id: string;
-  model: APIModelsKeys;
+    id: string;
+    model: APIModelsKeys;
 }
 
 export interface SearchAll {
-  queries: QueryParameters;
-  model: APIModelsKeys;
+    queries: QueryParameters;
+    model: APIModelsKeys;
 }
 
 export interface DeleteOne {
-  id: string;
+    id: string;
 }

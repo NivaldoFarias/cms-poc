@@ -4,25 +4,25 @@ import { User } from "../mongo/models";
 import AppLog from "../events/AppLog";
 
 export async function create(data: CreateUser) {
-  const { name, email, password } = data;
+	const { name, email, password } = data;
 
-  const user = await new User({
-    name,
-    email,
-    password,
-  }).save({
-    validateBeforeSave: false,
-  });
+	const user = await new User({
+		name,
+		email,
+		password,
+	}).save({
+		validateBeforeSave: false,
+	});
 
-  AppLog({ type: "Repository", text: "User instance inserted" });
-  return user;
+	AppLog({ type: "Repository", text: "User instance inserted" });
+	return user;
 }
 
 export async function deleteOne(data: DeleteOne) {
-  const { id } = data;
+	const { id } = data;
 
-  const result = await User.findByIdAndDelete(id).exec();
+	const result = await User.findByIdAndDelete(id).exec();
 
-  AppLog({ type: "Repository", text: "Delete User instance" });
-  return !!result;
+	AppLog({ type: "Repository", text: "Delete User instance" });
+	return !!result;
 }
