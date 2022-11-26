@@ -30,7 +30,6 @@
     "concurrently": "^7.6.0",
     "eslint-config-custom": "*",
     "eslint-config-turbo": "^0.0.4",
-    "husky": "^8.0.2",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "stylelint": "^14.14.1",
