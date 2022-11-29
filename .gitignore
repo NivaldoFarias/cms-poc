@@ -48,3 +48,4 @@ dist
 
 # testing
 coverage/**
+server/docker/mongod.conf

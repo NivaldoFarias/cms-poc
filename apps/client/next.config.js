@@ -1,9 +1,20 @@
 /** @type {import('next').NextConfig} */
+// @ts-check
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* 
+eslint-disable 
+@typescript-eslint/no-var-requires, 
+@typescript-eslint/ban-ts-comment 
+*/
+
+/** @type {import('./types/next-safe')} */
+// @ts-ignore
 const nextSafe = require("next-safe");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const withPWA = require("next-pwa")({
+
+/** @type {import('./types/next-pwa')} */
+// @ts-ignore
+const pluginPWA = require("next-pwa");
+const withPWA = pluginPWA({
 	dest: "public",
 });
 

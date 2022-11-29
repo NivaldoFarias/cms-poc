@@ -1,0 +1,19 @@
+{
+	"name": "@cms/tsconfig",
+	"version": "0.3.1",
+	"private": true,
+	"license": "MIT",
+	"main": "tsconfig.json",
+	"files": [
+		"tsconfig.json",
+		"client/tsconfig.json",
+		"server/tsconfig.json"
+	],
+	"devDependencies": {
+		"@types/node": "^18.11.9",
+		"typescript": "^5.0.0-dev.20221129"
+	},
+	"publishConfig": {
+		"access": "restricted"
+	}
+}

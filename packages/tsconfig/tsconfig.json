@@ -1,0 +1,30 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"display": "Index",
+	"compilerOptions": {
+		"strict": true,
+		"allowUmdGlobalAccess": true,
+		"forceConsistentCasingInFileNames": true,
+
+		"noImplicitAny": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"noImplicitReturns": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+
+		"noEmit": true,
+		"declaration": true,
+		"incremental": true,
+		"isolatedModules": true,
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"moduleResolution": "node",
+		"experimentalDecorators": true,
+		"typeRoots": ["node_modules/@types", "types"]
+	},
+	"ts-node": {
+		"esm": true
+	},
+	"exclude": ["**/node_modules/**"]
+}
