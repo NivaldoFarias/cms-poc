@@ -6,7 +6,7 @@
 	"author": "Nivaldo Farias",
 	"license": "MIT",
 	"workspaces": [
-		"packages/eslintrc",
+		"packages/eslint-config",
 		"packages/tsconfig",
 		"apps/client",
 		"apps/server"
@@ -36,7 +36,7 @@
 		"stylelint-config-standard-scss": "^6.1.0",
 		"stylelint-scss": "^4.3.0",
 		"turbo": "^1.6.3",
-		"@cms/eslintrc": "*",
+		"@cms/eslint-config": "*",
 		"@cms/tsconfig": "*"
 	},
 	"repository": {
