@@ -77,7 +77,8 @@ $ npm run dev
 
 ## Docker Container
 
-###### Pre-requisites: Docker `^20.10.17`, Docker Compose `^1.29.2`
+###### Pre-requisites: Docker `^20.10.17`, Docker Compose `^2.12.2
+`
 
 ```bash
 # Running in production mode

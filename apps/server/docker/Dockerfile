@@ -6,6 +6,6 @@ COPY . .
 
 EXPOSE 5000
 
-RUN npm ci
+RUN npm i
 
 CMD npm run build && npm start
