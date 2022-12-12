@@ -4,7 +4,7 @@
 
 <div align="center">
   <a href="https://github.com/NivaldoFarias/content-management-system">
-    <img src="../assets/logo.png" alt="Logo" width="100">
+    <img src="https://github.com/NivaldoFarias/content-management-system/blob/main/assets/logo.png" alt="Logo" width="100">
   </a>
 
   <h3 align="center">Content Management System - Client Side</h3>
