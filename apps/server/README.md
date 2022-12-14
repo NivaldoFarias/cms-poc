@@ -44,7 +44,7 @@
 - [Table of Contents](#table-of-contents)
 - [Running the Server](#running-the-server)
   - [Locally](#locally) - [Pre-requisites](#pre-requisites-nodejs-18120-git-2330)
-  - [Docker Container](#docker-container) - [Pre-requisites](#pre-requisites-docker-201017-docker-compose-1292)
+  - [Docker Container](#docker-container)
 - [Error Handling and Logging](#error-handling-and-logging)
   - [AppError](#--apperror)
   - [AppLog](#--applog)
@@ -77,33 +77,7 @@ $ npm run dev
 
 ## Docker Container
 
-###### Pre-requisites: Docker `^20.10.17`, Docker Compose `^2.12.2
-`
-
-```bash
-# Running in production mode
-npm run docker:server
-
-# Running in development mode
-npm run docker:server:dev
-```
-
-The development containers will run in the background, during which the following services will be available through the respective ports in your machine:
-
-- **Production**
-  - `5000` - Server
-  - `27017`- Database
-- **Development**
-  - `5050` - Server
-  - `27027`- Database
-
-### Valuable Docker Commands
-
-- Stop containers created by _docker-compose_: `npm run docker:down` or `npm run docker:down:dev`
-- Prune Dangling Images _(i.e. untagged images)_: `docker image prune`
-- Prune Dangling and unused Images _(i.e node.js-alpine)_: `docker volume prune -a`
-
-<!-- Error Handling and Logging -->
+Follow the steps referenced at [Run Server Only](https://github.com/NivaldoFarias/content-management-system#run-server-only).
 
 # Error Handling and Logging
 
@@ -181,7 +155,7 @@ An `AppLog` Object is used to handle logs in the application. It takes two param
 
 While aiming to provide a reusable, modular and extensible architecture, the middlewares are generally the first structures to be refactored into self-contained modules. The `validateSchema()`, `processHeader()` and `requireToken()` middlewares were set in order to achieve that goal. The following section describes **`useMiddleware()`**, which incorporates the forementioned functions as _key–value_ pairs in an Object, along with their structure and usage.
 
-### ‣ &nbsp;UseMiddleware
+## ‣ &nbsp;UseMiddleware
 
 The `useMiddleware()` function takes two parameters:
 
@@ -193,7 +167,7 @@ The `useMiddleware()` function takes two parameters:
 
 ###### Reference: [useMiddleware function declaration](https://github.com/NivaldoFarias/typescript-project-template/blob/main/apps/src/utils/middleware.util.ts)
 
-##### Example Usage
+### Example Usage
 
 ```typescript
 // ..../routes/admin.route.ts
@@ -305,8 +279,8 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "email": "johndoe@gmail.com",
-  "password": "123456789"
+	"email": "johndoe@gmail.com",
+	"password": "123456789"
 }
 ```
 
@@ -314,7 +288,7 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "Content-Type": "application/json"
+	"Content-Type": "application/json"
 }
 ```
 
@@ -339,8 +313,8 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>"
+	"Content-Type": "application/json",
+	"Authorization": "Bearer <token>"
 }
 ```
 
@@ -365,28 +339,28 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "name": "John Doe Junior the Third",
-  "email": "johndoe@gmail.com",
-  "password": "123456789",
-  "groups": {
-    "provisions": {
-      "type": [
-        {
-          "value": "Macarrão"
-        },
-        {
-          "value": "Feijão"
-        }
-      ]
-    },
-    "supplier": {
-      "name": "Acme Inc.",
-      "cnpj": "44681667000172"
-    },
-    "cook": {
-      "cir": "9999999"
-    }
-  }
+	"name": "John Doe Junior the Third",
+	"email": "johndoe@gmail.com",
+	"password": "123456789",
+	"groups": {
+		"provisions": {
+			"type": [
+				{
+					"value": "Macarrão"
+				},
+				{
+					"value": "Feijão"
+				}
+			]
+		},
+		"supplier": {
+			"name": "Acme Inc.",
+			"cnpj": "44681667000172"
+		},
+		"cook": {
+			"cir": "9999999"
+		}
+	}
 }
 ```
 
@@ -394,7 +368,7 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "Content-Type": "application/json"
+	"Content-Type": "application/json"
 }
 ```
 
@@ -418,8 +392,8 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>"
+	"Content-Type": "application/json",
+	"Authorization": "Bearer <token>"
 }
 ```
 
@@ -452,8 +426,8 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>"
+	"Content-Type": "application/json",
+	"Authorization": "Bearer <token>"
 }
 ```
 
@@ -479,8 +453,8 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>"
+	"Content-Type": "application/json",
+	"Authorization": "Bearer <token>"
 }
 ```
 
@@ -508,8 +482,8 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>"
+	"Content-Type": "application/json",
+	"Authorization": "Bearer <token>"
 }
 ```
 
@@ -542,8 +516,8 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>"
+	"Content-Type": "application/json",
+	"Authorization": "Bearer <token>"
 }
 ```
 
@@ -569,8 +543,8 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>"
+	"Content-Type": "application/json",
+	"Authorization": "Bearer <token>"
 }
 ```
 
@@ -598,8 +572,8 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>"
+	"Content-Type": "application/json",
+	"Authorization": "Bearer <token>"
 }
 ```
 
@@ -632,8 +606,8 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>"
+	"Content-Type": "application/json",
+	"Authorization": "Bearer <token>"
 }
 ```
 
@@ -659,8 +633,8 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>"
+	"Content-Type": "application/json",
+	"Authorization": "Bearer <token>"
 }
 ```
 
@@ -688,8 +662,8 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>"
+	"Content-Type": "application/json",
+	"Authorization": "Bearer <token>"
 }
 ```
 
@@ -725,8 +699,8 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>"
+	"Content-Type": "application/json",
+	"Authorization": "Bearer <token>"
 }
 ```
 
@@ -752,8 +726,8 @@ In this section, you will find the example API's endpoints and their respective 
 
 ```json
 {
-  "Content-Type": "application/json",
-  "Authorization": "Bearer <token>"
+	"Content-Type": "application/json",
+	"Authorization": "Bearer <token>"
 }
 ```
 
