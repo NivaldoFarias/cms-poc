@@ -13,8 +13,6 @@
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
 
-		"noEmit": true,
-		"declaration": true,
 		"incremental": true,
 		"isolatedModules": true,
 		"esModuleInterop": true,

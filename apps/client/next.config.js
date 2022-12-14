@@ -18,11 +18,15 @@ const withPWA = pluginPWA({
 	dest: "public",
 });
 
+const path = require("path");
+
 module.exports = withPWA({
 	reactStrictMode: true,
+	output: "standalone",
 	swcMinify: true,
 	experimental: {
 		appDir: true,
+		outputFileTracingRoot: path.join(__dirname, "../../"),
 	},
 	typescript: {
 		// ! Dangerously allow production builds to successfully complete even if your project has type errors.

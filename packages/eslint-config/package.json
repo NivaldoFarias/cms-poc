@@ -1,5 +1,5 @@
 {
-	"name": "@cms/eslint-config",
+	"name": "@nivaldofarias/eslint-config",
 	"version": "0.2.2",
 	"main": ".eslintrc.json",
 	"private": true,

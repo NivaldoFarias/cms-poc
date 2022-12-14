@@ -1,16 +1,11 @@
 {
-  "$schema": "http://json.schemastore.org/eslintrc",
-  "root": true,
-  "extends": [
-    "@cms",
-    "next"
-  ],
-  "plugins": [
-    "eslint-plugin-react"
-  ],
-  "settings": {
-    "next": {
-      "rootDir": "src/"
-    }
-  }
+	"$schema": "http://json.schemastore.org/eslintrc",
+	"root": true,
+	"extends": ["@nivaldofarias", "next"],
+	"plugins": ["eslint-plugin-react"],
+	"settings": {
+		"next": {
+			"rootDir": "src/"
+		}
+	}
 }

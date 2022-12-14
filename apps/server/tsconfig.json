@@ -1,15 +1,9 @@
 {
-  "extends": "@cms/tsconfig/server/tsconfig.json",
-  "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src"
-  },
-  "include": [
-    "src/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "test",
-    "**/*.test.ts"
-  ]
+	"extends": "@nivaldofarias/tsconfig/server/tsconfig.json",
+	"compilerOptions": {
+		"outDir": "dist",
+		"rootDir": "src"
+	},
+	"include": ["src/*"],
+	"exclude": ["node_modules", "test", "**/*.test.ts"]
 }

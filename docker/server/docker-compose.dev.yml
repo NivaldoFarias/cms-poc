@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  mongodb:
+  database:
     image: mongo:6.0
     container_name: cms-mongodb.dev
     restart: always
@@ -9,20 +9,20 @@ services:
     volumes:
       - mongodb:/data/db
     env_file:
-      - ./../.env.dev
+      - ./../../apps/server/.env.dev
 
   server:
     container_name: cms-server.dev
-    image: cms/server.dev
+    image: cms/server:dev
     build:
-      context: ./../
-      dockerfile: ./docker/Dockerfile
+      context: ./../../
+      dockerfile: server.Dockerfile
     ports:
       - 5050:5000
     depends_on:
-      - mongodb
+      - database
     env_file:
-      - ./../.env.dev
+      - ./../../apps/server/.env.dev
 
 volumes:
   mongodb:

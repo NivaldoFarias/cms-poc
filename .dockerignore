@@ -1,0 +1,8 @@
+node_modules
+collections
+.turbo
+.next
+.out
+dist
+docker
+nginx

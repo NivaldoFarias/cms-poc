@@ -1,44 +1,44 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "pipeline": {
-    "build": {
-      "dependsOn": ["^@cms/client#build", "^@cms/server#build"]
-    },
-    "lint": {
-      "dependsOn": ["^@cms/client#lint", "^@cms/server#lint"]
-    },
-    "@cms/client#build": {
-      "env": ["NEXT_APP_API_URL", "NODE_ENV"],
-      "outputs": ["dist/**", ".next/**"]
-    },
-    "@cms/client#lint": {
-      "env": ["NEXT_APP_API_URL", "NODE_ENV"]
-    },
-    "@cms/server#build": {
-      "env": [
-        "PORT",
-        "DATABASE_URL",
-        "JWT_SECRET",
-        "JWT_SUBJECT",
-        "JWT_ALGORITHM",
-        "JWT_EXPIRES_IN",
-        "SALT_ROUNDS"
-      ],
-      "outputs": ["dist/**"]
-    },
-    "@cms/server#lint": {
-      "env": [
-        "PORT",
-        "DATABASE_URL",
-        "JWT_SECRET",
-        "JWT_SUBJECT",
-        "JWT_ALGORITHM",
-        "JWT_EXPIRES_IN",
-        "SALT_ROUNDS"
-      ]
-    },
-    "format": {},
-    "start": {},
-    "dev": {}
-  }
+	"$schema": "https://turbo.build/schema.json",
+	"pipeline": {
+		"build": {
+			"dependsOn": ["^client#build", "^server#build"]
+		},
+		"lint": {
+			"dependsOn": ["^client#lint", "^server#lint"]
+		},
+		"client#build": {
+			"env": ["NEXT_APP_API_URL", "NODE_ENV"],
+			"outputs": ["dist/**", ".next/**"]
+		},
+		"client#lint": {
+			"env": ["NEXT_APP_API_URL", "NODE_ENV"]
+		},
+		"server#build": {
+			"env": [
+				"PORT",
+				"DATABASE_URL",
+				"JWT_SECRET",
+				"JWT_SUBJECT",
+				"JWT_ALGORITHM",
+				"JWT_EXPIRES_IN",
+				"SALT_ROUNDS"
+			],
+			"outputs": ["dist/**"]
+		},
+		"server#lint": {
+			"env": [
+				"PORT",
+				"DATABASE_URL",
+				"JWT_SECRET",
+				"JWT_SUBJECT",
+				"JWT_ALGORITHM",
+				"JWT_EXPIRES_IN",
+				"SALT_ROUNDS"
+			]
+		},
+		"format": {},
+		"start": {},
+		"dev": {}
+	}
 }
