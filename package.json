@@ -1,6 +1,6 @@
 {
 	"name": "@nivaldofarias/cms",
-	"version": "1.2.4",
+	"version": "1.3.0",
 	"description": "Content Management System PoC",
 	"private": true,
 	"homepage": "https://github.com/NivaldoFarias/content-management-system#readme",
