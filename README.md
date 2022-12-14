@@ -109,11 +109,11 @@ make stop-development
 The development containers will run in the background, during which the following services will be available through the respective ports in your machine:
 
 - **Production**
-  - `80` - Client
+  - `3000` - Client
   - `5000` - Server
   - `27017`- Database
 - **Development**
-  - `8080` - Client
+  - `3001` - Client
   - `5050` - Server
   - `27027`- Database
 
