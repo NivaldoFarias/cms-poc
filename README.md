@@ -117,13 +117,13 @@ The development containers will run in the background, during which the followin
   - `5050` - Server
   - `27027`- Database
 
-### Clean Up
+## Clean Up
 
 - Prune Dangling Images: `docker image prune`
 - Prune Dangling and unused Images: `docker volume prune -a`
 - Prune system: `docker system prune -a` _(add the `--volumes` flag to erase stored volumes)_
 
-### Run Server Only
+## Run Server Only
 
 To run the server (and database) only, you can use the following command:
 
