@@ -1,6 +1,5 @@
 <!-- Project Summary -->
-
-## About the project
+## Summary
 
 Content Management System PoC & Full Stack Software Engineering Playground 
    
@@ -16,7 +15,6 @@ Content Management System PoC & Full Stack Software Engineering Playground
 ![stylelint](https://img.shields.io/badge/Stylelint-black?style=for-the-badge&logo=stylelint&logoColor=white)
 
 <!-- Table of Contents -->
-
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
@@ -26,6 +24,7 @@ Content Management System PoC & Full Stack Software Engineering Playground
     - [Clean Up](#clean-up)
     - [Run Server Only](#run-server-only)
 
+<!-- Installation and Usage -->
 ## Installation and Usage
 
 ###### Pre-requisites: Node.js `^18.12.0`, Git `^2.33.0`, MongoDB `^5.0.11`
@@ -49,7 +48,6 @@ npm run dev
 ```
 
 <!-- Client and Server -->
-
 ### Client and Server
 
 The client and server are separated into two different folders, each containing their own Documentation and usage descriptions.
@@ -117,5 +115,3 @@ To stop the containers, run the following command:
 ```bash
 make stop-server
 ```
-
-#
