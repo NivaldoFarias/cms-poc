@@ -1,57 +1,32 @@
 <!-- Project Summary -->
 
-<br />
+## About the project
 
-<div align="center">
-  <a href="https://github.com/NivaldoFarias/content-management-system/tree/main/server">
-    <img src="assets/logo.png" alt="Logo" width="100">
-  </a>
+Content Management System PoC & Full Stack Software Engineering Playground 
+   
+- [**Browse Back End code»**](https://github.com/NivaldoFarias/content-management-system/tree/main/apps/server)
+- [**Browse Front End code»**](https://github.com/NivaldoFarias/content-management-system/tree/main/apps/client)
 
-  <h3 align="center">Content Management System</h3>
-  <div align="center">
-    <h6>WIP</h6>
-    Content Management System PoC & Full Stack Software Engineering Playground 
-    <br />
-    <a href="https://github.com/NivaldoFarias/content-management-system/tree/main/apps/server"><strong>Browse Back End code»</strong></a>
-    -
-    <a href="https://github.com/NivaldoFarias/content-management-system/tree/main/apps/client"><strong>Browse Front End code»</strong></a>
-  </div>
-</div>
+## Built with
 
-<div align="center">
-  <h3>Built and Managed With</h3>
-
-  <img src="https://img.shields.io/badge/Docker-0096FF?style=for-the-badge&logo=docker&logoColor=white" height="30px"/>
-  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" height="30px"/>
-  <img src="https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white" height="30px"/>
-  <img src="https://img.shields.io/badge/Turborepo-151225?style=for-the-badge&logo=turborepo&logoColor=white" height="30px"/>
-  <img src="https://img.shields.io/badge/commitlint-black?style=for-the-badge&logo=commitlint&logoColor=0096FF&logoWidth=30" height="30px"/>
-  <img src="https://img.shields.io/badge/Stylelint-black?style=for-the-badge&logo=stylelint&logoColor=white" height="30px"/>
-
-  <!-- Badges source: https://dev.to/envoy_/150-badges-for-github-pnk -->
-</div>
-
-<br />
-
-<div align="center">
-  <a href="https://github.com/NivaldoFarias/content-management-system" alt="MIT license badge">
-    <img src="https://img.shields.io/badge/license-MIT-%23A8D1FF?style=flat-square" />
-  </a>
-</div>
+![docker](https://img.shields.io/badge/Docker-0096FF?style=for-the-badge&logo=docker&logoColor=white)
+![typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![turborepo](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
+![commitlint](https://img.shields.io/badge/commitlint-black?style=for-the-badge&logo=commitlint&logoColor=0096FF&logoWidth=30)
+![stylelint](https://img.shields.io/badge/Stylelint-black?style=for-the-badge&logo=stylelint&logoColor=white)
 
 <!-- Table of Contents -->
 
-# Table of Contents
+## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Installation and Usage](#installation-and-usage) - [Pre-requisites](#pre-requisites-nodejs-18120-git-2330)
-- [Client and Server](#client-and-server)
-- [Running inside Docker](#running-inside-docker) - [Pre-requisites](#pre-requisites-docker-201017-docker-compose-1292)
-  - [Stopping the containers](#stopping-the-containers)
-  - [Clean Up](#clean-up)
-  - [Run Server Only](#run-server-only)
+- [Installation and Usage](#installation-and-usage)
+  - [Client and Server](#client-and-server)
+  - [Running inside Docker](#running-inside-docker)
+    - [Clean Up](#clean-up)
+    - [Run Server Only](#run-server-only)
 
-# Installation and Usage
+## Installation and Usage
 
 ###### Pre-requisites: Node.js `^18.12.0`, Git `^2.33.0`, MongoDB `^5.0.11`
 
@@ -75,14 +50,14 @@ npm run dev
 
 <!-- Client and Server -->
 
-# Client and Server
+### Client and Server
 
 The client and server are separated into two different folders, each containing their own Documentation and usage descriptions.
 
 - [Client](https://github.com/NivaldoFarias/customer-management/tree/main/client) `Next.js` `TypeScript` `React` `SASS`
 - [Server](https://github.com/NivaldoFarias/customer-management/tree/main/server) `Node.js` `TypeScript` `Express` `MongoDB` `Mongoose` `JWT`
 
-# Running inside Docker using Makefile
+### Running inside Docker
 
 ###### Pre-requisites: Docker `^20.10.17`, Docker Compose `^2.12.2`
 
@@ -117,13 +92,13 @@ The development containers will run in the background, during which the followin
   - `5050` - Server
   - `27027`- Database
 
-## Clean Up
+#### Clean Up
 
 - Prune Dangling Images: `docker image prune`
 - Prune Dangling and unused Images: `docker volume prune -a`
 - Prune system: `docker system prune -a` _(add the `--volumes` flag to erase stored volumes)_
 
-## Run Server Only
+#### Run Server Only
 
 To run the server (and database) only, you can use the following command:
 
